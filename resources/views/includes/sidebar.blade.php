@@ -120,8 +120,6 @@ $permissions = explode(',',$permissions);
                         <ul class="submenu">
                             <li><a href="{{ url('/admin/categories') }}">Categories List</a></li>
                             <li><a href="{{ url('/admin/sub-categories') }}">Sub Categories List</a></li>
-                            <li><a href="{{ url('/admin/post-sub-categories') }}">Post Sub Categories List</a></li>
-
                         </ul>
                     </li>
                     @endif
@@ -153,6 +151,31 @@ $permissions = explode(',',$permissions);
                         </a>
                     </li>
                     @endif
+
+                    @if(in_array("brands",$permissions))
+                    <li class="dropdown">
+                        <a href="{{ url('/admin/brand') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-image1"></span><span class="mtext">Brands</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array("reviews",$permissions))
+                    <li class="dropdown">
+                        <a href="{{ url('/admin/review') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-image1"></span><span class="mtext">Products Reviews</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array("offers",$permissions))
+                    <li class="dropdown">
+                        <a href="{{ url('/admin/offer') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-image1"></span><span class="mtext">Offers</span>
+                        </a>
+                    </li>
+                    @endif
+
                     @if(in_array("orders",$permissions))
                     <li class="dropdown">
                         <a href="{{ url('/admin/orders') }}" class="dropdown-toggle no-arrow">

@@ -22,7 +22,6 @@
                   <th>End Date</th>
                   <th>Status</th>
                   <th>Minimum Order Amount</th>
-                  <th>Number Of Users</th>
                   <th>Discount Type</th>
                   <th>Discount</th>
                   <th>Max Discount</th>
@@ -42,7 +41,6 @@
                   <td>{{$c->end_date}}</td>
                   <td>{{$c->status=='1'?'Acitve':'Not Active'}}</td>
                   <td>{{$c->minimum_order_amount}}</td>
-                  <td>{{$c->number_of_users}}</td>
                   <td>{{$c->discount_type}}</td>
                   <td>{{$c->discount}}</td>
                   <td>{{$c->max_discount}}</td>

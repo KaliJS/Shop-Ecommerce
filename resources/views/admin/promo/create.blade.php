@@ -41,13 +41,6 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">Number Of Users</label>
-            <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="number" value="{{Request::old('number_of_users')}}" name="number_of_users" placeholder="Number Of Users" required>
-            </div>
-        </div>
-
-        <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Discount Type</label>
             <div class="col-sm-12 col-md-10">
                 <select class="custom-select2 form-control" name="discount_type" style="width: 100%;" required>

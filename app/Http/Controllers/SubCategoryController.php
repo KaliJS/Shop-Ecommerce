@@ -141,7 +141,7 @@ class SubCategoryController extends Controller
         try{
 
             $sub_category->delete();
-            DB::table('products')->where('category_id',$category->id)->delete();
+            DB::table('products')->where('sub_category_id',$sub_category->id)->delete();
             DB::commit();
             return Redirect::back()->with('success','Sub Category Deleted Successfully!');
     

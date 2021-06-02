@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use App\Models\Categories;
-use App\Models\PostSubCategories;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,9 +16,5 @@ class SubCategories extends Model
 
     public function category(){ 
         return $this->belongsTo(Category::class, 'category_id','id'); 
-    }
-
-    public function postSubCategories(){
-    	return $this->hasMany(PostSubCategories::class,'sub_category_id','id');
     }
 }

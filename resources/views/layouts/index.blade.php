@@ -107,9 +107,8 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  <!-- <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="external/jquery/jquery.min.js"><\/script>')</script>
- -->
+  <script src="{{asset('/shopping/js/2.2.4/jquery.min.js')}}"></script>
+  <script>window.jQuery || document.write('<script src="{{asset(`/shopping/external/jquery/jquery.min.js`)}}"><\/script>')</script>
   <script defer src="{{asset('/shopping/js/bundle.js')}}"></script>
 
 

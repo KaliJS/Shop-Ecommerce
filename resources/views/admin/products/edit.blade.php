@@ -37,16 +37,15 @@
             </div>
         </div>
 
-        <input type="hidden" id="get_sub_category_id" value="{{$product->postsubcategory->subcategory->id}}">
-        <input type="hidden" id="get_post_sub_category_id" value="{{$$product->postsubcategory->id}}">
-
+        <input type="hidden" id="get_sub_category_id" value="{{$product->subcategory->id}}">
+        
         <div class="form-group row ">
             <label class="col-sm-12 col-md-2 col-form-label">Category</label>
             <div class="col-sm-12 col-md-10">
               <select class="custom-select col-12" id="category_id" name="category_id" required>
                 <option selected disabled>Select</option>
                 @foreach($categories as $category)
-                <option value="{{$category->id}}" {{$category->id==$product->postsubcategory->subcategory->category_id?'Selected':''}}>{{$category->name}}</option>
+                <option value="{{$category->id}}" {{$category->id==$product->subcategory->category_id?'Selected':''}}>{{$category->name}}</option>
                 @endforeach
               </select>
             </div>
@@ -56,8 +55,16 @@
 
          </div>
 
-         <div class="product_postsubcategory">
-
+         <div class="form-group row ">
+            <label class="col-sm-12 col-md-2 col-form-label">Brand</label>
+            <div class="col-sm-12 col-md-10">
+              <select class="custom-select col-12" name="brand_id" required>
+                <option selected disabled>Select</option>
+                @foreach($brands as $brand)
+                <option value="{{$brand->id}}" {{$brand->id==$product->brand_id?'Selected':''}}>{{$brand->title}}</option>
+                @endforeach
+              </select>
+            </div>
          </div>
          
          <div class="form-group row">
@@ -66,6 +73,13 @@
                 <textarea rows="2" name="description" class="textarea_editor form-control border-radius-0" required>{{$product->description}}</textarea>
             </div>
          </div>
+
+         <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Additional Information</label>
+            <div class="col-sm-12 col-md-10 html-editor">
+            <input class="form-control" value="{{$product->additional_info}}" type="text" name="additional_info" required>
+            </div>
+        </div>
 
          <div class="form-group row">
                <label class="col-sm-12 col-md-2 col-form-label">SKU</label>
@@ -107,7 +121,7 @@
                   </div>
                </div>
 
-               <div class='col-md-2 col-sm-12'>
+               <div class='col-md-1 col-sm-12'>
                   <button class="btn btn-danger variant_remove mx-auto"  type="button"><i class="icon-copy dw dw-trash"></i></button>
                </div>
             
@@ -175,13 +189,13 @@
            $(document).on("click",".variant",function(){
                 
                $(".add_varient").append(`<div class='row product_variant'>
-                  <div class='col-md-3 col-sm-6'>
+                  <div class='col-md-2 col-sm-6'>
                      <div class='form-group'><label>Quantity</label><input type='number' name='quantity[]' class='form-control' required></div>
                   </div>
-                  <div class='col-md-3 col-sm-6'>
+                  <div class='col-md-2 col-sm-6'>
                      <div class='form-group'><label>Variant</label><input type='text' name='variant[]' class='form-control' required></div>
                   </div>
-                  <div class='col-md-3 col-sm-6'>
+                  <div class='col-md-2 col-sm-6'>
                      <div class='form-group'><label>Max Delivery Days</label><input type='number' name='max_delivery_days[]' class='form-control' required></div>
                   </div>
                   <div class='col-md-2 col-sm-6'>
@@ -239,7 +253,7 @@
                     if(response){
                         
                         $('.product_subcategory').html(response);
-                        
+                        $(".subcategory_select").select2();
                     }
                 }).fail(error=>{
                     console.log('error',error);
@@ -247,27 +261,6 @@
             });
 
             $("#category_id").trigger("change");
-
-            $(document).on("change","#subcategory_id",function(){
-                const sub_category_id=$(this).val();
-                const post_sub_category_id=$('#get_post_sub_category_id').val();
-                $.ajax({
-                    method:'POST',
-                    url:`getSubCategoryData?sub_category_id=${sub_category_id}`,
-                    data:{sub_category_id,post_sub_category_id,"_token":"{{csrf_token()}}"}
-                }).then(response=>{
-                    if(response){
-                        
-                        $('.product_postsubcategory').html(response);
-                        //$("select").select2();
-                    }
-                }).fail(error=>{
-                    console.log('error',error);
-                });
-            });
-
-            $("#subcategory_id").trigger("change");
-
             
         </script>
 

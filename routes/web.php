@@ -2,17 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SingleProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\PostSubCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -99,17 +102,21 @@ Route::group(['middleware' => ['web','auth','role']], function (){
         Route::resource('/sub-categories', SubCategoryController::class);
         /********************Categories Ends**********************/
 
-        /********************Categories Starts********************/
-        Route::resource('/post-sub-categories', PostSubCategoryController::class);
-        /********************Categories Ends**********************/
-
-
         /********************Products Starts********************/
         Route::post('/products/getDeleteSelectedImages', [ProductController::class,'getDeleteSelectedImages']);
         Route::post('/products/getCategoryData', [ProductController::class,'getCategoryData']);
-        Route::post('/products/getSubCategoryData', [ProductController::class,'getSubCategoryData']);
         Route::resource('/products', ProductController::class);
         /********************Products Ends**********************/
+
+
+        /********************Brand Starts********************/
+        Route::resource('/brand', BrandController::class);
+        /********************Brand Ends**********************/
+
+
+        /********************Banner Starts********************/
+        Route::resource('/banner', BannerController::class);
+        /********************Banner Ends**********************/
 
 
         /********************Users Starts********************/
@@ -120,6 +127,16 @@ Route::group(['middleware' => ['web','auth','role']], function (){
         /********************Roles Starts********************/
         Route::resource('/roles', RoleController::class);
         /********************Roles Ends**********************/
+
+
+        /********************Offer Code Starts********************/
+        Route::resource('/offer', OfferController::class);
+        /********************Offer Code Ends**********************/
+
+
+        /********************Review Code Starts********************/
+        Route::resource('/review', ReviewController::class);
+        /********************Review Code Ends**********************/
 
 
         /********************Promo Code Starts********************/

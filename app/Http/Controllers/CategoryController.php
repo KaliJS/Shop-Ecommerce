@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\SubCategories;
 use Illuminate\Http\Request;
 use Redirect;
 use Str;
@@ -159,7 +160,7 @@ class CategoryController extends Controller
 
             unlink(public_path().'/uploads/categories/'.$category->image);          
             $category->delete();
-            DB::table('products')->where('category_id',$category->id)->delete();
+            SubCategories::where('category_id',$category->id)->delete();
             DB::commit();
             return Redirect::back()->with('success','Category Deleted Successfully!');
     

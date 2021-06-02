@@ -18,6 +18,7 @@
                <tr>
                   <th class="table-plus datatable-nosort">Id</th>
                   <th>Name</th>
+                  <th>Brand</th>
                   <th>Variants</th>
                   <th>SKU</th>
                   <th>Status</th>            
@@ -33,6 +34,7 @@
                   <td class="table-plus">{{$c->id}}</td>
                   
                   <td>{{$c->name}} </td>
+                  <td>{{$c->brand->title}} </td>
                   
                   <td>
 
@@ -68,7 +70,7 @@
                                              @foreach($c->variants as $v)
                                                 <tr>
                                                 <th>{{$v->quantity}}</th>
-                                                <th>{{$v->specialization}}</th>
+                                                <th>{{$v->variant}}</th>
                                                 <th>{{$v->max_delivery_days}}</th>
                                                 <th>${{$v->mrp_price}}</th>
                                                 <th>${{$v->selling_price}}</th>
@@ -91,7 +93,7 @@
                   <td>{{$c->sku}}</td>
                   <td>{{$c->status=='1'?'Active':'Not Active'}}</td>
                   
-                  <td>{{$c->category->name}} | {{$c->subcategory->name}} | {{$c->postsubcategory->name}}</td>
+                  <td>{{$c->subcategory->category->name}} | {{$c->subcategory->name}}</td>
 
                   <td>
                      @foreach(explode(',',$c->images) as $image)

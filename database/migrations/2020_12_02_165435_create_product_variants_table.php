@@ -22,6 +22,7 @@ class CreateProductVariantsTable extends Migration
             $table->string('variant');
             $table->float('mrp_price',8,2);
             $table->float('selling_price',8,2);
+            $table->boolean('in_stock')->default(1);
             $table->timestamps();
         });
     }

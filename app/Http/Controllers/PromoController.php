@@ -47,11 +47,10 @@ class PromoController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'minimum_order_amount' => 'required',
-            'number_of_users' => 'required',
             'discount_type' => 'required',
             'discount' => 'required',
             'max_discount' => 'required',
-            'number_of_usages' => 'required',
+            'number_of_usages' => 'required'
         ]);
 
         
@@ -105,11 +104,10 @@ class PromoController extends Controller
             'start_date' => 'required',
             'end_date' => 'required',
             'minimum_order_amount' => 'required',
-            'number_of_users' => 'required',
             'discount_type' => 'required',
             'discount' => 'required',
             'max_discount' => 'required',
-            'number_of_usages' => 'required',
+            'number_of_usages' => 'required'
         ]);
 
         

@@ -18,11 +18,14 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description');
+            $table->text('additional_info');
             $table->string('sku');
             $table->boolean('status')->default(1);
             $table->text('images');
-            $table->bigInteger('post_sub_category_id')->unsigned();
-            $table->foreign('post_sub_category_id')->references('id')->on('post_sub_categories')->onDelete('cascade');
+            $table->bigInteger('brand_id')->unsigned();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->bigInteger('sub_category_id')->unsigned();
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

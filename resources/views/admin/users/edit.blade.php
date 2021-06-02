@@ -65,7 +65,7 @@
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Pincode</label>
             <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" value="{{$user->pincode}}" name="pincode" placeholder="Pincode">
+                <input class="form-control" type="number" value="{{$user->pincode}}" name="pincode" placeholder="Pincode">
             </div>
         </div>
 

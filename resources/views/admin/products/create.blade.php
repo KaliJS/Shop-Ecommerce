@@ -53,14 +53,29 @@
 
         </div>
 
-        <div class="product_postsubcategory">
-
+        <div class="form-group row ">
+            <label class="col-sm-12 col-md-2 col-form-label">Brand</label>
+            <div class="col-sm-12 col-md-10">
+              <select class="custom-select col-12" name="brand_id" required>
+                <option selected disabled>Select</option>
+                @foreach($brands as $brand)
+                <option value="{{$brand->id}}" {{$brand->id==Request::old('brand_id')?"selected":""}}>{{$brand->title}}</option>
+                @endforeach
+              </select>
+            </div>
         </div>
         
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Description</label>
             <div class="col-sm-12 col-md-10 html-editor">
                 <textarea rows="2" name="description" class="textarea_editor form-control border-radius-0" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-12 col-md-2 col-form-label">Additional Information</label>
+            <div class="col-sm-12 col-md-10 html-editor">
+            <input class="form-control" type="text" name="additional_info" required>
             </div>
         </div>
 
@@ -104,13 +119,13 @@
             $(document).on("click",".variant",function(){
                 
                   $(".add_varient").append(`<div class='row product_variant'>
-                        <div class='col-md-3 col-sm-6'>
+                        <div class='col-md-2 col-sm-6'>
                            <div class='form-group'><label>Quantity</label><input type='number' name='quantity[]' class='form-control' required></div>
                         </div>
-                        <div class='col-md-3 col-sm-6'>
+                        <div class='col-md-2 col-sm-6'>
                            <div class='form-group'><label>Variant</label><input type='text' name='variant[]' class='form-control' required></div>
                         </div>
-                        <div class='col-md-3 col-sm-6'>
+                        <div class='col-md-2 col-sm-6'>
                            <div class='form-group'><label>Max Delivery Days</label><input type='number' name='max_delivery_days[]' class='form-control' required></div>
                         </div>
                         <div class='col-md-2 col-sm-6'>
@@ -135,15 +150,7 @@
                   $(this).remove();
                }); 
             });
-        
-        </script>
 
-@stop
-
-@section('js')
-
-        <script type="text/javascript">
-           
             $(document).on("change","#category_id",function(){
                 const category_id=$(this).val();
                
@@ -155,31 +162,14 @@
                     if(response){
                         
                         $('.product_subcategory').html(response);
-                        //$("select").select2();
+                        $(".subcategory_select").select2();
                     }
                 }).fail(error=>{
                     console.log('error',error);
                 });
             });
 
-            $(document).on("change","#subcategory_id",function(){
-                const sub_category_id=$(this).val();
-               
-                $.ajax({
-                    method:'POST',
-                    url:`getSubCategoryData?sub_category_id=${sub_category_id}`,
-                    data:{sub_category_id,"_token":"{{csrf_token()}}"}
-                }).then(response=>{
-                    if(response){
-                        
-                        $('.product_postsubcategory').html(response);
-                        //$("select").select2();
-                    }
-                }).fail(error=>{
-                    console.log('error',error);
-                });
-            });
-            
         </script>
 
 @stop
+

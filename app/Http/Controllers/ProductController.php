@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Brand;
 use App\Models\ProductVariants;
-use App\Models\PostSubCategories;
 use App\Models\SubCategories;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Redirect;
 use Str;
@@ -35,8 +36,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Categories::orderBy('name')->get(['id','name']);
-        return view('admin.products.create',compact('categories'));
+        $brands = Brand::orderBy('title')->get(['id','title']);
+        $categories = Category::orderBy('name')->get(['id','name']);
+        return view('admin.products.create',compact('categories','brands'));
     }
 
     /**
@@ -50,7 +52,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|unique:products',
             'description' => 'required',
-            'post_sub_category' => 'required',
+            'sub_category_id' => 'required',
+            'brand_id' => 'required',
             'quantity' => 'required',
             'variant' => 'required',
             'max_delivery_days' => 'required'
@@ -65,9 +68,11 @@ class ProductController extends Controller
             $max_delivery_days = $request->max_delivery_days;
             $input['name'] = $request->name;
             $input['description'] = $request->description;
+            $input['additional_info'] = $request->additional_info;
             $input['sku'] = $request->sku;
             $input['images'] = $request->images;
-            $input['post_sub_category_id'] = $request->post_sub_category_id;
+            $input['sub_category_id'] = $request->sub_category_id;
+            $input['brand_id'] = $request->brand_id;
             $input['sku'] = $request->sku;
             $input['slug'] = Str::slug($input['name']);
             
@@ -125,9 +130,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         try{
-            $post_sub_categories = PostSubCategories::where('id',$product->post_sub_category_id)->first();
-            $categories = Categories::orderBy('name')->get();
-            return view('admin.products.edit',compact('post_sub_categories','categories','product'));
+            $brands = Brand::orderBy('title')->get(['id','title']);
+            $categories = Category::orderBy('name')->get();
+            return view('admin.products.edit',compact('categories','product','brands'));
         }catch(\Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
         }
@@ -145,7 +150,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'post_sub_category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_id' => 'required',
             'quantity' => 'required',
             'variant' => 'required',
             'max_delivery_days' => 'required',
@@ -162,9 +168,11 @@ class ProductController extends Controller
             $in_stock=$request->in_stock;
             $input['name']=$request->name;
             $input['description']=$request->description;
+            $input['additional_info'] = $request->additional_info;
             $input['sku'] = $request->sku;
             $input['images'] = $request->images;
-            $input['post_sub_category_id'] = $request->post_sub_category_id;
+            $input['sub_category_id'] = $request->sub_category_id;
+            $input['brand_id'] = $request->brand_id;
             $input['sku'] = $request->sku;
             $input['status'] = $request->status;
             $input['slug']=Str::slug($input['name']);
@@ -269,21 +277,11 @@ class ProductController extends Controller
         $category_id=$request->category_id;
         $sub_category_id = '';
         $subcategories = SubCategories::where('category_id',$category_id)->get();
-        if($request->has('post_sub_category_id')){
+        if($request->has('sub_category_id')){
             $sub_category_id = $request->sub_category_id;
         }
         $view=view('admin.products.get_subcategory_data',compact('subcategories','sub_category_id'));
             return $view->render();
     }
 
-    public function getSubCategoryData(Request $request){
-        $sub_category_id = $request->sub_category_id;
-        $post_sub_category_id = '';       
-        $postsubcategories = PostSubCategories::where('sub_category_id',$sub_category_id)->get();
-        if($request->has('post_sub_category_id')){
-            $post_sub_category_id = $request->post_sub_category_id;
-        }
-        $view=view('admin.products.get_postsubcategory_data',compact('postsubcategories','post_sub_category_id'));
-            return $view->render();
-    }
 }

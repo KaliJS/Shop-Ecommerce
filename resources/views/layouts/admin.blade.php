@@ -130,7 +130,7 @@
           $('select').select2();
       });
 
-    </script>
-    @yield('js')
+  </script>
+  @yield('js')
 </body>
 </html>
