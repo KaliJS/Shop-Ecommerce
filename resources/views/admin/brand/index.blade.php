@@ -18,6 +18,7 @@
                <tr>
                   <th class="table-plus datatable-nosort">Id</th>
                   <th>Title</th>
+                  <th>Is Popular</th>
                   <th>Description</th>
                   <th>Image</th>
                   <th class="datatable-nosort">Action</th>
@@ -30,6 +31,7 @@
                   <td class="table-plus">{{$c->id}}</td>
                   
                   <td>{{$c->title}} </td>
+                  <td><input type="checkbox"  class="form-control changePopularity" data-id="{{$c->id}}" {{$c->popularity?"checked":""}} style="height:30px;"></td>
                   <td>{{$c->description}} </td>
                   <td>
                      
@@ -60,7 +62,23 @@
       </div>
    </div>
 
+@stop
 
-   
+@section('js')
+
+   <script>
+
+       $(document).on("change",".changePopularity",function(){
+         const brand_id = $(this).data("id");
+         const value = $(this).val() == 0?1:0;
+         const me = $(this);
+         $.ajax({
+               url: "{{url('/admin/brands/changeBrandPopularity')}}"+`/${brand_id}`,
+               method: 'post',
+               data: {'value':value,'_token':"{{csrf_token()}}"}
+         }).then(response=>me.val(response.status)).fail(err=>console.log(err));
+       });
+
+   </script>
 
 @stop

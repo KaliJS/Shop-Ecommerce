@@ -208,7 +208,6 @@ class ProductController extends Controller
                         ,'mrp_price'=>$mrp_price[$i],'selling_price'=>$selling_price[$i],'in_stock'=>$in_stock[$i]
                     );
             }
-
             $insert_product_variant=DB::table('product_variants')->insert($data);
 
             DB::commit();
@@ -274,14 +273,31 @@ class ProductController extends Controller
     }
 
     public function getCategoryData(Request $request){
-        $category_id=$request->category_id;
-        $sub_category_id = '';
-        $subcategories = SubCategories::where('category_id',$category_id)->get();
-        if($request->has('sub_category_id')){
-            $sub_category_id = $request->sub_category_id;
+        try{
+            $category_id=$request->category_id;
+            $sub_category_id = '';
+            $subcategories = SubCategories::where('category_id',$category_id)->get();
+            if($request->has('sub_category_id')){
+                $sub_category_id = $request->sub_category_id;
+            }
+            $view=view('admin.products.get_subcategory_data',compact('subcategories','sub_category_id'));
+                return $view->render();
+        }catch(Exception $e){
+            return $e->getMessage();
         }
-        $view=view('admin.products.get_subcategory_data',compact('subcategories','sub_category_id'));
-            return $view->render();
+    }
+
+    public function setProductType(Request $request){
+        try{
+            $product_id=$request->product_id;
+            $product_type=$request->type;
+            $product = Product::find($product_id);
+            $product->product_type = $product_type;
+            $product->save();
+            return 'success';
+        }catch(Exception $e){
+            return $e->getMessage();
+        }
     }
 
 }

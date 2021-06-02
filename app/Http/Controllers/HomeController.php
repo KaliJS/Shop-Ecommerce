@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Banner;
 use App\Models\Category;
 use Redirect;
 
@@ -35,10 +36,11 @@ class HomeController extends Controller
                 "
             ))
             ->orderBy('id')->offset(0)->limit(8)->get();
+            $banners = Banner::orderBy('id')->get();
             
-            $categories = Category::orderBy('id')->offset(0)->limit(6)->get();
+            $top_categories = Category::orderBy('id')->offset(0)->limit(4)->get();
 
-            return view('shopping.index',compact('products','categories'));
+            return view('shopping.index',compact('products','top_categories','banners'));
         }catch(\Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
         }

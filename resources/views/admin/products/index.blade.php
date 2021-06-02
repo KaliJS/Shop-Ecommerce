@@ -20,6 +20,7 @@
                   <th>Name</th>
                   <th>Brand</th>
                   <th>Variants</th>
+                  <th>Type</th>
                   <th>SKU</th>
                   <th>Status</th>            
                   <th>Category</th>
@@ -90,6 +91,16 @@
 
 
                   </td>
+                  <td>
+                     <div class="form-group">
+                        <select class="selectpicker form-control" id="product_type" data-id="{{$c->id}}" data-style="btn-outline-primary">
+                           <option value="Ordinary" {{$c->product_type=='ordinary'?'Selected': ''}}>Ordinary</option>
+                           <option value="New" {{$c->product_type=='new'?'Selected': ''}}>New</option>
+                           <option value="Special" {{$c->product_type=='special'?'Selected': ''}}>Special</option>
+                           <option value="Featured" {{$c->product_type=='featured'?'Selected': ''}}>Featured</option>             
+                        </select>
+                     </div>
+                  </td>
                   <td>{{$c->sku}}</td>
                   <td>{{$c->status=='1'?'Active':'Not Active'}}</td>
                   
@@ -131,5 +142,31 @@
       </div>
    </div>
 
+
+@stop
+
+
+
+
+@section('js')
+
+        <script type="text/javascript">
+
+            $(document).on("change","#product_type",function(){
+                const type=$(this).val();
+                const product_id=$(this).data('id');
+               
+                $.ajax({
+                    method:'POST',
+                    url:`products/setProductType`,
+                    data:{product_id,type,"_token":"{{csrf_token()}}"}
+                }).then(response=>{
+                   //
+                }).fail(error=>{
+                    console.log('error',error);
+                });
+            });
+
+        </script>
 
 @stop

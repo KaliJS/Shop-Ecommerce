@@ -3,147 +3,44 @@
 	<nav class="panel-menu mobile-main-menu">
 		<ul>
 			<li>
-				<a href="index.html">HOME</a>
-				<ul>
-					<li>
-						<a href="index.html">HOME STYLES</a>
-						<ul>
-							<li><a href="index.html">Home — Example 1 <span class="tt-badge tt-fatured">Popular</span></a></li>
-							<li><a href="index-02.html">Home — Example 2</a></li>
-							<li><a href="index-03.html">Home — Example 3</a></li>
-							<li><a href="index-04.html">Home — Example 4 <span class="tt-badge tt-fatured">Popular</span></a></li>
-							<li><a href="index-05.html">Home — Example 5</a></li>
-							<li><a href="index-06.html">Home — Example 6</a></li>
-							<li><a href="index-07.html">Home — Example 7</a></li>
-							<li><a href="index-08.html">Home — Example 8</a></li>
-							<li><a href="index-09.html">Home — Example 9</a></li>
-							<li><a href="index-10.html">Home — Example 10</a></li>
-							<li><a href="index-11.html">Home — Example 11</a></li>
-							<li><a href="index-12.html">Home — Example 12</a></li>
-							<li><a href="index-13.html">Home — Example 13</a></li>
-							<li><a href="index-14.html">Home — Example 14</a></li>
-							<li><a href="index-15.html">Home — Example 15</a></li>
-							<li><a href="index-16.html">Home — Example 16 <span class="tt-badge tt-fatured">Popular</span></a></li>
-							<li><a href="index-17.html">Home — Example 17</a></li>
-							<li><a href="index-18.html">Home — Example 18</a></li>
-							<li><a href="index-19.html">Home — Example 19 <span class="tt-badge tt-new">New</span></a></li>
-							<li><a href="index-20.html">Home — Example 20 <span class="tt-badge tt-new">New</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="index.html">NEW SKINS</a>
-						<ul>
-							<li><a href="index-skin-baby.html">Baby Shop</a></li>
-							<li><a href="index-skin-beer.html">Beer Shop</a></li>
-							<li><a href="index-skin-books02.html">Books Shop</a></li>
-							<li><a href="index-skin-care.html">Care Shop</a></li>
-							<li><a href="index-skin-cakes.html">Cakes Shop</a></li>
-							<li><a href="index-skin-coffee.html">Coffee Shop</a></li>
-							<li><a href="index-skin-comic-books.html">Comic Books Shop</a></li>
-							<li><a href="index-skin-cookware.html">Cookware Shop</a></li>
-							<li><a href="index-skin-food.html">Food Shop <span class="tt-badge tt-sale">HOT</span></a></li>
-							<li><a href="index-skin-furniture02.html">Furniture Shop</a></li>
-							<li><a href="index-skin-handmade.html">Handmade Shop</a></li>
-							<li><a href="index-skin-oneproducts.html">One Products Shop</a></li>
-							<li><a href="index-skin-oneproducts02.html">One Products Shop</a></li>
-							<li><a href="index-skin-plants.html">Plants Shop <span class="tt-badge tt-new">New</span></a></li>
-							<li><a href="index-skin-shirts.html">T-shirts Shop</a></li>
-							<li><a href="index-skin-tea.html">Tea Shop</a></li>
-							<li><a href="index-skin-tools.html">Tools Shop</a></li>
-							<li><a href="index-skin-wallets.html">Wallets Shop</a></li>
-							<li><a href="index-skin-watches.html">Watches Shop</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="index.html">HOME SKINS</a>
-						<ul class="tt-megamenu-submenu">
-							<li><a href="index-skin-bicycle.html">Bicycle Shop <span class="tt-badge tt-fatured">Popular</span></a></li>
-							<li><a href="index-skin-bikes.html">Bikes Shop <span class="tt-badge tt-fatured">Popular</span></a></li>
-							<li><a href="index-skin-books.html">Books shop</a></li>
-							<li><a href="index-skin-carsshop.html">Cars Shop</a></li>
-							<li><a href="index-skin-clothes.html">Clothes Shop</a></li>
-							<li><a href="index-skin-cosmetics.html">Cosmetics Shop</a></li>
-							<li><a href="index-skin-food-02.html">Echo Food Shop</a></li>
-							<li><a href="index-skin-electronics.html">Electronics Shop</a></li>
-							<li><a href="index-skin-furniture.html">Furniture Shop</a></li>
-							<li><a href="index-skin-glasses.html">Glasses Shop</a></li>
-							<li><a href="index-skin-gothic.html">Gothic and Rock Clothing</a></li>
-							<li><a href="index-skin-jewerly.html">Jewerly Shop</a></li>
-							<li><a href="index-skin-kids-clothes.html">Kids Clothes Shop</a></li>
-							<li><a href="index-skin-toys.html">Kids Toys Shop</a></li>
-							<li><a href="index-skin-lingerie.html">Lingerie Shop</a></li>
-							<li><a href="index-skin-medical.html">Medical Shop</a></li>
-							<li><a href="index-skin-oneproducts03.html">One Products Shop</a></li>
-							<li><a href="index-skin-phones.html">Phones Shop</a></li>
-							<li><a href="index-skin-phone-cases.html">Phone Cases Shop</a></li>
-							<li><a href="index-skin-snowboards.html">Snowboards Shop	<span class="tt-badge tt-sale">HOT</span></a></li>
-							<li><a href="index-skin-weapons.html">Weapons Shop</a></li>
-							<li><a href="index-skin-yoga.html">Yoga Gear Shop</a></li>
-						</ul>
-					</li>
-				</ul>
+				<a href="{{url('/')}}">HOME</a>
 			</li>
 			<li>
-				<a href="listing-left-column.html">SHOP</a>
+				<a href="listing-left-column.html">BRANDS</a>
 				<ul>
 					<li>
 						<a href="listing-left-column.html">LISTING STYLES</a>
 						<ul>
-							<li><a href="listing-left-column.html">Listing With Left Sidebar</a></li>
-							<li><a href="listing-right-column.html">Listing With Right Sidebar</a></li>
-							<li><a href="listing-not-sidebar.html">Listing Not Sidebar</a></li>
-							<li><a href="listing-not-sidebar-full-width.html">Listing Not Sidebar Full Width</a></li>
-							<li><a href="listing-metro.html">Listing Metro</a></li>
-							<li><a href="listing-left-column-with-block.html">Listing With Custom HTML Block</a></li>
-							<li><a href="listing-collection.html">Listing Collection</a></li>
 							<li><a href="lookbook.html">Look Book</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="product.html">PRODUCT PAGE STYLES</a>
 						<ul>
-							<li><a href="product.html">Product Example 1</a></li>
-							<li><a href="product-02.html">Product Example 2</a></li>
-							<li><a href="product-03.html">Product Example 3</a></li>
-							<li><a href="product-04.html">Product Example 4</a></li>
-							<li><a href="product-variable.html">Product Layout</a></li>
 							<li><a href="product-three-columns.html">Three Columns</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="product-variable.html">PRODUCT PAGE TYPES</a>
 						<ul>
-							<li><a href="product.html">Standard Product</a></li>
-							<li><a href="product-variable.html">Variable Product</a></li>
-							<li><a href="product-04.html">Grouped Product</a></li>
-							<li><a href="product-label-new.html">New Product</a></li>
-							<li><a href="product-label-sale.html">Sale Product</a></li>
 							<li><a href="product-label-out-of-stock.html">Out Of Stock Product</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="shopping_cart_02.html">OTHER PAGES</a>
 						<ul>
-							<li><a href="shopping_cart_02.html">Cart</a></li>
-							<li><a href="shopping_cart_01.html">Cart With Right Col</a></li>
-							<li><a href="account.html">Account</a></li>
-							<li><a href="account_address.html">Account Address</a></li>
 							<li><a href="account_address_fields.html">Account Address Fields</a></li>
 						</ul>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a href="blog-listing-without-col.html">BLOG</a>
+				<a href="blog-listing-without-col.html">OFFERS</a>
 				<ul>
 					<li>
 						<a href="blog-listing-without-col.html">BLOG STYLE</a>
 						<ul>
 							<li><a href="blog-listing-without-col.html">Standard Without Sidebar</a></li>
-							<li><a href="blog-listing-col-left.html">Standard With Left Sidebar</a></li>
-							<li><a href="blog-listing-col-right.html">Standard With Right Sidebar</a></li>
-							<li><a href="blog-masonry-col-2.html">Two Colums</a></li>
-							<li><a href="blog-masonry-col-3.html">Three Colums</a></li>
 							<li><a href="blog-masonry-col-3-filter.html">Three Colums With Filter</a></li>
 						</ul>
 					</li>
@@ -151,24 +48,17 @@
 						<a href="blog-single-post.html">POST TYPE</a>
 						<ul>
 							<li><a href="blog-single-post.html">Standard</a></li>
-							<li><a href="blog-single-post-gallery.html">Gallery</a></li>
-							<li><a href="blog-single-post-link.html">Link</a></li>
-							<li><a href="blog-single-post-quote.html">Quote</a></li>
-							<li><a href="blog-single-post-video.html">Video</a></li>
-							<li><a href="blog-single-post-audio.html">Audio</a></li>
+
 						</ul>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<a href="portfolio-col-grid-four.html">PORTFOLIO</a>
+				<a href="portfolio-col-grid-four.html">BLOGS</a>
 				<ul>
 					<li>
 						<a href="portfolio-col-grid-four.html">BOXED GRID</a>
 						<ul>
-							<li><a href="portfolio-col-grid-two.html">Two Colums</a></li>
-							<li><a href="portfolio-col-grid-three.html">Three Colums</a></li>
-							<li><a href="portfolio-col-grid-four.html">Four Colums</a></li>
 							<li><a href="portfolio-col-grid-four-without-filter.html">Four Colums Without Filter</a></li>
 						</ul>
 					</li>
@@ -176,274 +66,10 @@
 						<a href="portfolio-col-wide-three.html">BOXED STYLES</a>
 						<ul>
 							<li><a href="portfolio-col-wide-two.html">Two Colums</a></li>
-							<li><a href="portfolio-col-wide-three.html">Three Colums</a></li>
-							<li><a href="portfolio-col-wide-four.html">Four Colums</a></li>
 						</ul>
 					</li>
 				</ul>
 			</li>
-			<li>
-				<a href="about.html">PAGES</a>
-				<ul class="tt-megamenu-submenu">
-														<li><a href="about.html">About Example 1</a>
-															<ul>
-																<li><a href="about.html">Link Level 1</a></li>
-																<li>
-																	<a href="about.html">Link Level 1</a>
-																	<ul>
-																		<li><a href="about.html">Link Level 2</a></li>
-																		<li>
-																			<a href="about.html">Link Level 2</a>
-																			<ul>
-																				<li><a href="about.html">Link Level 3</a></li>
-																				<li><a href="about.html">Link Level 3</a></li>
-																				<li><a href="about.html">Link Level 3</a></li>
-																				<li>
-																					<a href="about.html">Link Level 3</a>
-																					<ul>
-																						<li>
-																							<a href="about.html">Link Level 4</a>
-																							<ul>
-																								<li><a href="about.html">Link Level 5</a></li>
-																								<li><a href="about.html">Link Level 5</a></li>
-																								<li><a href="about.html">Link Level 5</a></li>
-																								<li><a href="about.html">Link Level 5</a></li>
-																								<li><a href="about.html">Link Level 5</a></li>
-																							</ul>
-																						</li>
-																						<li><a href="about.html">Link Level 4</a></li>
-																					</ul>
-																				</li>
-																				<li><a href="about.html">Link Level 3</a></li>
-																			</ul>
-																		</li>
-																		<li><a href="about.html">Link Level 2</a></li>
-																		<li><a href="about.html">Link Level 2</a></li>
-																	</ul>
-																</li>
-																<li><a href="about.html">Link Level 1</a></li>
-																<li><a href="about.html">Link Level 1</a></li>
-																<li><a href="about.html">Link Level 1</a></li>
-															</ul>
-														</li>
-														<li><a href="about-02.html">About Example 2</a></li>
-														<li><a href="contact.html">Contacts Example 1</a></li>
-														<li><a href="contact-02.html">Contacts Example 2</a></li>
-														<li><a href="services.html">Services</a></li>
-														<li><a href="faq.html">FAQ</a></li>
-														<li><a href="coming-soon.html">Coming Soon</a></li>
-														<li><a href="page404.html">Page 404</a></li>
-														<li><a href="typography.html">Typography</a></li>
-														<li><a href="gift-cart.html">Gift Cart</a></li>
-														<li>
-															<a href="demo-modal.html">Demo Modal</a>
-															<ul>
-																<li><a href="demo-modal.html">Demo Modal Default</a></li>
-																<li><a href="demo-modal-black_friday.html">Demo Black Friday <span class="tt-badge tt-new">New</span></a></li>
-																<li><a href="demo-modal-cyber_monday.html">Demo Cyber Monday <span class="tt-badge tt-new">New</span></a></li>
-																<li><a href="demo-modal-merry_christmas.html">Demo Merry Christmas <span class="tt-badge tt-new">New</span></a></li>
-															</ul>
-														</li>
-														<li>
-															<a href="compare.html">Compare</a>
-															<ul>
-																<li><a href="compare.html">Compare 01</a></li>
-																<li><a href="compare-02.html">Compare 02</a></li>
-															</ul>
-														</li>
-														<li><a href="wishlist.html">Wishlist</a></li>
-														<li>
-															<a href="account.html">Account</a>
-															<ul>
-																<li><a href="account.html">Account</a></li>
-																<li><a href="account_address.html">Account Address</a></li>
-																<li><a href="account_address_fields.html">Account Address Fields</a></li>
-															</ul>
-														</li>
-														<li>
-															<a href="empty-search.html">Empty</a>
-															<ul>
-																<li><a href="empty-cart.html">Empty Cart</a></li>
-																<li><a href="empty-search.html">Empty Search</a></li>
-																<li><a href="empty-wishlist.html">Empty Wishlist</a></li>
-															</ul>
-														</li>
-													</ul>
-			</li>
-			<li>
-				<a href="listing-left-column.html">WOMEN</a>
-				<ul>
-					<li>
-						<a href="listing-left-column.html">TOPS</a>
-						<ul>
-							<li><a href="listing-left-column.html">Blouses &amp; Shirts</a></li>
-							<li><a href="listing-left-column.html">Dresses <span class="tt-badge tt-new">New</span></a></li>
-							<li>
-								<a href="listing-left-column.html">Tops &amp; T-shirts</a>
-								<ul>
-									<li><a href="listing-left-column.html">Link Level 1</a></li>
-									<li>
-										<a href="listing-left-column.html">Link Level 1</a>
-										<ul>
-											<li><a href="listing-left-column.html">Link Level 2</a></li>
-											<li>
-												<a href="listing-left-column.html">Link Level 2</a>
-												<ul>
-													<li><a href="listing-left-column.html">Link Level 3</a></li>
-													<li><a href="listing-left-column.html">Link Level 3</a></li>
-													<li><a href="listing-left-column.html">Link Level 3</a></li>
-													<li>
-														<a href="listing-left-column.html">Link Level 3</a>
-														<ul>
-															<li>
-																<a href="listing-left-column.html">Link Level 4</a>
-																<ul>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																</ul>
-															</li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
-														</ul>
-													</li>
-													<li><a href="listing-left-column.html">Link Level 3</a></li>
-												</ul>
-											</li>
-											<li><a href="listing-left-column.html">Link Level 2</a></li>
-											<li><a href="listing-left-column.html">Link Level 2</a></li>
-											<li><a href="listing-left-column.html">Link Level 2</a></li>
-										</ul>
-									</li>
-									<li><a href="listing-left-column.html">Link Level 1</a></li>
-									<li><a href="listing-left-column.html">Link Level 1</a></li>
-									<li><a href="listing-left-column.html">Link Level 1</a></li>
-								</ul>
-							</li>
-							<li><a href="listing-left-column.html">Sleeveless Tops</a></li>
-							<li><a href="listing-left-column.html">Sweaters</a></li>
-							<li><a href="listing-left-column.html">Jackets</a></li>
-							<li><a href="listing-left-column.html">Outerwear</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="listing-left-column.html">BOTTOMS</a>
-						<ul>
-							<li><a href="listing-left-column.html">Trousers <span class="tt-badge tt-fatured">Fatured</span></a></li>
-							<li><a href="listing-left-column.html">Jeans</a></li>
-							<li><a href="listing-left-column.html">Leggings</a></li>
-							<li><a href="listing-left-column.html">Jumpsuit &amp; Shorts</a></li>
-							<li><a href="listing-left-column.html">Skirts</a></li>
-							<li><a href="listing-left-column.html">Tights</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="listing-left-column.html">ACCESSORIES</a>
-						<ul>
-							<li><a href="listing-left-column.html">Jewellery</a></li>
-							<li><a href="listing-left-column.html">Hats</a></li>
-							<li><a href="listing-left-column.html">Scarves &amp; Snoods</a></li>
-							<li><a href="listing-left-column.html">Belts</a></li>
-							<li><a href="listing-left-column.html">Bags</a></li>
-							<li><a href="listing-left-column.html">Shoes</a></li>
-							<li><a href="listing-left-column.html">Sunglasses <span class="tt-badge tt-sale">Sale 15%</span></a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="listing-left-column.html">SPECIALS</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="listing-right-column.html">MEN</a>
-				<ul>
-					<li>
-						<a href="listing-right-column.html">TOPS</a>
-						<ul>
-							<li><a href="listing-right-column.html">Blouses &amp; Shirts</a></li>
-							<li><a href="listing-right-column.html">Dresses <span class="tt-badge tt-new">New</span></a></li>
-							<li>
-								<a href="listing-right-column.html">Tops &amp; T-shirts</a>
-								<ul>
-									<li><a href="listing-right-column.html">Link Level 1</a></li>
-									<li>
-										<a href="listing-right-column.html">Link Level 1</a>
-										<ul>
-											<li><a href="listing-right-column.html">Link Level 2</a></li>
-											<li>
-												<a href="listing-right-column.html">Link Level 2</a>
-												<ul>
-													<li><a href="listing-right-column.html">Link Level 3</a></li>
-													<li><a href="listing-right-column.html">Link Level 3</a></li>
-													<li><a href="listing-right-column.html">Link Level 3</a></li>
-													<li>
-														<a href="listing-right-column.html">Link Level 3</a>
-														<ul>
-															<li>
-																<a href="listing-right-column.html">Link Level 4</a>
-																<ul>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																</ul>
-															</li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
-														</ul>
-													</li>
-													<li><a href="listing-right-column.html">Link Level 3</a></li>
-												</ul>
-											</li>
-											<li><a href="listing-right-column.html">Link Level 2</a></li>
-											<li><a href="listing-right-column.html">Link Level 2</a></li>
-											<li><a href="listing-right-column.html">Link Level 2</a></li>
-										</ul>
-									</li>
-									<li><a href="listing-right-column.html">Link Level 1</a></li>
-									<li><a href="listing-right-column.html">Link Level 1</a></li>
-									<li><a href="listing-right-column.html">Link Level 1</a></li>
-								</ul>
-							</li>
-							<li><a href="listing-right-column.html">Sleeveless Tops</a></li>
-							<li><a href="listing-right-column.html">Sweaters</a></li>
-							<li><a href="listing-right-column.html">Jackets</a></li>
-							<li><a href="listing-right-column.html">Outerwear</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="listing-right-column.html">BOTTOMS</a>
-						<ul>
-							<li><a href="listing-right-column.html">Trousers <span class="tt-badge tt-fatured">Fatured</span></a></li>
-							<li><a href="listing-right-column.html">Jeans</a></li>
-							<li><a href="listing-right-column.html">Leggings</a></li>
-							<li><a href="listing-right-column.html">Jumpsuit &amp; shorts</a></li>
-							<li><a href="listing-right-column.html">Skirts</a></li>
-							<li><a href="listing-right-column.html">Tights</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="listing-right-column.html">ACCESSORIES</a>
-						<ul>
-							<li><a href="listing-right-column.html">Jewellery</a></li>
-							<li><a href="listing-right-column.html">Hats</a></li>
-							<li><a href="listing-right-column.html">Scarves &amp; Snoods</a></li>
-							<li><a href="listing-right-column.html">Belts</a></li>
-							<li><a href="listing-right-column.html">Bags</a></li>
-							<li><a href="listing-right-column.html">Shoes</a></li>
-							<li><a href="listing-right-column.html">Sunglasses <span class="tt-badge tt-sale">Sale 15%</span></a></li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<li><a href="index-rtl.html">RTL</a></li>
 		</ul>
 		<div class="mm-navbtn-names">
 			<div class="mm-closebtn">Close</div>
@@ -477,8 +103,6 @@
 												<a href="listing-left-column.html">Link Level 2</a>
 												<ul>
 													<li><a href="listing-left-column.html">Link Level 3</a></li>
-													<li><a href="listing-left-column.html">Link Level 3</a></li>
-													<li><a href="listing-left-column.html">Link Level 3</a></li>
 													<li>
 														<a href="listing-left-column.html">Link Level 3</a>
 														<ul>
@@ -486,58 +110,37 @@
 																<a href="listing-left-column.html">Link Level 4</a>
 																<ul>
 																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
-																	<li><a href="listing-left-column.html">Link Level 5</a></li>
+																
 																</ul>
 															</li>
 															<li><a href="listing-left-column.html">Link Level 4</a></li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
-															<li><a href="listing-left-column.html">Link Level 4</a></li>
+														
 														</ul>
 													</li>
 													<li><a href="listing-left-column.html">Link Level 3</a></li>
 												</ul>
 											</li>
 											<li><a href="listing-left-column.html">Link Level 2</a></li>
-											<li><a href="listing-left-column.html">Link Level 2</a></li>
-											<li><a href="listing-left-column.html">Link Level 2</a></li>
 										</ul>
 									</li>
-									<li><a href="listing-left-column.html">Link Level 1</a></li>
-									<li><a href="listing-left-column.html">Link Level 1</a></li>
 									<li><a href="listing-left-column.html">Link Level 1</a></li>
 								</ul>
 							</li>
 							<li><a href="listing-left-column.html">Sleeveless Tops</a></li>
-							<li><a href="listing-left-column.html">Sweaters</a></li>
-							<li><a href="listing-left-column.html">Jackets</a></li>
-							<li><a href="listing-left-column.html">Outerwear</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="listing-left-column.html">BOTTOMS</a>
 						<ul>
 							<li><a href="listing-left-column.html">Trousers <span class="tt-badge tt-fatured">Fatured</span></a></li>
-							<li><a href="listing-left-column.html">Jeans</a></li>
-							<li><a href="listing-left-column.html">Leggings</a></li>
-							<li><a href="listing-left-column.html">Jumpsuit &amp; Shorts</a></li>
-							<li><a href="listing-left-column.html">Skirts</a></li>
-							<li><a href="listing-left-column.html">Tights</a></li>
+							
 						</ul>
 					</li>
 					<li>
 						<a href="listing-left-column.html">ACCESSORIES</a>
 						<ul>
 							<li><a href="listing-left-column.html">Jewellery</a></li>
-							<li><a href="listing-left-column.html">Hats</a></li>
-							<li><a href="listing-left-column.html">Scarves &amp; Snoods</a></li>
-							<li><a href="listing-left-column.html">Belts</a></li>
-							<li><a href="listing-left-column.html">Bags</a></li>
-							<li><a href="listing-left-column.html">Shoes</a></li>
-							<li><a href="listing-left-column.html">Sunglasses <span class="tt-badge tt-sale">Sale 15%</span></a></li>
+							
 						</ul>
 					</li>
 					<li>
@@ -570,8 +173,6 @@
 												<a href="listing-right-column.html">Link Level 2</a>
 												<ul>
 													<li><a href="listing-right-column.html">Link Level 3</a></li>
-													<li><a href="listing-right-column.html">Link Level 3</a></li>
-													<li><a href="listing-right-column.html">Link Level 3</a></li>
 													<li>
 														<a href="listing-right-column.html">Link Level 3</a>
 														<ul>
@@ -579,15 +180,8 @@
 																<a href="listing-right-column.html">Link Level 4</a>
 																<ul>
 																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
-																	<li><a href="listing-right-column.html">Link Level 5</a></li>
 																</ul>
 															</li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
-															<li><a href="listing-right-column.html">Link Level 4</a></li>
 															<li><a href="listing-right-column.html">Link Level 4</a></li>
 														</ul>
 													</li>
@@ -595,41 +189,25 @@
 												</ul>
 											</li>
 											<li><a href="listing-right-column.html">Link Level 2</a></li>
-											<li><a href="listing-right-column.html">Link Level 2</a></li>
-											<li><a href="listing-right-column.html">Link Level 2</a></li>
 										</ul>
 									</li>
 									<li><a href="listing-right-column.html">Link Level 1</a></li>
-									<li><a href="listing-right-column.html">Link Level 1</a></li>
-									<li><a href="listing-right-column.html">Link Level 1</a></li>
+								
 								</ul>
 							</li>
 							<li><a href="listing-right-column.html">Sleeveless Tops</a></li>
-							<li><a href="listing-right-column.html">Sweaters</a></li>
-							<li><a href="listing-right-column.html">Jackets</a></li>
-							<li><a href="listing-right-column.html">Outerwear</a></li>
+							
 						</ul>
 					</li>
 					<li>
 						<a href="listing-right-column.html">BOTTOMS</a>
 						<ul>
-							<li><a href="listing-right-column.html">Trousers <span class="tt-badge tt-fatured">Fatured</span></a></li>
-							<li><a href="listing-right-column.html">Jeans</a></li>
-							<li><a href="listing-right-column.html">Leggings</a></li>
-							<li><a href="listing-right-column.html">Jumpsuit &amp; shorts</a></li>
-							<li><a href="listing-right-column.html">Skirts</a></li>
 							<li><a href="listing-right-column.html">Tights</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="listing-right-column.html">ACCESSORIES</a>
 						<ul>
-							<li><a href="listing-right-column.html">Jewellery</a></li>
-							<li><a href="listing-right-column.html">Hats</a></li>
-							<li><a href="listing-right-column.html">Scarves &amp; Snoods</a></li>
-							<li><a href="listing-right-column.html">Belts</a></li>
-							<li><a href="listing-right-column.html">Bags</a></li>
-							<li><a href="listing-right-column.html">Shoes</a></li>
 							<li><a href="listing-right-column.html">Sunglasses <span class="tt-badge tt-sale">Sale 15%</span></a></li>
 						</ul>
 					</li>
@@ -685,12 +263,6 @@
 	</nav>
 	<!-- tt-mobile-header -->
 	<div class="tt-mobile-header">
-		<div class="container-fluid">
-			<div class="header-tel-info">
-				<p class="tt-title">Call Us: +777 2345 7885</p>
-				<p>from 8:00 to 21:00 (Mon-Sun) FREE by United States</p>
-			</div>
-		</div>
 		<div class="container-fluid tt-top-line">
 			<div class="tt-header-row">
 				<div class="tt-mobile-parent-menu">
@@ -739,405 +311,53 @@
 									<ul>
 										<li class="dropdown megamenu selected">
 											<a href="index.html">HOME</a>
-											<div class="dropdown-menu">
-											<div class="row">
-												<div class="col-sm-9">
-													<div class="row tt-col-list">
-														<div class="col-sm-4">
-															<h6 class="tt-title-submenu"><a href="index-skin-snowboards.html">
-																<span>HOME STYLES</span>
-															</a></h6>
-															<ul class="tt-megamenu-submenu">
-																<li><a href="index.html">Home — Example 1
-																	<img src="images/loader.svg" data-src="images/custom/tt-layout-img-01.png" alt="Example 1">
-																	<span class="tt-badge tt-fatured">Popular</span>
-																</a></li>
-																<li><a href="index-02.html">Home — Example 2 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-02.png" alt="Example 2"></a></li>
-																<li><a href="index-03.html">Home — Example 3 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-03.png" alt="Example 3"></a></li>
-																<li><a href="index-04.html">Home — Example 4
-																	<img src="images/loader.svg" data-src="images/custom/tt-layout-img-04.png" alt="Example 4">
-																	<span class="tt-badge tt-fatured">Popular</span>
-																</a></li>
-																<li><a href="index-05.html">Home — Example 5 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-05.png" alt="Example 5"></a></li>
-																<li><a href="index-06.html">Home — Example 6 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-06.png" alt="Example 6"></a></li>
-																<li><a href="index-07.html">Home — Example 7 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-07.png" alt="Example 7"></a></li>
-																<li><a href="index-08.html">Home — Example 8 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-08.png" alt="Example 8"></a></li>
-																<li><a href="index-09.html">Home — Example 9 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-09.png" alt="Example 9"></a></li>
-																<li><a href="index-10.html">Home — Example 10 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-10.png" alt="Example 10"></a></li>
-																<li><a href="index-11.html">Home — Example 11 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-11.png" alt="Example 11"></a></li>
-																<li><a href="index-12.html">Home — Example 12 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-12.png" alt="Example 12"></a></li>
-																<li><a href="index-13.html">Home — Example 13 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-13.png" alt="Example 13"></a></li>
-																<li><a href="index-14.html">Home — Example 14 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-14.png" alt="Example 14"></a></li>
-																<li><a href="index-15.html">Home — Example 15 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-15.png" alt="Example 15"></a></li>
-																<li><a href="index-16.html">Home — Example 16
-																	<img src="images/loader.svg" data-src="images/custom/tt-layout-img-16.png" alt="Example 16">
-																	<span class="tt-badge tt-fatured">Popular</span>
-																</a></li>
-																<li><a href="index-17.html">Home — Example 17 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-17.png" alt="Example 17"></a></li>
-																<li><a href="index-18.html">Home — Example 18 <img src="images/loader.svg" data-src="images/custom/tt-layout-img-18.png" alt="Example 18"></a></li>
-																<li><a href="index-19.html">Home — Example 19
-																	<img src="images/loader.svg" data-src="images/custom/tt-layout-img-19.png" alt="Example 19">
-																	<span class="tt-badge tt-new">New</span>
-																</a></li>
-																<li><a href="index-20.html">Home — Example 20
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-layout-img-20.png" alt="Example 20">
-																</a></li>
-																<li><a href="index-21.html">Home — Example 21
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-layout-img-21.png" alt="Example 21">
-																</a></li>
-															</ul>
-														</div>
-														<div class="col-sm-4">
-															<h6 class="tt-title-submenu"><a href="index-skin-snowboards.html">
-																<span>NEW SKINS</span>
-															</a></h6>
-															<ul class="tt-megamenu-submenu">
-																<li><a href="index-skin-football.html">American Football
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-47.png" alt="American Football">
-																</a></li>
-																<li><a href="index-skin-base-ball.html">Baseball Shop
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-48.png" alt="Baseball Shop">
-																</a></li>
-																<li><a href="index-skin-basketball.html">Basketball Shop
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-49.png" alt="Basketball Shop">
-																</a></li>
-
-
-																<li><a href="index-skin-baby.html">Baby Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-25.png" alt="baby Shop">
-																</a></li>
-																<li><a href="index-skin-beer.html">Beer Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-17.png" alt="Beer Shop">
-																</a></li>
-																<li><a href="index-skin-books02.html">Books Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-18.png" alt="Books Shop">
-																</a></li>
-																<li><a href="index-skin-care.html">Care Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-16.png" alt="Care Shop">
-																</a></li>
-																	<li><a href="index-skin-cakes.html">Cakes Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-23.png" alt="Cakes Shop">
-																</a></li>
-																<li><a href="index-skin-coffee.html">Coffee Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-10.png" alt="Coffee Shop">
-																</a></li>
-																<li><a href="index-skin-comic-books.html">Comic Books Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-21.png" alt="Comic Books Shop">
-																</a></li>
-																<li><a href="index-skin-cookware.html">Cookware Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-13.png" alt="Cookware Shop">
-																</a></li>
-																<li><a href="index-skin-christmas.html">Christmas Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-24.png" alt="Christmas Shop">
-																	<span class="tt-badge tt-custom-color01">Happy New Year</span>
-																</a></li>
-																<li><a href="index-skin-drones.html">Drones Shop
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-46.png" alt="Drones Shop">
-																</a></li>
-																<li><a href="index-skin-flowers.html">Flowers Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-42.png" alt="Flowers Shop">
-																</a></li>
-																<li><a href="index-skin-food.html">Food Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-08.png" alt="Food Shop">
-																	<span class="tt-badge tt-sale">HOT</span>
-																</a></li>
-																<li><a href="index-skin-furniture02.html">Furniture Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-14.png" alt="Furniture Shopp">
-																</a></li>
-																<li><a href="index-skin-handmade.html">Handmade Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-11.png" alt="Handmade Shop">
-																</a></li>
-																<li><a href="index-skin-lifestyle.html">LifeStyle Shop
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-44.png" alt="LifeStyle Shop">
-																</a></li>
-																<li><a href="index-skin-olivers.html">Olives Shop
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-45.png" alt="Olives Shop">
-																</a></li>
-																<li><a href="index-skin-oneproducts.html">One Products Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-09.png" alt="One Products Shop">
-																</a></li>
-																<li><a href="index-skin-oneproducts02.html">One Products Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-22.png" alt="One Products Shop">
-																</a></li>
-																<li><a href="index-skin-plants.html">Plants Shop
-																	<span class="tt-badge tt-new">New</span>
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-43.png" alt="Plants Shop">
-																</a></li>
-																<li><a href="index-skin-shirts.html">T-shirts Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-12.png" alt="T-shirts Shop">
-																</a></li>
-																<li><a href="index-skin-tea.html">Tea Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-20.png" alt="Tea Shop">
-																</a></li>
-																<li><a href="index-skin-tools.html">Tools Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-19.png" alt="Tools Shop">
-																</a></li>
-																<li><a href="index-skin-wallets.html">Wallets Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-41.png" alt="Wallets Shop">
-																</a></li>
-																<li><a href="index-skin-watches.html">Watches Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-15.png" alt="Watches Shop">
-																</a></li>
-															</ul>
-														</div>
-														<div class="col-sm-4">
-															<h6 class="tt-title-submenu"><a href="index-skin-snowboards.html">
-																<span>HOME SKINS</span>
-															</a></h6>
-															<ul class="tt-megamenu-submenu">
-																<li><a href="index-skin-bicycle.html">Bicycle Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-28.png" alt="Bicycle Shop">
-																	<span class="tt-badge tt-fatured">Popular</span>
-																</a></li>
-																<li><a href="index-skin-bikes.html">Bikes Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-03.png" alt="Bikes Shop">
-																	<span class="tt-badge tt-fatured">Popular</span>
-																</a></li>
-																<li><a href="index-skin-books.html">Books shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-06.png" alt="Books Shop">
-																</a></li>
-																<li><a href="index-skin-carsshop.html">Cars Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-07.png" alt="Cars Shop">
-																</a></li>
-																<li><a href="index-skin-clothes.html">Clothes Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-27.png" alt="Clothes Shop">
-																</a></li>
-																<li><a href="index-skin-cosmetics.html">Cosmetics Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-34.png" alt="Cosmetics Shop">
-																</a></li>
-																<li><a href="index-skin-food-02.html">Echo Food Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-32.png" alt="Echo Food Shop">
-																</a></li>
-																<li><a href="index-skin-electronics.html">Electronics Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-33.png" alt="Electronics Shop">
-																</a></li>
-																<li><a href="index-skin-furniture.html">Furniture Shop <img src="images/loader.svg" data-src="images/custom/tt-skins-img-05.png" alt="Furniture Shop"></a></li>
-																<li><a href="index-skin-glasses.html">Glasses Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-35.png" alt="Glasses Shop">
-																</a></li>
-																<li><a href="index-skin-gothic.html">Gothic and Rock Clothing
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-26.png" alt="Gothic and Rock Clothing">
-																</a></li>
-																<li><a href="index-skin-jewerly.html">Jewerly Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-36.png" alt="Jewerly Shop">
-																</a></li>
-																<li><a href="index-skin-kids-clothes.html">Kids Clothes Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-31.png" alt="Kids Clothes Shop">
-																</a></li>
-																<li><a href="index-skin-toys.html">Kids Toys Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-30.png" alt="Kids Toys Shop">
-																</a></li>
-																<li><a href="index-skin-lingerie.html">Lingerie Shop <img src="images/loader.svg" data-src="images/custom/tt-skins-img-04.png" alt="Lingerie Shop"></a></li>
-																<li><a href="index-skin-medical.html">Medical Shop <img src="images/loader.svg" data-src="images/custom/tt-skins-img-37.png" alt="Medical Shop"></a></li>
-																<li><a href="index-skin-oneproducts03.html">One Products Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-38.png" alt="One Products Shop">
-																</a></li>
-																<li><a href="index-skin-phones.html">Phones Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-02.png" alt="Phones Shop">
-																</a></li>
-																<li><a href="index-skin-phone-cases.html">Phone Cases Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-39.png" alt="Phone Cases Shop">
-																</a></li>
-																<li><a href="index-skin-snowboards.html">Snowboards Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-01.png" alt="Snowboards Shop">
-																	<span class="tt-badge tt-sale">HOT</span>
-																</a></li>
-																<li><a href="index-skin-weapons.html">Weapons Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-29.png" alt="Weapons Shop">
-																</a></li>
-																<li><a href="index-skin-yoga.html">Yoga Gear Shop
-																	<img src="images/loader.svg" data-src="images/custom/tt-skins-img-40.png" alt="Yoga Gear Shop">
-																</a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-3">
-													<a href="https://goo.gl/jgZDxn" class="tt-promo-02">
-														<img src="images/loader.svg" data-src="images/custom/desctop-menu-promo.png" alt="">
-													</a>
-												</div>
-											</div>
-										</div>
 										</li>
 										<li class="dropdown megamenu">
-											<a href="listing-collection.html">SHOP</a>
+											<a href="listing-collection.html">BRANDS</a>
 											<div class="dropdown-menu">
 												<div class="row tt-col-list">
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="listing-left-column.html">LISTING STYLES</a></h6>
 														<ul class="tt-megamenu-submenu">
 															<li><a href="listing-left-column.html">Listing With Left Sidebar</a></li>
-															<li><a href="listing-right-column.html">Listing With Right Sidebar</a></li>
-															<li><a href="listing-not-sidebar.html">Listing Not Sidebar</a></li>
-															<li><a href="listing-not-sidebar-full-width.html">Listing Not Sidebar Full Width</a></li>
-															<li><a href="listing-metro.html">Listing Metro</a></li>
-															<li><a href="listing-left-column-with-block.html">Listing With Custom HTML Block</a></li>
-															<li><a href="listing-collection.html">Listing Collection</a></li>
-															<li><a href="lookbook.html">Look Book</a></li>
+
 														</ul>
 													</div>
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="product.html">PRODUCT PAGE STYLES</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="product.html">Product Example 1</a></li>
-															<li><a href="product-02.html">Product Example 2</a></li>
-															<li><a href="product-03.html">Product Example 3</a></li>
-															<li><a href="product-04.html">Product Example 4</a></li>
-															<li><a href="product-variable.html">Product Layout</a></li>
 															<li><a href="product-three-columns.html">Three Columns</a></li>
 														</ul>
 													</div>
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="product-variable.html">PRODUCT PAGE TYPES</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="product.html">Standard Product</a></li>
-															<li><a href="product-variable.html">Variable Product</a></li>
-															<li><a href="product-04.html">Grouped Product</a></li>
-															<li><a href="product-label-new.html">New Product</a></li>
-															<li><a href="product-label-sale.html">Sale Product</a></li>
 															<li><a href="product-label-out-of-stock.html">Out Of Stock Product</a></li>
 														</ul>
 													</div>
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="shopping_cart_02.html">OTHER PAGES</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="shopping_cart_02.html">Cart</a></li>
-															<li><a href="shopping_cart_01.html">Cart With Right Col</a></li>
-															<li><a href="account.html">Account</a></li>
-															<li><a href="account_address.html">Account Address</a></li>
 															<li><a href="account_address_fields.html">Account Address Fields</a></li>
 														</ul>
 													</div>
 												</div>
 											</div>
 										</li>
+										
 										<li class="dropdown tt-megamenu-col-01">
-											<a href="about.html">PAGES</a>
-											<div class="dropdown-menu">
-												<div class="row tt-col-list">
-													<div class="col">
-														<h6 class="tt-title-submenu"><a href="about.html">PAGES</a></h6>
-														<ul class="tt-megamenu-submenu">
-															<li><a href="about.html">About Example 1</a>
-																<ul>
-																	<li><a href="about.html">Link Level 1</a></li>
-																	<li>
-																		<a href="about.html">Link Level 1</a>
-																		<ul>
-																			<li><a href="about.html">Link Level 2</a></li>
-																			<li>
-																				<a href="about.html">Link Level 2</a>
-																				<ul>
-																					<li><a href="about.html">Link Level 3</a></li>
-																					<li><a href="about.html">Link Level 3</a></li>
-																					<li><a href="about.html">Link Level 3</a></li>
-																					<li>
-																						<a href="about.html">Link Level 3</a>
-																						<ul>
-																							<li>
-																								<a href="about.html">Link Level 4</a>
-																								<ul>
-																									<li><a href="about.html">Link Level 5</a></li>
-																									<li><a href="about.html">Link Level 5</a></li>
-																									<li><a href="about.html">Link Level 5</a></li>
-																									<li><a href="about.html">Link Level 5</a></li>
-																									<li><a href="about.html">Link Level 5</a></li>
-																								</ul>
-																							</li>
-																							<li><a href="about.html">Link Level 4</a></li>
-																						</ul>
-																					</li>
-																					<li><a href="about.html">Link Level 3</a></li>
-																				</ul>
-																			</li>
-																			<li><a href="about.html">Link Level 2</a></li>
-																			<li><a href="about.html">Link Level 2</a></li>
-																		</ul>
-																	</li>
-																	<li><a href="about.html">Link Level 1</a></li>
-																	<li><a href="about.html">Link Level 1</a></li>
-																	<li><a href="about.html">Link Level 1</a></li>
-																</ul>
-															</li>
-															<li><a href="about-02.html">About Example 2</a></li>
-															<li><a href="contact.html">Contacts Example 1</a></li>
-															<li><a href="contact-02.html">Contacts Example 2</a></li>
-															<li><a href="services.html">Services</a></li>
-															<li><a href="faq.html">FAQ</a></li>
-															<li><a href="coming-soon.html">Coming Soon</a></li>
-															<li><a href="page404.html">Page 404</a></li>
-															<li><a href="typography.html">Typography</a></li>
-															<li><a href="gift-cart.html">Gift Cart</a></li>
-															<li>
-																<a href="demo-modal.html">Demo Modal</a>
-																<ul>
-																	<li><a href="demo-modal.html">Demo Modal Default</a></li>
-																	<li><a href="demo-modal-black_friday.html">Demo Black Friday <span class="tt-badge tt-new">New</span></a></li>
-																	<li><a href="demo-modal-cyber_monday.html">Demo Cyber Monday <span class="tt-badge tt-new">New</span></a></li>
-																	<li><a href="demo-modal-merry_christmas.html">Demo Merry Christmas <span class="tt-badge tt-new">New</span></a></li>
-																</ul>
-															</li>
-															<li>
-																<a href="compare.html">Compare</a>
-																<ul>
-																	<li><a href="compare.html">Compare 01</a></li>
-																	<li><a href="compare-02.html">Compare 02</a></li>
-																</ul>
-															</li>
-															<li><a href="wishlist.html">Wishlist</a></li>
-															<li>
-																<a href="account.html">Account</a>
-																<ul>
-																	<li><a href="account.html">Account</a></li>
-																	<li><a href="account_address.html">Account Address</a></li>
-																	<li><a href="account_address_fields.html">Account Address Fields</a></li>
-																</ul>
-															</li>
-															<li>
-																<a href="empty-search.html">Empty</a>
-																<ul>
-																	<li><a href="empty-cart.html">Empty Cart</a></li>
-																	<li><a href="empty-search.html">Empty Search</a></li>
-																	<li><a href="empty-wishlist.html">Empty Wishlist</a></li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li class="dropdown tt-megamenu-col-01">
-											<a href="blog-listing-without-col.html">BLOG</a>
+											<a href="blog-listing-without-col.html">Offers</a>
 											<div class="dropdown-menu">
 												<div class="row tt-col-list">
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="blog-listing-without-col.html">BLOG STYLES</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="blog-listing-without-col.html">Standard Without Sidebar</a></li>
-															<li><a href="blog-listing-col-left.html">Standard With Left Sidebar</a></li>
-															<li><a href="blog-listing-col-right.html">Standard With Right Sidebar</a></li>
-															<li><a href="blog-masonry-col-2.html">Two Colums</a></li>
-															<li><a href="blog-masonry-col-3.html">Three Colums</a></li>
 															<li><a href="blog-masonry-col-3-filter.html">Three Colums With Filter</a></li>
 														</ul>
 													</div>
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="blog-single-post.html">POST TYPES</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="blog-single-post.html">Standard</a></li>
-															<li><a href="blog-single-post-gallery.html">Gallery</a></li>
-															<li><a href="blog-single-post-link.html">Link</a></li>
-															<li><a href="blog-single-post-quote.html">Quote</a></li>
-															<li><a href="blog-single-post-video.html">Video</a></li>
 															<li><a href="blog-single-post-audio.html">Audio</a></li>
 														</ul>
 													</div>
@@ -1145,32 +365,25 @@
 											</div>
 										</li>
 										<li class="dropdown tt-megamenu-col-01">
-											<a href="portfolio-col-wide-four.html">PORTFOLIO</a>
+											<a href="portfolio-col-wide-four.html">BLOGS</a>
 											<div class="dropdown-menu">
 												<div class="row tt-col-list">
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="portfolio-col-grid-two.html">BOXED GRID</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="portfolio-col-grid-two.html">Two Colums</a></li>
-															<li><a href="portfolio-col-grid-three.html">Three Colums</a></li>
-															<li><a href="portfolio-col-grid-four.html">Four Colums</a></li>
 															<li><a href="portfolio-col-grid-four-without-filter.html">Four Colums Without Filter</a></li>
 														</ul>
 													</div>
 													<div class="col">
 														<h6 class="tt-title-submenu"><a href="portfolio-col-wide-three.html">BOXED WIDE</a></h6>
 														<ul class="tt-megamenu-submenu">
-															<li><a href="portfolio-col-wide-two.html">Two Colums</a></li>
-															<li><a href="portfolio-col-wide-three.html">Three Colums</a></li>
 															<li><a href="portfolio-col-wide-four.html">Four Colums</a></li>
 														</ul>
 													</div>
 												</div>
 											</div>
 										</li>
-										<li class="dropdown">
-											<a href="#">BUY THEME!</a>
-										</li>
+										
 									</ul>
 								</nav>
 							</div>
@@ -1264,27 +477,7 @@
 							</div>
 						</div>
 						<!-- tt-currency -->
-						<div class="tt-visible-onlydesktop tt-parent-box">
-							<div class="single-currency-box tt-dropdown-obj js-currency-changevalue">
-								<button class="tt-dropdown-toggle" data-tooltip="Currency" data-tposition="bottom">
-									<span class="tt-icon">$</span>
-									<span class="tt-text">US Dollars</span>
-									<i class="icon-e-13"></i>
-								</button>
-								<div class="tt-dropdown-menu">
-									<div class="tt-mobile-add">
-										<button class="tt-close">Close</button>
-									</div>
-									<div class="tt-dropdown-inner">
-										<ul>
-											<li data-currency-icon="$" data-currency-text="USD" class="active"><a href="#"><i class="icon-h-59"></i>US Dollar</a></li>
-											<li data-currency-icon="€" data-currency-text="EUR"><a href="#"><i class="icon-h-60"></i>EUR - Euro</a></li>
-											<li data-currency-icon="£" data-currency-text="GBP"><a href="#"><i class="icon-h-61"></i>GBP - British Pounds</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -1298,33 +491,14 @@
 						<!-- /logo -->
 					</div>
 					<div class="tt-col-obj tt-obj-options obj-move-right header-inline-options-box">
-						<div class="tt-col-obj tt-col-obj__large obj-aligment-center">
-							<div class="header-tel-info text-right">
-								<p class="tt-title">Call Us: +777 2345 7885</p><p>from 8:00 to 21:00 (Mon-Sun) FREE by United States</p>
-							</div>
-						</div>
+					
 						<div class="tt-visible-onlydesktop h-account-details">
 							<div class="tt-account-textlink">
-								<a href="{{ route('login') }}">Sign In</a> / <a href="login.html" target="_blank">Register</a>
+								<a href="{{ route('login') }}">Sign In</a> / <a href="{{url('register')}}">Register</a>
 							</div>
 						</div>
 						<!--========= visible only desktop ========= -->
-						<!-- tt-compare -->
-						<div class=" tt-parent-box">
-							<a href="compare.html" target="_blank" class="tt-obj-link tt-compare-wrapper">
-								<div class="tt-dropdown-toggle" data-tooltip="Compare" data-tposition="bottom">
-									<i>
-										<svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M15.2 16.8C15.2 16.64 15.2 16.56 15.12 16.4L8.32 3.6C8 3.12 7.2 3.12 6.88 3.6L0.08 16.4C0 16.56 0 16.64 0 16.8C0 20.72 3.44 24 7.6 24C11.76 24 15.2 20.8 15.2 16.8ZM7.6 5.68L13.04 16H2.16L7.6 5.68ZM7.6 22.4C4.56 22.4 2.08 20.32 1.68 17.6H13.52C13.12 20.32 10.64 22.4 7.6 22.4Z" fill="currentColor"/>
-											<path d="M32 16.8C32 16.64 32 16.56 31.92 16.4L25.12 3.6C24.88 3.04 24 3.04 23.68 3.6L16.88 16.4C16.8 16.56 16.8 16.64 16.8 16.8C16.8 20.72 20.24 24 24.4 24C28.56 24 32 20.8 32 16.8ZM24.4 5.68L29.84 16H18.96L24.4 5.68ZM24.4 22.4C21.36 22.4 18.88 20.32 18.48 17.6H30.32C29.92 20.32 27.44 22.4 24.4 22.4Z" fill="currentColor"/>
-											<path d="M18.24 3.2H21.6C22.08 3.2 22.4 2.88 22.4 2.4C22.4 1.92 22.08 1.6 21.6 1.6H18.24C17.92 0.64 17.04 0 16 0C14.96 0 14.08 0.64 13.76 1.6H10.4C9.92 1.6 9.6 1.92 9.6 2.4C9.6 2.88 9.92 3.2 10.4 3.2H13.76C14.08 4.16 14.96 4.8 16 4.8C17.04 4.8 17.92 4.16 18.24 3.2ZM16 3.2C15.52 3.2 15.2 2.88 15.2 2.4C15.2 1.92 15.52 1.6 16 1.6C16.48 1.6 16.8 1.92 16.8 2.4C16.8 2.88 16.48 3.2 16 3.2Z" fill="currentColor"/>
-										</svg>
-									</i>
-									<span class="tt-text">COMPARE</span>
-								</div>
-							</a>
-						</div>
-						<!-- /tt-compare -->
+					
 						<!-- tt-wishlist -->
 						<div class="tt-parent-box">
 							<a href="wishlist.html" target="_blank" class="tt-obj-link tt-wishlist-wrapper">
@@ -1436,34 +610,9 @@
 										<ul>
 											<li><a href="login.html"><i class="icon-f-94"></i>Account</a></li>
 											<li><a href="wishlist.html"><i class="icon-n-072"></i>Wishlist</a></li>
-											<li><a href="compare.html"><i class="icon-n-08"></i>Compare</a></li>
 											<li><a href="page404.html"><i class="icon-f-68"></i>Check Out</a></li>
-											<li><a href="login.html"><i class="icon-f-76"></i>Sign In</a></li>
-											<li><a href="page404.html"><i class="icon-f-77"></i>Sign Out</a></li>
+											<li><a href="login.html"><i class="icon-f-76"></i>Login</a></li>
 											<li><a href="create-account.html"><i class="icon-f-94"></i>Register</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="tt-desctop-parent-multi tt-parent-box tt-obj-desktop-hidden02">
-							<div class="tt-multi-obj tt-dropdown-obj">
-								<button class="tt-dropdown-toggle" data-tooltip="Settings" data-tposition="bottom"><i class="icon-f-79"></i></button>
-								<div class="tt-dropdown-menu">
-									<div class="tt-mobile-add">
-										<button class="tt-close">Close</button>
-									</div>
-									<div class="tt-dropdown-inner">
-										<ul>
-											<li class="active"><a href="#">English</a></li>
-											<li><a href="#">Deutsch</a></li>
-											<li><a href="#">Español</a></li>
-											<li><a href="#">Français</a></li>
-										</ul>
-										<ul>
-											<li class="active"><a href="#"><i class="icon-h-59"></i>USD - US Dollar</a></li>
-											<li><a href="#"><i class="icon-h-60"></i>EUR - Euro</a></li>
-											<li><a href="#"><i class="icon-h-61"></i>GBP - British Pound Sterling</a></li>
 										</ul>
 									</div>
 								</div>
@@ -1524,10 +673,6 @@
 																									<a href="listing-left-column.html">Link Level 4</a>
 																									<ul>
 																										<li><a href="listing-left-column.html">Link Level 5</a></li>
-																										<li><a href="listing-left-column.html">Link Level 5</a></li>
-																										<li><a href="listing-left-column.html">Link Level 5</a></li>
-																										<li><a href="listing-left-column.html">Link Level 5</a></li>
-																										<li><a href="listing-left-column.html">Link Level 5</a></li>
 																									</ul>
 																								</li>
 																								<li><a href="listing-left-column.html">Link Level 4</a></li>
@@ -1537,18 +682,12 @@
 																					</ul>
 																				</li>
 																				<li><a href="listing-left-column.html">Link Level 2</a></li>
-																				<li><a href="listing-left-column.html">Link Level 2</a></li>
 																			</ul>
 																		</li>
-																		<li><a href="listing-left-column.html">Link Level 1</a></li>
-																		<li><a href="listing-left-column.html">Link Level 1</a></li>
 																		<li><a href="listing-left-column.html">Link Level 1</a></li>
 																	</ul>
 																</li>
 																<li><a href="listing-left-column.html">Sleeveless Tops</a></li>
-																<li><a href="listing-left-column.html">Sweaters</a></li>
-																<li><a href="listing-left-column.html">Jackets</a></li>
-																<li><a href="listing-left-column.html">Outerwear</a></li>
 															</ul>
 														</div>
 														<div class="col-sm-3">
@@ -1561,9 +700,6 @@
 																	<a href="listing-left-column.html">Jeans</a>
 																</li>
 																<li><a href="listing-left-column.html">Leggings</a></li>
-																<li><a href="listing-left-column.html">Jumpsuit &amp; Shorts</a></li>
-																<li><a href="listing-left-column.html">Skirts</a></li>
-																<li><a href="listing-left-column.html">Tights</a></li>
 															</ul>
 														</div>
 														<div class="col-sm-3">
@@ -1572,12 +708,6 @@
 															</a>
 															<ul class="tt-megamenu-submenu">
 																<li><a href="listing-left-column.html">Jewellery</a></li>
-																<li><a href="listing-left-column.html">Hats</a></li>
-																<li><a href="listing-left-column.html">Scarves &amp; Snoods</a></li>
-																<li><a href="listing-left-column.html">Belts</a></li>
-																<li><a href="listing-left-column.html">Bags</a></li>
-																<li><a href="listing-left-column.html">Shoes <span class="tt-badge tt-sale">Sale 15%</span></a></li>
-																<li><a href="listing-left-column.html">Sunglasses</a></li>
 															</ul>
 														</div>
 														<div class="col-sm-3">
@@ -1586,11 +716,6 @@
 															</a>
 															<ul class="tt-listing-01">
 																<li><a href="#" target="_blank"><img src="images/loader.svg" data-src="images/custom/brand-img-01.png" alt=""></a></li>
-																<li><a href="#" target="_blank"><img src="images/loader.svg" data-src="images/custom/brand-img-02.png" alt=""></a></li>
-																<li><a href="#" target="_blank"><img src="images/loader.svg" data-src="images/custom/brand-img-03.png" alt=""></a></li>
-																<li><a href="#" target="_blank"><img src="images/loader.svg" data-src="images/custom/brand-img-04.png" alt=""></a></li>
-																<li><a href="#" target="_blank"><img src="images/loader.svg" data-src="images/custom/brand-img-05.png" alt=""></a></li>
-																<li><a href="#" target="_blank"><img src="images/loader.svg" data-src="images/custom/brand-img-06.png" alt=""></a></li>
 															</ul>
 														</div>
 													</div>
@@ -1739,8 +864,6 @@
 																					<a href="listing-right-column.html">Link Level 2</a>
 																					<ul>
 																						<li><a href="listing-right-column.html">Link Level 3</a></li>
-																						<li><a href="listing-right-column.html">Link Level 3</a></li>
-																						<li><a href="listing-right-column.html">Link Level 3</a></li>
 																						<li>
 																							<a href="listing-right-column.html">Link Level 3</a>
 																							<ul>
@@ -1748,15 +871,8 @@
 																									<a href="listing-right-column.html">Link Level 4</a>
 																									<ul>
 																										<li><a href="listing-right-column.html">Link Level 5</a></li>
-																										<li><a href="listing-right-column.html">Link Level 5</a></li>
-																										<li><a href="listing-right-column.html">Link Level 5</a></li>
-																										<li><a href="listing-right-column.html">Link Level 5</a></li>
-																										<li><a href="listing-right-column.html">Link Level 5</a></li>
 																									</ul>
 																								</li>
-																								<li><a href="listing-right-column.html">Link Level 4</a></li>
-																								<li><a href="listing-right-column.html">Link Level 4</a></li>
-																								<li><a href="listing-right-column.html">Link Level 4</a></li>
 																								<li><a href="listing-right-column.html">Link Level 4</a></li>
 																							</ul>
 																						</li>
@@ -1764,18 +880,12 @@
 																					</ul>
 																				</li>
 																				<li><a href="listing-right-column.html">Link Level 2</a></li>
-																				<li><a href="listing-right-column.html">Link Level 2</a></li>
-																				<li><a href="listing-right-column.html">Link Level 2</a></li>
 																			</ul>
 																		</li>
-																		<li><a href="listing-right-column.html">Link Level 1</a></li>
-																		<li><a href="listing-right-column.html">Link Level 1</a></li>
 																		<li><a href="listing-right-column.html">Link Level 1</a></li>
 																	</ul>
 																</li>
 																<li><a href="listing-right-column.html">Sleeveless Tops</a></li>
-																<li><a href="listing-right-column.html">Jackets</a></li>
-																<li><a href="listing-right-column.html">Outerwear</a></li>
 															</ul>
 														</div>
 														<div class="col-sm-4">
@@ -1785,10 +895,6 @@
 															</a>
 															<ul class="tt-megamenu-submenu">
 																<li><a href="listing-right-column.html">Trousers <span class="tt-badge tt-fatured">Fatured</span></a></li>
-																<li><a href="listing-right-column.html">Jeans</a></li>
-																<li><a href="listing-right-column.html">Jumpsuit &amp; Shorts</a></li>
-																<li><a href="listing-right-column.html">Skirts</a></li>
-																<li><a href="listing-right-column.html">Tights</a></li>
 															</ul>
 														</div>
 														<div class="col-sm-4">
@@ -1798,11 +904,6 @@
 															</a>
 															<ul class="tt-megamenu-submenu">
 																<li><a href="listing-right-column.html">Hats</a></li>
-																<li><a href="listing-right-column.html">Scarves &amp; Snoods</a></li>
-																<li><a href="listing-right-column.html">Belts</a></li>
-																<li><a href="listing-right-column.html">Bags</a></li>
-																<li><a href="listing-right-column.html">Shoes</a></li>
-																<li><a href="listing-right-column.html">Sunglasses <span class="tt-badge tt-sale">Sale 15%</span></a></li>
 															</ul>
 														</div>
 													</div>

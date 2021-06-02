@@ -9,8 +9,9 @@
 				<div class="tp-banner-container">
 					<div class="tp-banner revolution">
 						<ul>
+						@foreach($banners as $b)
 							<li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide">
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAMgAQMAAAD4P+14AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAPdJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg9uBAAAAAAADI/7URVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWFPTgQAAAAAADyf20EVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVpDw4JAAAAAAT9f+0JIwAAAAAAAAAAALAJ8T4AAZAZiOkAAAAASUVORK5CYII=" data-lazyload="images/slides/21/slide-01.jpg"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
+								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAMgAQMAAAD4P+14AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAPdJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg9uBAAAAAAADI/7URVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWFPTgQAAAAAADyf20EVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVpDw4JAAAAAAT9f+0JIwAAAAAAAAAAALAJ8T4AAZAZiOkAAAAASUVORK5CYII=" data-lazyload="{{asset('uploads/banners/'.$b->image)}}"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
 								<div class="tp-caption  tp-caption1 lft stb text-left"
 									data-x="133"
 									data-y="center"
@@ -20,40 +21,12 @@
 									data-start="900"
 									data-easing="Power4.easeOut"
 									data-endeasing="Power4.easeIn">
-									<div class="tp-caption5-wd-1 tt-base-color">By Getting WOKIEE,<br> You Get the Best Converting Shopify Theme</div>
-									<div class="tp-caption5-btn"><a href="listing-left-column.html" target="_blank" class="btn btn-xl">Yes! Blow Up My Sales Now!</a></div>
+									<div class="tp-caption5-wd-1 tt-base-color">{{$b->description}}</div>
+									<div class="tp-caption5-btn"><a href="{{$b->link_url}}" target="_blank" class="btn btn-xl">{{$b->title}}</a></div>
 								</div>
 							</li>
-							<li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide">
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAMgAQMAAAD4P+14AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAPdJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg9uBAAAAAAADI/7URVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWFPTgQAAAAAADyf20EVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVpDw4JAAAAAAT9f+0JIwAAAAAAAAAAALAJ8T4AAZAZiOkAAAAASUVORK5CYII=" data-lazyload="images/slides/21/slide-02.jpg"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
-								<div class="tp-caption  tp-caption1 lft stb text-left"
-									data-x="133"
-									data-y="center"
-									data-hoffset="0"
-									data-voffset="-20"
-									data-speed="600"
-									data-start="900"
-									data-easing="Power4.easeOut"
-									data-endeasing="Power4.easeIn">
-		 							<div class="tp-caption5-wd-1 tt-base-color">Many Predefined Skins/Layouts</div>
-									<div class="tp-caption5-btn"><a href="listing-left-column.html" target="_blank" class="btn btn-xl">Get Wokiee Now</a></div>
-								</div>
-							</li>
-							<li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide">
-								<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAMgAQMAAAD4P+14AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAPdJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg9uBAAAAAAADI/7URVFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWFPTgQAAAAAADyf20EVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVpDw4JAAAAAAT9f+0JIwAAAAAAAAAAALAJ8T4AAZAZiOkAAAAASUVORK5CYII=" data-lazyload="images/slides/21/slide-03.jpg"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" >
-								<div class="tp-caption  tp-caption1 lft stb text-left"
-									data-x="133"
-									data-y="center"
-									data-hoffset="0"
-									data-voffset="-20"
-									data-speed="600"
-									data-start="900"
-									data-easing="Power4.easeOut"
-									data-endeasing="Power4.easeIn">
-									<div class="tp-caption5-wd-1 tt-base-color">That converts visitors into buyers<br> and loyal customers</div>
-									<div class="tp-caption5-btn"><a href="listing-left-column.html" target="_blank" class="btn btn-xl">Yes! Blow Up My Sales Now!</a></div>
-								</div>
-							</li>
+						@endforeach	
+						
 						</ul>
 					</div>
 				</div>
@@ -63,50 +36,19 @@
 	<div class="container-indent nomargin">
 		<div class="container container-fluid-lg">
 			<div class="row">
+			@foreach($top_categories as $c)
 				<div class="col-sm-6">
-					<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
-						<img src="images/loader.svg" data-src="images/promo/index10-promo-img-01.jpg" alt="">
+					<a href="{{url('/category/'.$c->slug)}}" class="tt-promo-box tt-one-child">
+						<img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/categories/'.$c->image)}}" alt="">
 						<div class="tt-description">
 							<div class="tt-description-wrapper">
 								<div class="tt-background"></div>
-								<div class="tt-title-small">WOMEN</div>
+								<div class="tt-title-small">{{$c->name}}</div>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div class="col-sm-6">
-					<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
-						<img src="images/loader.svg" data-src="images/promo/index10-promo-img-02.jpg" alt="">
-						<div class="tt-description">
-							<div class="tt-description-wrapper">
-								<div class="tt-background"></div>
-								<div class="tt-title-small">MENS</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-sm-6">
-					<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
-						<img src="images/loader.svg" data-src="images/promo/index10-promo-img-03.jpg" alt="">
-						<div class="tt-description">
-							<div class="tt-description-wrapper">
-								<div class="tt-background"></div>
-								<div class="tt-title-small">SHOES</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-sm-6">
-					<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
-						<img src="images/loader.svg" data-src="images/promo/index10-promo-img-04.jpg" alt="">
-						<div class="tt-description">
-							<div class="tt-description-wrapper">
-								<div class="tt-background"></div>
-								<div class="tt-title-small">ACCESSORIES</div>
-							</div>
-						</div>
-					</a>
-				</div>
+			@endforeach	
 			</div>
 		</div>
 	</div>

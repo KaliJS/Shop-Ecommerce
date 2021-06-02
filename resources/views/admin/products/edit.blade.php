@@ -189,6 +189,7 @@
            $(document).on("click",".variant",function(){
                 
                $(".add_varient").append(`<div class='row product_variant'>
+                  <input type='hidden' name='in_stock[]' value='1' class='form-control'>
                   <div class='col-md-2 col-sm-6'>
                      <div class='form-group'><label>Quantity</label><input type='number' name='quantity[]' class='form-control' required></div>
                   </div>

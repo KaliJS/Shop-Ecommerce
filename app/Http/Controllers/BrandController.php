@@ -160,4 +160,22 @@ class BrandController extends Controller
             return Redirect::back()->with('error',$e->getMessage());
         }
     }
+
+    public function changeBrandPopularity(Request $request,$id){
+
+        try{
+            $brand = Brand::where('id',$id)->first();
+
+            if($brand->popularity == '0'){
+                $brand->popularity = '1';
+            }else{
+                $brand->popularity = '0';
+            }
+            $brand->save();
+            return $brand;
+
+        }catch(Exception $e){
+            return $e->getMessage();
+        }
+    }
 }

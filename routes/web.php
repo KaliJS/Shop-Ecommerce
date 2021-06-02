@@ -105,11 +105,13 @@ Route::group(['middleware' => ['web','auth','role']], function (){
         /********************Products Starts********************/
         Route::post('/products/getDeleteSelectedImages', [ProductController::class,'getDeleteSelectedImages']);
         Route::post('/products/getCategoryData', [ProductController::class,'getCategoryData']);
+        Route::post('/products/setProductType', [ProductController::class,'setProductType']);
         Route::resource('/products', ProductController::class);
         /********************Products Ends**********************/
 
 
         /********************Brand Starts********************/
+        Route::post('/brands/changeBrandPopularity/{id}',[BrandController::class,'changeBrandPopularity']);
         Route::resource('/brand', BrandController::class);
         /********************Brand Ends**********************/
 
