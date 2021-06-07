@@ -581,6 +581,7 @@ input[name='variant']:hover + label {
 						const count = Object.keys(cart_data).length;
 						const data = cart_data[variant_id];
 						const img = data["image"];
+						alert(img);
 
 						$('#cart_product_count').text(`There are ${count} items in your cart`);
 						$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);

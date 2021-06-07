@@ -54,6 +54,11 @@ class CartController extends Controller
             $total_price = 0;
             $response = array();
             
+            if($request->todo == 'clear_all'){
+                $request->session()->forget('cart');
+                return 'cart removed';
+            }
+
             // $request->session()->forget('cart');
             // return $request->session()->all();
             $variant_id = $request->selected_variant_id;
@@ -115,7 +120,8 @@ class CartController extends Controller
                     $cart[$variant_id]['subtotal'] = $cart[$variant_id]['quantity']*$variant_price;
                     $request->session()->put('cart',$cart);
                 }
-                
+                array_push( $response,$variant_id);
+                array_push( $response,session()->get('cart')); 
                 return $response;
 
             }else if($request->todo == 'update'){
@@ -137,27 +143,17 @@ class CartController extends Controller
                 return $final;
 
             }else if($request->todo == 'delete'){
+               
                 
                 unset($cart[$variant_id]);
-                
+                $request->session()->put('cart',$cart);
                 foreach($cart as $key=>$value){
                     $total_price += $value['subtotal'];
                 }
-                
-                $request->session()->put('cart',$cart);
-                array_push( $final, count($cart) );
-                array_push( $final, $total_price );
+                return $total_price;
                 
             }
             
-            array_push( $response,$variant_id);
-            array_push( $response,session()->get('cart'));            
-            // $response = session()->get('cart');
-
-            
-            
-
-            //return $request->session()->get('cart');
         }catch(\Exception $e){
             return $e->getMessage();
         }

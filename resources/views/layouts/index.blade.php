@@ -147,6 +147,7 @@
       $('#ModalShowErrors').fadeOut('slow');
       $('#displayErrorMessage').fadeOut('slow');
       $('#displaySuccessMessage').fadeOut('slow');
+      $('#cartRemovedSuccessMessage').fadeOut('slow');
     })
 
   </script>

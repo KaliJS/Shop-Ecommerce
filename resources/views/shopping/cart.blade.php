@@ -101,7 +101,7 @@ a:not([href]):not([tabindex]):hover {
 				<div class="col-sm-12 col-xl-8">
 					<div class="tt-shopcart-table">
 						<table>
-							<tbody>
+							<tbody class="shopping_basket_container">
 
                 @foreach($cart as $key => $c)
                   <tr>
@@ -168,7 +168,7 @@ a:not([href]):not([tabindex]):hover {
 								<a class="btn-link" href="#"><i class="icon-e-19"></i>CONTINUE SHOPPING</a>
 							</div>
 							<div class="col-right">
-								<a class="btn-link" href="#"><i class="icon-h-02"></i>CLEAR SHOPPING CART</a>
+								<a class="btn-link" id="clear_shopping_cart" href="#"><i class="icon-h-02"></i>CLEAR SHOPPING CART</a>
 							</div>
 						</div>
 					</div>
@@ -236,6 +236,21 @@ a:not([href]):not([tabindex]):hover {
 		</div>
 	</div>
 </div>
+
+<div class="modal  fade" id="cartRemovedSuccessMessage" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-s">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+      </div>
+      <div class="modal-body">
+        <div class="tt-modal-subsribe-good">
+          <i class="icon-f-68"></i> Cart item removed successfully.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   
 
 @stop
@@ -252,7 +267,7 @@ a:not([href]):not([tabindex]):hover {
       
       const selected_variant_id = this.id;
       let quantity = $('#quantity-'+selected_variant_id).val();
-      quantity++;
+
       const todo = 'update';
 
       $.ajax({
@@ -279,11 +294,10 @@ a:not([href]):not([tabindex]):hover {
       const selected_variant_id = this.id;
       let quantity = $('#quantity-'+selected_variant_id).val();
 
-      if(quantity<=1){
+      if(quantity<1){
         return;
-      }else{
-        quantity--;
       }
+
       $('#quantity-'+selected_variant_id).val(quantity);
       const todo = 'update';
       $.ajax({
@@ -294,8 +308,8 @@ a:not([href]):not([tabindex]):hover {
         }).then(response=>{
           
             if(response){
-                $('.total-'+selected_variant_id).text(response[2]);
-                $('#final_price').text(response[1]);
+                $('.total-'+selected_variant_id).text(response[1]);
+                $('#final_price').text(response[0]);
               }else{
                 alert('! Something went wrong, Please Try again later..');
               }           
@@ -320,12 +334,11 @@ a:not([href]):not([tabindex]):hover {
           
             if(response){
               
-	             $(el).parent().fadeOut(function(){
+	             $(el).parent().parent().fadeOut(function(){
 	                $(this).remove();
-	                modal.style.display = "block";
 	             }); 
-	             $('#cart_count').text(response[0]);
-               $('#final_price').text(response[1]);
+              // $('#cartRemovedSuccessMessage').modal('show');
+	             $('#final_price').text(response);
 
               }else{
                 alert('! Something went wrong, Please Try again later..');
@@ -336,6 +349,37 @@ a:not([href]):not([tabindex]):hover {
         });
       
     });
+
+    $(document).on("click","#clear_shopping_cart",function(){
+
+     
+        const selected_variant_id = 0;
+        
+        const todo = 'clear_all';
+        $.ajax({
+              method:'POST',
+              url:`/cart/updateCart`,
+              data:{selected_variant_id,todo,"_token":"{{csrf_token()}}"},
+              encode  : true
+          }).then(response=>{
+            
+              if(response){
+                
+                $('.shopping_basket_container').fadeOut(function(){
+                    $(this).remove();
+                }); 
+                // $('#cartRemovedSuccessMessage').modal('show');
+                $('#final_price').text(0);
+
+                }else{
+                  alert('! Something went wrong, Please Try again later..');
+                }          
+              
+          }).fail(error=>{
+              console.log('error',error);
+          });
+        
+      });
 
   
 
