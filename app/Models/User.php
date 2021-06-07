@@ -57,7 +57,7 @@ class User extends Authenticatable
         return $this->hasOne(Role::Class,'id','role_id');
     }
 
-    public function wishlist(){
+    public function wishlists(){
     	return $this->hasMany(WishList::Class,'user_id','id');
     }
 }

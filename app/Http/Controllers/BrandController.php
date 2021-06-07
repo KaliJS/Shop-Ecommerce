@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Redirect;
 use DB;
@@ -17,7 +18,7 @@ class BrandController extends Controller
     public function index()
     {
         try{
-            $brands = Brand::orderBy('id')->get();
+            $brands = Brand::with('categories')->orderBy('id')->get();
             return view('admin.brand.index',compact('brands'));
         }catch(\Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
@@ -31,7 +32,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.brand.create');
+        $categories = Category::orderBy('name')->get(['id','name']);
+        return view('admin.brand.create',compact('categories'));
     }
 
     /**
@@ -45,12 +47,16 @@ class BrandController extends Controller
         $request->validate([
             'title' => 'required|unique:brands',
             'description' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'categories' => 'required'
         ]);
         
+        DB::beginTransaction();
         try{
-
+            $categories=$request->categories;
+            
             $input=$request->all();
+            unset($input['categories']);
 
             if($file=$request->file('image')){
 
@@ -59,8 +65,14 @@ class BrandController extends Controller
                 $input['image'] = $file_name;
             }
 
-            Brand::create($input);
-            
+            $inserted_brand = Brand::create($input);
+
+            foreach($categories as $category){
+                $data[]=array('category_id'=>$category,'brand_id'=>$inserted_brand->id,'created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s"));
+            }
+            DB::table('category_brands')->insert($data);
+
+            DB::commit();
             return redirect()->back()
                 ->with('success', 'Brand created successfully.');
 
@@ -89,7 +101,10 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        return view('admin.Brand.edit',compact('brand'));
+        $categories = Category::orderBy('name')->get(['id','name']);
+        $selected_categories = DB::table('category_brands')->where('brand_id',$brand->id)->pluck('category_id')->toArray();
+        
+        return view('admin.Brand.edit',compact('brand','categories','selected_categories'));
     }
 
     /**
@@ -103,12 +118,16 @@ class BrandController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'categories' => 'required'
         ]);
  
+        DB::beginTransaction();
         try{
 
+            $catetories=$request->catetories;
             $input=$request->all();
+            unset($input['catetories']);
             unset($input['_method']);
             unset($input['_token']);
             unset($input['_wysihtml5_mode']);
@@ -126,7 +145,16 @@ class BrandController extends Controller
                 $input['image'] = $brand->image;
             }
 
-            Brand::where('id',$brand->id)->update($input);
+            $updated_brand = Brand::where('id',$brand->id)->update($input);
+
+            $deleted_brand=DB::table('category_brands')->where('brand_id',$brand->id)->delete();
+            foreach($categories as $category){
+                $data[]=array('category_id'=>$category,'brand_id'=>$brand->id,'created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s"));
+            }
+            $inserted_category=DB::table('category_brands')->insert($data);           
+
+            DB::commit();
+
             
             return redirect()->back()
                 ->with('success', 'Brand Updated successfully.');
@@ -149,7 +177,7 @@ class BrandController extends Controller
         try{
 
             unlink(public_path().'/uploads/brands/'.$brand->image);
-           
+            DB::table('category_brands')->where('brand_id',$brand->id)->delete();
             $brand->delete();
 
             DB::commit();

@@ -38,6 +38,7 @@
         </div>
 
         <input type="hidden" id="get_sub_category_id" value="{{$product->subcategory->id}}">
+        <input type="hidden" id="get_brand_id" value="{{$product->brand_id}}">
         
         <div class="form-group row ">
             <label class="col-sm-12 col-md-2 col-form-label">Category</label>
@@ -53,18 +54,6 @@
 
          <div class="product_subcategory">
 
-         </div>
-
-         <div class="form-group row ">
-            <label class="col-sm-12 col-md-2 col-form-label">Brand</label>
-            <div class="col-sm-12 col-md-10">
-              <select class="custom-select col-12" name="brand_id" required>
-                <option selected disabled>Select</option>
-                @foreach($brands as $brand)
-                <option value="{{$brand->id}}" {{$brand->id==$product->brand_id?'Selected':''}}>{{$brand->title}}</option>
-                @endforeach
-              </select>
-            </div>
          </div>
          
          <div class="form-group row">
@@ -246,15 +235,17 @@
             $(document).on("change","#category_id",function(){
                 const category_id=$(this).val();
                 const sub_category_id=$('#get_sub_category_id').val();
+                const brand_id=$('#get_brand_id').val();
                 $.ajax({
                     method:'POST',
                     url:`/admin/products/getCategoryData?category_id=${category_id}`,
-                    data:{category_id,sub_category_id,"_token":"{{csrf_token()}}"}
+                    data:{category_id,sub_category_id,brand_id,"_token":"{{csrf_token()}}"}
                 }).then(response=>{
                     if(response){
                         
                         $('.product_subcategory').html(response);
                         $(".subcategory_select").select2();
+                        $(".brand_select").select2();
                     }
                 }).fail(error=>{
                     console.log('error',error);

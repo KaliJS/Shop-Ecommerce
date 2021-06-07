@@ -50,10 +50,10 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-
         try{
-            $final = array();
             $total_price = 0;
+            $response = array();
+            
             // $request->session()->forget('cart');
             // return $request->session()->all();
             $variant_id = $request->selected_variant_id;
@@ -71,23 +71,52 @@ class CartController extends Controller
                 }
 
                 $cart = $request->session()->get('cart');
-                if(isset($cart[$variant_id])){
-                    $cart[$variant_id]['quantity'] += $quantity;
+                
+                if($variant_id == 'false'){
+
+                    $product_variant = ProductVariants::where('product_id',$request->selected_product_id)->with('product:id,name,images')->orderBy('selling_price', 'DESC')->first();
+
+                    $variant_id = $product_variant->id;
+                    if(isset($cart[$product_variant->id])){
+                        $cart[$product_variant->id]['quantity'] += $quantity;
+                    }else{
+
+                        $cart[$product_variant->id]['quantity'] = $quantity;
+                        $cart[$product_variant->id]['variant_price'] = $product_variant->selling_price;
+                        
+                        $image_array = explode(',',$product_variant->product->images);
+                        $image = $image_array[0];                    
+
+                        $cart[$product_variant->id]['product_name'] = $product_variant->product->name.' ('.$product_variant->variant.')';
+
+                        $cart[$product_variant->id]['image'] = $image;
+                    }
+ 
+                    $cart[$product_variant->id]['subtotal'] = $cart[$product_variant->id]['quantity']*$product_variant->selling_price;
+                    $request->session()->put('cart',$cart); 
+
                 }else{
-                    $cart[$variant_id]['quantity'] = $quantity;
-                    $cart[$variant_id]['variant_price'] = $variant_price;
-                    $product = ProductVariants::where('id',$variant_id)->with('product:id,name,images')->first();
-                    
-                    $image_array = explode(',',$product->product->images);
-                    $image = $image_array[0];                    
 
-                    $cart[$variant_id]['product_name'] = $product->product->name.' ('.$product->quantity.''.$product->unit->short_code.')';
+                    if(isset($cart[$variant_id])){
+                        $cart[$variant_id]['quantity'] += $quantity;
+                    }else{
+                        $cart[$variant_id]['quantity'] = $quantity;
+                        $cart[$variant_id]['variant_price'] = $variant_price;
+                        $product = ProductVariants::where('id',$variant_id)->with('product:id,name,images')->first();
+                        
+                        $image_array = explode(',',$product->product->images);
+                        $image = $image_array[0];                    
 
-                    $cart[$variant_id]['image'] = $image;
-                    
+                        $cart[$variant_id]['product_name'] = $product->product->name.' ('.$product->variant.')';
+
+                        $cart[$variant_id]['image'] = $image;
+                        
+                    }
+                    $cart[$variant_id]['subtotal'] = $cart[$variant_id]['quantity']*$variant_price;
+                    $request->session()->put('cart',$cart);
                 }
-                $cart[$variant_id]['subtotal'] = $cart[$variant_id]['quantity']*$variant_price;
-                $request->session()->put('cart',$cart);
+                
+                return $response;
 
             }else if($request->todo == 'update'){
                 $quantity = $request->quantity;
@@ -100,11 +129,12 @@ class CartController extends Controller
                 }
                 
                 $request->session()->put('cart',$cart);
-                array_push( $final, count($cart) );
+                
+                $final = array();
+
                 array_push( $final, $total_price );
                 array_push( $final, $cart[$variant_id]['subtotal'] );
-                
-
+                return $final;
 
             }else if($request->todo == 'delete'){
                 
@@ -119,9 +149,13 @@ class CartController extends Controller
                 array_push( $final, $total_price );
                 
             }
+            
+            array_push( $response,$variant_id);
+            array_push( $response,session()->get('cart'));            
+            // $response = session()->get('cart');
 
             
-              return $final;  
+            
 
             //return $request->session()->get('cart');
         }catch(\Exception $e){

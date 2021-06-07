@@ -10810,7 +10810,7 @@ html.ie .tt-desctop-parent-menu {
 	desktop header
 */
 .tt-desktop-header {
-  position: relative;
+  position: static;
   z-index: 8; }
   @media (max-width: 1024px) {
     .tt-desktop-header {
@@ -11022,10 +11022,11 @@ header .container-fluid {
       top: auto; }
   .tt-desctop-menu .dropdown-menu {
     padding: 33px 5px 27px 39px;
-    margin-top: 0px;
+    margin-top: 20px;
     border: none;
     display: block;
-    position: absolute; }
+    position: absolute;
+    z-index: 9; }
   .tt-desctop-menu .megamenu .dropdown-menu {
     left: 0; }
   .tt-desctop-menu .dropdown-menu.one-col {
@@ -11245,10 +11246,10 @@ header .container-fluid {
     width: 100%;
     padding: 33px 39px 39px 39px; }
   .tt-desctop-menu .megamenu .col {
-    max-width: 281px; }
+    max-width: 14.25%; }
     @media (max-width: 1229px) {
       .tt-desctop-menu .megamenu .col {
-        max-width: 228px; } }
+        max-width: 14.25%; } }
   .tt-desctop-menu .tt-megamenu-col-01 .dropdown-menu {
     width: 280px;
     margin-left: -40px; }
@@ -13197,7 +13198,7 @@ header .tt-dropdown-obj .tt-dropdown-toggle {
 
 #tt-header.headertype5 .tt-account-textlink {
   position: relative;
-  top: -11px;
+  top: 14px;
   padding: 0 5px 0; }
   #tt-header.headertype5 .tt-account-textlink a {
     color: #417DFB;
@@ -17013,7 +17014,8 @@ html.ie.gecko body.modal-open {
   opacity: 0; }
 
 .modal.show {
-  opacity: 1; }
+  opacity: 1; 
+  background: #0404047a;}
 
 @media (min-width: 320px) {
   .modal:before {
@@ -17588,17 +17590,20 @@ html.ie.gecko body.modal-open {
   top: 10px; }
 
 .modal-xs .modal-body {
-  padding: 10px 10px 23px !important; }
+  padding: 10px 10px 10px !important; }
 
 .tt-modal-subsribe-good {
   color: #191919;
+  display: flex;
   font-size: 14px;
+  justify-content: center;
+  align-items: center;
   font-weight: 500; }
   .tt-modal-subsribe-good i {
     font-size: 30px;
     color: #2879fe;
     position: relative;
-    top: 5px;
+    top: 0px;
     margin-right: 1px; }
 
 #ModalVerifyAge .modal-header {
@@ -22354,7 +22359,7 @@ body:not(.touch-device) .tt-hotspot .tt-btn:hover:after {
   position: relative;
   overflow: hidden;
   width: 100%;
-  z-index: 1; }
+  z-index: 0; }
   .slider-revolution video {
     width: 100%;
     height: 100%;
@@ -30776,3 +30781,22 @@ html:not(.mac):not(.touch-device) .tt-bg-fill {
   .slick-dots-02 .slick-dots .slick-active button:before {
     opacity: 1;
     border-width: 2px; }
+
+.tt-description-border-btm{
+    background: #5e9bfe;
+    height: 2px;
+    width: 5%;
+    margin: auto;
+}
+.link-bold{
+  font-weight: bold;
+}
+
+.old_price_value{
+  text-decoration: line-through !important;
+  color: #ff7a7a !important;
+  font-size: 70% !important;
+}
+.old_price_value{
+  text-decoration: line-through !important;
+}

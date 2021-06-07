@@ -276,11 +276,17 @@ class ProductController extends Controller
         try{
             $category_id=$request->category_id;
             $sub_category_id = '';
+            $brand_id = '';
             $subcategories = SubCategories::where('category_id',$category_id)->get();
+            $category = Category::with('brands')->where('id',$category_id)->first();
+            $brands = $category->brands;
             if($request->has('sub_category_id')){
                 $sub_category_id = $request->sub_category_id;
             }
-            $view=view('admin.products.get_subcategory_data',compact('subcategories','sub_category_id'));
+            if($request->has('brand_id')){
+                $brand_id = $request->brand_id;
+            }
+            $view=view('admin.products.get_subcategory_data',compact('subcategories','sub_category_id','brands','brand_id'));
                 return $view->render();
         }catch(Exception $e){
             return $e->getMessage();

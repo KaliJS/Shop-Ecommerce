@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\WishListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,40 +48,50 @@ use App\Http\Controllers\TransactionsController;
 //     return view('shopping.index');
 // });
 
-Auth::routes();
+
 
 
 //Route::resource('/login', LoginController::class);
 
-Route::resource('/register', RegisterController::class);
+Route::group(['middleware' => ['common']], function (){
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/category', [ShopController::class, 'getAllCategories']);
-Route::get('/category/{data}', [ShopController::class, 'getCategoryProducts']);
-Route::get('/shop', [ShopController::class, 'index']);
+    Auth::routes();
+    
+    Route::resource('/register', RegisterController::class);
 
-Route::get('/product/{data}', [SingleProductController::class, 'getProductDetails']);
+    Route::resource('/wishlist', WishListController::class);
 
-Route::post('/product/updateCart', [CartController::class, 'updateCart']);
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/category', [ShopController::class, 'getAllCategories']);
+    Route::get('/category/{data}', [ShopController::class, 'getCategoryProducts']);
+    Route::get('/shop', [ShopController::class, 'index']);
 
-Route::post('/cart/updateCart', [CartController::class, 'updateCart']);
-Route::post('/cart/applyCoupon', [CartController::class, 'applyCoupon']);
-Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/product/{data}', [SingleProductController::class, 'getProductDetails']);
+
+    Route::post('/product/updateCart', [CartController::class, 'updateCart']);
+
+    Route::post('/cart/updateCart', [CartController::class, 'updateCart']);
+    Route::post('/cart/applyCoupon', [CartController::class, 'applyCoupon']);
+    Route::get('/cart', [CartController::class, 'index']);
 
 
-Route::get('/order/success', [CheckoutController::class, 'successOrder']);
+    Route::get('/order/success', [CheckoutController::class, 'successOrder']);
 
 
-Route::get('/order/getDeliveryBoy/{id}',[OrdersController::class,'getDeliveryBoy']);
-Route::get('/order/getAllOrderItems/{id}',[OrdersController::class,'getAllOrderItems']);
-        
-Route::get('/order-list', [OrdersController::class, 'getAllOrders']);
+    Route::get('/order/getDeliveryBoy/{id}',[OrdersController::class,'getDeliveryBoy']);
+    Route::get('/order/getAllOrderItems/{id}',[OrdersController::class,'getAllOrderItems']);
+            
+    Route::get('/order-list', [OrdersController::class, 'getAllOrders']);
 
-Route::post('/checkout/placeOrder', [CheckoutController::class, 'placeOrder']);
-Route::post('/checkout/checkSelectedDate', [CheckoutController::class, 'checkSelectedDate']);
-Route::post('/checkout/checkSelectedTime', [CheckoutController::class, 'checkSelectedTime']);
-Route::post('/checkout/placeCashOrder', [CheckoutController::class, 'placeCashOrder']);
-Route::resource('/checkout', CheckoutController::class);
+    Route::post('/checkout/placeOrder', [CheckoutController::class, 'placeOrder']);
+    Route::post('/checkout/checkSelectedDate', [CheckoutController::class, 'checkSelectedDate']);
+    Route::post('/checkout/checkSelectedTime', [CheckoutController::class, 'checkSelectedTime']);
+    Route::post('/checkout/placeCashOrder', [CheckoutController::class, 'placeCashOrder']);
+    Route::resource('/checkout', CheckoutController::class);
+
+});
+
+
 
 Route::group(['middleware' => ['web','auth','role']], function (){
 

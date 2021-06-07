@@ -3765,22 +3765,22 @@ jQuery(function($) {
                 required: "Please enter your message"
             }
         },
-        submitHandler: function(form) {
-            $(form).ajaxSubmit({
-                type:"POST",
-                data: $(form).serialize(),
-                url:"external/form/contact-form.php",
-                success: function() {
-                      $('#success').fadeIn();
-            $( '#contactform' ).each(function(){this.reset();});
-                },
-                error: function() {
-                    $('#contactform').fadeTo( "slow", 1, function() {
-                        $('#error').fadeIn();
-                    });
-                }
-            });
-        }
+        // submitHandler: function(form) {
+        //     $(form).ajaxSubmit({
+        //         type:"POST",
+        //         data: $(form).serialize(),
+        //         url:"external/form/contact-form.php",
+        //         success: function() {
+        //               $('#success').fadeIn();
+        //     $( '#contactform' ).each(function(){this.reset();});
+        //         },
+        //         error: function() {
+        //             $('#contactform').fadeTo( "slow", 1, function() {
+        //                 $('#error').fadeIn();
+        //             });
+        //         }
+        //     });
+        // }
     });
     $('#newsletterform').validate({
         rules: {
@@ -3789,22 +3789,22 @@ jQuery(function($) {
                 email: true
             }
         },
-        submitHandler: function(form) {
-            $(form).ajaxSubmit({
-                type:"POST",
-                data: $(form).serialize(),
-                url:"external/form/newsletter-form.php",
-                success: function() {
-                      $('#success').fadeIn();
-            $('#newsletterform').each(function(){this.reset();});
-                },
-                error: function() {
-                    $('#newsletterform').fadeTo( "slow", 1, function() {
-                        $('#error').fadeIn();
-                    });
-                }
-            });
-        }
+        // submitHandler: function(form) {
+        //     $(form).ajaxSubmit({
+        //         type:"POST",
+        //         data: $(form).serialize(),
+        //         url:"external/form/newsletter-form.php",
+        //         success: function() {
+        //               $('#success').fadeIn();
+        //     $('#newsletterform').each(function(){this.reset();});
+        //         },
+        //         error: function() {
+        //             $('#newsletterform').fadeTo( "slow", 1, function() {
+        //                 $('#error').fadeIn();
+        //             });
+        //         }
+        //     });
+        // }
     });
 });
 (function ($) {
@@ -5299,7 +5299,7 @@ jQuery(function($) {
 						$ttStuckParentMulti.append($ttMultiObj.detach());
 						$ttStuckParentAccount.append($ttAccountObj.detach());
 					};
-					$ttStuckParentSearch.append($ttSearchObj.detach());
+					//$ttStuckParentSearch.append($ttSearchObj.detach());
 
 
 					if ($stucknav.find('.tt-stuck-cart-parent > .tt-cart > .dropdown').hasClass('open') || ie)
@@ -5333,7 +5333,7 @@ jQuery(function($) {
 					$ttDesctopParentCart.append($ttcartObj.detach());
 					$ttDesctopParentMulti.append($ttMultiObj.detach());
 					$ttDesctopParentAccount.append($ttAccountObj.detach());
-					$ttDesctopParentSearch.append($ttSearchObj.detach());
+					//$ttDesctopParentSearch.append($ttSearchObj.detach());
 
 				}
 			});

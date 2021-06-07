@@ -13,12 +13,21 @@ class Reviews extends Model
 
     protected $guarded = ["id"];
 
+    // public function product(){
+    //     return $this->hasOne('App\Models\Product','id','product_id');
+    // }
+
+    // public function user(){
+    //     return $this->hasOne('App\Models\User','id','user_id');
+    // }
+
     public function product(){
-        return $this->hasOne('App\Models\Product','id','product_id');
+        return $this->belongsTo('App\Models\Product','product_id','id');
     }
 
     public function user(){
-        return $this->hasOne('App\Models\User','id','user_id');
+        return $this->belongsTo('App\Models\User','user_id','id');
     }
+
 
 }

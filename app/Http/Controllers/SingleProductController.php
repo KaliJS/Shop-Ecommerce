@@ -42,29 +42,14 @@ class SingleProductController extends Controller
 
             $price = '';
 
-            $product = Product::where('slug',$data)->first();
-            
-            $max_price=ProductVariants::where('product_id',$product->id)->max('selling_price');
-            $min_price=ProductVariants::where('product_id',$product->id)->min('selling_price');
+            $product = Product::with('reviews')->where('slug',$data)->first();
 
-            if($min_price == $max_price){
-                $price = '$'.$min_price;
-            }else{
-                $price = '$'.$min_price.' - $'.$max_price;
-            }
+            $img_array = explode(",", $product->images);
+            $first_image = $img_array[0];
 
-            $arr = explode(",", $product->images, 2);
-            $first_image = $arr[0];
+            $relatedProducts = Product::where('sub_category_id',$product->sub_category_id)->orderBy('updated_at','desc')->offset(0)->limit(10)->get();
             
-            $relatedProducts = Product::where('category_id',$product->category_id)->where('slug','!=',$data)->select("*")
-            ->addSelect(\DB::raw("
-                (select (CASE WHEN min(selling_price)=max(selling_price) THEN CONCAT('$',CAST(min(selling_price) as INTEGER)) 
-                ELSE CONCAT('$',CAST(min(selling_price) as INTEGER),' - $',CAST(max(selling_price) as INTEGER))
-                END) as price_range from product_variants where product_id=products.id) as price_range
-                "
-            ))
-            ->orderBy('id')->offset(0)->limit(8)->get();
-            return view('shopping.single-product',compact('relatedProducts','product','first_image','price'));
+            return view('shopping.single-product',compact('relatedProducts','product','first_image','price','img_array'));
         }catch(\Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
         }

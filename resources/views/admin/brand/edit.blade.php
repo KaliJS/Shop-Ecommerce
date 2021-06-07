@@ -20,6 +20,17 @@
             </div>
         </div>
 
+        <div class="form-group row ">
+            <label class="col-sm-12 col-md-2 col-form-label">Categories</label>
+            <div class="col-sm-12 col-md-10">
+              <select class="custom-select col-12" name="categories[]" multiple required>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}" {{in_array($category->id,$selected_categories)?"selected":""}}>{{$category->name}}</option>
+                @endforeach
+              </select>
+            </div>
+        </div>
+
         <div class="form-group row">
             <label class="col-sm-12 col-md-2 col-form-label">Description</label>
             <div class="col-sm-12 col-md-10 html-editor">

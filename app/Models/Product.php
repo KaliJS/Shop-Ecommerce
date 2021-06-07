@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SubCategories;
 use App\Models\Brand;
+use App\Models\Reviews;
 use App\Models\ProductVariants;
 
 class Product extends Model
@@ -26,6 +27,15 @@ class Product extends Model
 
     public function variants(){
     	return $this->hasMany(ProductVariants::class,'product_id','id');
+    }
+
+    public function reviews(){
+    	return $this->hasMany(Reviews::class,'product_id','id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsTo('App\Category');
     }
 
 }

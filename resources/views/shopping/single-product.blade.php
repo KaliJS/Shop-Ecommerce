@@ -1,62 +1,113 @@
 @extends('layouts.index')
+
 @section('css')
+
 <style type="text/css">
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  margin: auto;
-}
-.modal-content {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 70% !important;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem;
-    outline: 0;
-    }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+.choose_variant{
+  display:flex;
+  margin-top: 1rem;
+}
+.choose_variant_content{
+  margin-right: 0.5rem;
+}
+input[name='variant']{
+  display:none;
 }
 
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  margin-left: 95%;
+input[name='variant']:checked + label {
+    background: rgba(19, 68, 241, 0.06);
+    border: 2px solid #2879fe;
+    color: #2879fe;
 }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
+input[name='variant']:hover + label {
+  background: rgba(19, 68, 241, 0.06);
+  border: 2px solid #2879fe;
+  color: #2879fe;
+}
+
+.choose_variant_content label{
   cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em 0;
+  margin-bottom: .5em;
 }
+          
+.choose_variant_type{
+  color: #2879fe;
+  font-weight: bold;
+  font-size: 14px;
+}
+.choose_variant_price{
+  color: #191919;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#custom-product-item .slick-arrow {
+			position: absolute;
+			top: 50%;
+			z-index: 2;
+			cursor: pointer;
+			font-size: 0;
+			line-height: 0;
+			background: none;
+			border: none;
+			width: 38px;
+			height: 38px;
+			background: #f7f8fa;
+			color: #191919;
+			font-weight: 500;
+			border-radius: 50%;
+			transition: all 0.2s linear;
+			transform: translate(0%, -50%)
+		}
+		#custom-product-item{
+			opacity: 0;
+			transition: opacity 0.2s linear;
+		}
+		#custom-product-item.tt-show{
+			opacity: 1;
+		}
+
+		#custom-product-item .slick-arrow:hover {
+			background: #2879fe;
+			color: #ffffff;
+		}
+
+		#custom-product-item .slick-arrow:before {
+			font-family: "wokiee";
+			font-size: 20px;
+			line-height: 1;
+		}
+		#custom-product-item .slick-prev{
+			left: 10px;
+		}
+		#custom-product-item .slick-prev:before {
+			content: "\e90d";
+		}
+		#custom-product-item .slick-next {
+			right: 10px;
+		}
+		#custom-product-item .slick-next:before {
+			content: "\e90e";
+		}
+		#smallGallery .slick-arrow.slick-disabled,
+		#custom-product-item .slick-arrow.slick-disabled{
+			opacity: 0;
+			pointer-events: none;
+		}
+
 </style>
 
 @stop
@@ -64,223 +115,402 @@
 
 @section('content')
 
+<link  href="{{asset('/shopping/css/fotorama.css')}}" rel="stylesheet">
 
-    <!-- Trigger/Open The Modal -->
+<div class="tt-breadcrumb">
+	<div class="container">
+		<ul>
+			<li><a href="{{url('/')}}">Home</a></li>
+			<li><a href="{{url('/shop')}}">Shop</a></li>
+			<li>{{$product->slug}}</li>
+		</ul>
+	</div>
+</div>
+<div id="tt-pageContent">
+	<div class="container-indent">
+		<!-- mobile product slider  -->
+		<div class="tt-mobile-product-layout visible-xs">
+			<div class="tt-mobile-product-slider arrow-location-center" id="zoom-mobile__slider">
+
+        @foreach($img_array as $image)
+          <div><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt=""></div>
+        @endforeach
+
+			</div>
+			<div id="zoom-mobile__layout">
+				<a class="zoom-mobile__close btn" href="#">Back</a>
+				<div id="tt-fotorama" data-nav="thumbs" data-auto="false" data-allowfullscreen="false" dataa-fit="cover" ></div>
+			</div>
+		</div>
+		<!-- /mobile product slider  -->
+		<div class="container container-fluid-mobile">
+			<div class="row">
+				<div class="col-6 hidden-xs">
+					<div class="tt-product-vertical-layout">
+						<div class="tt-product-single-img">
+							<div>
+								<button class="tt-btn-zomm tt-top-right"><i class="icon-f-86"></i></button>
+								<img class="zoom-product" src="{{asset('/uploads/products/'.$first_image)}}" data-zoom-image="{{asset('/uploads/products/'.$first_image)}}" alt="">
+								<div id="custom-product-item">
+										<button type="button" class="slick-arrow slick-prev">Previous</button>
+										<button type="button" class="slick-arrow slick-next">Next</button>
+									</div>
+							</div>
+						</div>
+						<div class="tt-product-single-carousel-vertical">
+							<ul id="smallGallery" class="tt-slick-button-vertical  slick-animated-show-js">
+								@foreach($img_array as $image)
+									@if ($loop->first)
+									<li><a class="zoomGalleryActive" href="#" data-image="{{asset('/uploads/products/'.$image)}}" data-zoom-image="{{asset('/uploads/products/'.$image)}}"><img data-value="1" src="{{asset('/uploads/products/'.$image)}}" alt=""></a></li>
+									@else
+									<li><a href="#" data-image="{{asset('/uploads/products/'.$image)}}" data-zoom-image="{{asset('/uploads/products/'.$image)}}"><img data-value="2" src="{{asset('/uploads/products/'.$image)}}" alt=""></a></li>
+									@endif
+								@endforeach
+								@foreach($img_array as $image)	
+									@if ($loop->first)
+									<li><a class="zoomGalleryActive" href="#" data-image="{{asset('/uploads/products/'.$image)}}" data-zoom-image="{{asset('/uploads/products/'.$image)}}"><img data-value="3" src="{{asset('/uploads/products/'.$image)}}" alt=""></a></li>
+									@else
+									<li><a href="#" data-image="{{asset('/uploads/products/'.$image)}}" data-zoom-image="{{asset('/uploads/products/'.$image)}}"><img data-value="4" src="{{asset('/uploads/products/'.$image)}}" alt=""></a></li>
+									@endif
+								@endforeach	
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="tt-product-single-info">
+						<div class="tt-add-info">
+							<ul>
+								<li><span>SKU:</span> {{$product->sku}}</li>
+								<li><span>Availability:</span><span id="detail_in_stock"> </span> in Stock</li>
+							</ul>
+						</div>
+						<h1 class="tt-title">{{$product->name}}</h1>
+						<div class="tt-price">
+							<span class="new-price new_price_value" id="detail_selling_price"></span> 
+              				<span class="old-price old_price_value" id="detail_mrp_price"></span>
+						</div>
+						<div class="tt-review">
+							<div class="tt-rating">
+							@if($product->reviews->count()>0)
+								@for ($i = 0; $i < 5; $i++)
+									@if (floor($product->reviews->avg('ratings')) - $i >= 1)
+										<i class="icon-star"></i>
+									@elseif ($product->reviews->avg('ratings') - $i > 0)
+										<i class="icon-star-half"></i>
+									@else
+										<i class="icon-star-empty"></i>
+									@endif
+								@endfor
+							@endif
+							</div>
+						
+						</div>
+						<div class="tt-wrapper">
+							{{$product->description}}
+							</div>
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal" style="z-index: 999;">
+						<div class="choose_variant">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    
-    <div class="row">
-        <div class="col-12">
-            <div class="modal-bg addtocart">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="row">
-                    <div class="col-md-3">
-                    
-                      @foreach(explode(',',$product->images) as $image)
-                       @if ($loop->first)
-                        <img src="{{ asset('uploads/products/'.$image) }}" class="img-fluid pro-img product_image" alt="">
-                       @endif
-                      @endforeach
-                    </div>
-                    <div class="align-self-center text-center col-md-9">
-                        <a href="#" class="">
-                            <h6 class="mb-3">
-                                <i class="fa fa-check-circle mr-2"></i>Item
-                                <span class="product_name">{{$product->name}}</span>
-                                <span> successfully added to your Cart</span>
-                            </h6>
-                        </a>
-                        <div class="buttons">
-                            <a href="{{url('/shop')}}" class="btn btn-primary py-2 px-4 mb-1">Continue Shopping</a>
-                            <a href="{{url('/cart')}}" style="margin-right: 5%;margin-left: 5%;" class="btn btn-primary py-2 px-4 mb-1">View Cart</a>
-                            <a href="{{url('/checkout')}}" class="btn btn-primary py-2 px-4 mb-1">Checkout</a>
-                        </div>
+							@foreach($product->variants as $v)
+							@if ($loop->first)
+							<div class="choose_variant_content">
+								<input checked="checked"
+								type="radio" id="{{$v->id}}"
+								class="choose_variant"
+								data-selling_price="{{$v->selling_price}}" 
+								data-mrp_price="{{$v->mrp_price}}" 
+								data-in_stock="{{$v->quantity}}" 
+								name="variant" value="{{$v->id}}">
+								<label for="{{$v->id}}">
+								<span class="choose_variant_type">{{$v->variant}}</span>
+								<span class="choose_variant_price">₹{{$v->selling_price}}</span>
+								</label>
+							</div>
+							@else
+							<div class="choose_variant_content">
+								<input type="radio" id="{{$v->id}}"
+								class="choose_variant"
+								data-selling_price="{{$v->selling_price}}" 
+								data-mrp_price="{{$v->mrp_price}}" 
+								data-in_stock="{{$v->quantity}}" 
+								name="variant" value="{{$v->id}}" >
+								<label for="{{$v->id}}">
+								<span class="choose_variant_type">{{$v->variant}}</span>
+								<span class="choose_variant_price">₹{{$v->selling_price}}</span>
+								</label>
+							</div>
+							@endif
+							@endforeach
+						</div>
 
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-  </div>
 
+
+						<div class="tt-wrapper">
+							<div class="tt-countdown_box_02">
+								<div class="tt-countdown_inner">
+									<div class="tt-countdown"
+										data-date="2020-11-01"
+										data-year="Yrs"
+										data-month="Mths"
+										data-week="Wk"
+										data-day="Day"
+										data-hour="Hrs"
+										data-minute="Min"
+										data-second="Sec"></div>
+								</div>
+							</div>
+						</div>
+						<div class="tt-wrapper">
+							<div class="tt-row-custom-01">
+								<div class="col-item">
+									<div class="tt-input-counter style-01">
+										<span class="minus-btn"></span>
+										<input id="detail_quantity" type="text" value="1" size="5">
+										<span class="plus-btn"></span>
+									</div>
+								</div>
+								<div class="col-item">
+									<a href="#" id="{{ $product->id }}" data-slug_name='{{$product->slug}}' class="btn btn-lg add_to_cart"><i class="icon-f-39"></i>ADD TO CART</a>
+								</div>
+							</div>
+						</div>
+						<div class="tt-wrapper">
+							<ul class="tt-list-btn">
+								<li><a class="btn-link" href="#"><i class="icon-n-072"></i>ADD TO WISH LIST</a></li>
+							</ul>
+						</div>
+						<div class="tt-wrapper">
+							<div class="tt-add-info">
+								<ul>
+									<li><span>Product Category:</span> {{$product->subcategory->category->name}}</li>
+									<li><span>Product Type:</span> {{$product->subcategory->name}}</li>
+									<li><span>Brand:</span> <a href="{{url('/brand/'.$product->brand->id)}}">{{$product->brand->title}}</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="tt-collapse-block">
+							<div class="tt-item">
+								<div class="tt-collapse-title">DESCRIPTION</div>
+								<div class="tt-collapse-content">
+									{{$product->description}}
+								</div>
+							</div>
+							<div class="tt-item">
+								<div class="tt-collapse-title">ADDITIONAL INFORMATION</div>
+								<div class="tt-collapse-content">
+									{{$product->additional_info}}
+								</div>
+							</div>
+							<div class="tt-item">
+								<div class="tt-collapse-title tt-poin-comments">REVIEWS ({{$product->reviews->count()}})</div>
+								<div class="tt-collapse-content">
+									<div class="tt-review-block">
+										
+										<div class="tt-review-comments">
+
+                   						 @foreach($product->reviews as $r)
+											<div class="tt-item">
+												<div class="tt-avatar">
+													<a href="#"><img data-src="{{asset('/uploads/reviews/'.$r->image)}}" alt=""></a>
+												</div>
+												<div class="tt-content">
+													<div class="tt-rating">
+														@for ($i = 0; $i < 5; $i++)
+
+															@if ($r->ratings - $i >= 1)
+																{{--Full Start--}}
+																<i class="icon-star"></i>
+															@else
+																{{--Empty Start--}}
+																<i class="icon-star-empty"></i>
+															@endif
+																						
+														@endfor
+													</div>
+													<div class="tt-comments-info">
+														<span class="username">by <span><b>{{$r->user->first_name}} {{$r->user->last_name}}</b></span></span>
+														<span class="time">on {{date("j F Y g:i A",strtotime($r->created_at))}}</span>
+													</div>
+													<div class="tt-comments-title">{{$r->title}}</div>
+													<p>
+														{{$r->description}}
+													</p>
+												</div>
+											</div>
+                   						 @endforeach
+											
+										</div>
+										<div class="tt-review-form">
+                     					 @if($product->reviews->count()<=0)
+											<div class="tt-message-info">
+												BE THE FIRST TO REVIEW <span>“BLOUSE WITH SHEER &AMP; SOLID PANELS”</span>
+											</div>
+                     				 	@endif
+											<p>Your email address will not be published. Required fields are marked *</p>
+											<div class="tt-rating-indicator">
+												<div class="tt-title">
+													YOUR RATING *
+												</div>
+												<div class="tt-rating">
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star"></i>
+													<i class="icon-star-half"></i>
+													<i class="icon-star-empty"></i>
+												</div>
+											</div>
+											<form class="form-default">
+												<div class="form-group">
+													<label for="inputName" class="control-label">YOUR NAME *</label>
+													<input type="email" class="form-control" id="inputName" placeholder="Enter your name">
+												</div>
+												<div class="form-group">
+													<label for="inputEmail" class="control-label">COUPONE E-MAIL *</label>
+													<input type="password" class="form-control" id="inputEmail" placeholder="Enter your e-mail">
+												</div>
+												<div class="form-group">
+													<label for="textarea" class="control-label">YOUR REVIEW *</label>
+													<textarea class="form-control"  id="textarea" placeholder="Enter your review" rows="8"></textarea>
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn">SUBMIT</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-indent">
+		<div class="container container-fluid-custom-mobile-padding">
+			<div class="tt-block-title text-left">
+				<h3 class="tt-title-small">RELATED PRODUCT</h3>
+			</div>
+			<div class="tt-carousel-products row arrow-location-right-top tt-alignment-img tt-layout-product-item slick-animated-show-js">
+				
+			@foreach($relatedProducts as $p)
+				<div class="col-2 col-md-4 col-lg-3">
+					<div class="tt-product thumbprod-center">
+						<div class="tt-image-box">
+							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
+							<a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+							<a href="{{url('/product/'.$p->slug)}}">
+
+								@foreach(explode(',',$p->images) as $image)
+								@if ($loop->first)
+									<span class="tt-img"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
+								@endif
+								@if ($loop->last)	
+									<span class="tt-img-roll-over"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>
+								@endif
+								@endforeach
+								
+							</a>
+						</div>
+						<div class="tt-description">
+							<div class="tt-row">
+								<ul class="tt-add-info">
+									<li><a href="{{url('/subcategory'.$p->subcategory->slug)}}">{{$p->subcategory->name}}</a></li>
+								</ul>
+							</div>
+							<h2 class="tt-title"><a href="{{url('/product/'.$p->slug)}}">{{$p->name}}</a></h2>
+							<div class="tt-price">
+								@if($p->variants->min('selling_price') == $p->variants->max('selling_price'))
+								{{$p->variants->max('selling_price')}}
+								@else
+								{{$p->variants->min('selling_price')}}-{{$p->variants->max('selling_price')}}
+								@endif
+							</div>
+							<div class="tt-product-inside-hover">
+								<div class="tt-row-btn">
+									<a href="#" id="{{$p->id}}"
+									   class="tt-btn-addtocart thumbprod-button-bg add_to_cart" 
+									   data-slug_name='{{$p->slug}}'
+									   data-has_variant_id="yes">ADD TO CART</a>
+								</div>
+								<div class="tt-row-btn">
+									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
+									<a href="#" class="tt-btn-wishlist"></a>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+      @endforeach
+
+			</div>
+		</div>
+	</div>
 </div>
 
 
 
-
-    <div class="hero-wrap hero-bread" style="background-image: url({{url('uploads/banners/'.$header->image)}});">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">Home</a></span> <span class="mr-2"><a href="{{url('/shop')}}">Product</a></span> <span>Product Single</span></p>
-            <h1 class="mb-0 bread">Product Single</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-lg-6 mb-5 ftco-animate">
-    				
-    				
-					    
-					  <div class="" href="{{ asset('uploads/products/'.$first_image) }}">
-					    <img src="{{ asset('uploads/products/'.$first_image) }}" id="show-img">
-					  </div>
-					  <div class="small-img">
-					    <img src="{{asset('/slider/images/online_icon_right@2x.png')}}" class="icon-left" alt="" id="prev-img">
-					    <div class="small-container">
-					      <div id="small-img-roll">
-					      	@foreach(explode(',',$product->images) as $image)
-					        <img src="{{ asset('uploads/products/'.$image) }}" class="show-small-img" alt="">
-					        @endforeach
-					      </div>
-					    </div>
-					    <img src="{{asset('/slider/images/online_icon_right@2x.png')}}" class="icon-right" alt="" id="next-img">
-					  </div>
-					
-
-
-    			</div>
-    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>{{$product->name}}</h3>
-    				
-    				<p class="price"><span>{{$price}}</span></p>
-    				<p>{{$product->description}}</p>
-						<div class="row mt-4">
+<!-- modal (AddToCartProduct) -->
+<div class="modal  fade"  id="modalAddToCartProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+			</div>
+			<div class="modal-body">
+				<div class="tt-modal-addtocart mobile">
+					<div class="tt-modal-messages">
+						<i class="icon-f-68"></i> Added to cart successfully!
+					</div>
+					<a href="{{url('/shop')}}" class="btn-link btn-close-popup">CONTINUE SHOPPING</a>
+			        <a href="{{url('/cart')}}" class="btn-link">VIEW CART</a>
+			        <a href="{{url('/checkout')}}" class="btn-link">PROCEED TO CHECKOUT</a>
+				</div>
+				<div class="tt-modal-addtocart desctope">
+					<div class="row">
+						<div class="col-12 col-lg-6">
+							<div class="tt-modal-messages">
+								<i class="icon-f-68"></i> Added to cart successfully!
+							</div>
+							<div class="tt-modal-product">
+								<div class="tt-img">
+									<img src="{{asset('images/loader.svg')}}" id="cart_product_image" data-src="images/product/product-01.jpg" alt="">
+								</div>
+								<h2 class="tt-title"><a href="" id="cart_product_name"></a></h2>
+								<div class="tt-qty">
+									QTY: <span id="cart_product_quantity"></span>
+								</div>
+							</div>
+							<div class="tt-product-total">
+								<div class="tt-total">
+									TOTAL: <span class="tt-price" id="cart_product_price"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6">
+							<a href="#" class="tt-cart-total">
+								<div id="cart_product_count"></div>
+								<div class="tt-total">
+									TOTAL: <span class="tt-price" id="cart_products_total_price"></span>
+								</div>
+							</a>
+							<a href="{{url('/shop')}}" class="btn btn-border btn-close-popup">CONTINUE SHOPPING</a>
+							<a href="{{url('/cart')}}" class="btn btn-border">VIEW CART</a>
+							<a href="{{url('/checkout')}}" class="btn">PROCEED TO CHECKOUT</a>
 							
-              <div class="col-md-12">
-                <div class="form-group row">
-                  
-                  <div class="col-sm-12 col-md-7 pt-1">
-                    <select class="form-control col-12" name="unit" id="variant" required>
-                      @foreach($product->variants as $v)
-                        <option value="{{$v->id}}" data-selling_price="{{$v->selling_price}}" data-mrp_price="{{$v->mrp_price}}" data-in_stock="{{$v->in_stock}}" data-quantity="{{$v->quantity}}">{{$v->quantity}}{{$v->unit->short_code}}</option>
-                        @endforeach
-                    </select>
-                  </div>
-               </div>
-             </div>
-
-             <div class="cart-total d-none mb-3" id="variant-details">
-                <h3>Details</h3>
-                <p class="d-flex">
-                  <span>Price</span>
-                  <strike class="mr-2"><span id="detail-mrp-price"></span></strike>
-                  <span id="detail-selling-price" class="text-dark" style="font-weight: bold;"></span>
-                </p>
-                
-                <p class="d-flex mb-0">
-                  <span>In Stock</span>
-                  <span id="product_in_stock"></span>
-                </p>
-              
-              </div>
-
-             <div class="col-md-12">
-                </div>
-
-							<div class="w-100"></div>
-							<div class="input-group col-md-6 d-flex mb-3">
-	             	<span class="input-group-btn mr-2">
-	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-	                   <i class="ion-ios-remove"></i>
-	                	</button>
-	            		</span>
-	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-	             	<span class="input-group-btn ml-2">
-	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-	                     <i class="ion-ios-add"></i>
-	                 </button>
-	             	</span>
-	          	</div>
-	          	<div class="w-100"></div>
-	          	
-          	</div>
-          	<p><a id="{{$product->id}}" class="btn btn-black text-white py-3 px-5 add_to_cart disabled">Add to Cart</a></p>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-
-
-
-
-    <section class="ftco-section">
-    	<div class="container">
-				<div class="row justify-content-center mb-3 pb-3">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Products</span>
-            <h2 class="mb-4">Related Products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
-        </div>   		
-    	</div>
-    	<div class="container">
-    		<div class="row">
-    			@foreach($relatedProducts as $product)
-    			<div class="col-md-6 col-lg-3 ftco-animate">
-    				<div class="product">
-
-    					<a href="{{url('/product/'.$product->slug)}}" class="img-prod">
-    						@foreach(explode(',',$product->images) as $image)
-                    @if ($loop->first)
-                    
-                       <img class="img-fluid" src="{{asset('uploads/products/'.$image)}}" alt="img">
-                     
-                    @endif
-                 @endforeach
-    						
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="{{url('/product/'.$product->slug)}}">{{$product->name}}</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">              
-                    <p class="price">
-                      <span class="price-sale">{{$product->price_range}}</span>              
-                    </p>              
-                  </div>
-	    					</div>
-	    					
-    					</div>
-    				</div>
-    			</div>
-    			@endforeach
-    		</div>
-    	</div>
-    </section>
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-      <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-          <div class="col-md-6">
-          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-          	<span>Get e-mail updates about our latest shops and special offers</span>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="submit px-3">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- modal (quickViewModal) -->
 
 
   
@@ -289,102 +519,81 @@
 
 
 @section('js')
-
+    <script src="{{asset('/shopping/js/fotorama.js')}}"></script>
+    <script src="{{asset('/shopping/js/single-product.js')}}"></script>
+        
         <script type="text/javascript">
-
-
-                    // Get the modal
-          var modal = document.getElementById("myModal");
-
-          // Get the button that opens the modal
-          //var btn = document.getElementById("myBtn");
-
-          // Get the <span> element that closes the modal
-          var span = document.getElementsByClassName("close")[0];
-
-          // When the user clicks the button, open the modal 
-          // btn.onclick = function() {
-          //   modal.style.display = "block";
-          // }
-
-          // When the user clicks on <span> (x), close the modal
-          span.onclick = function() {
-            modal.style.display = "none";
-          }
-
-          // When the user clicks anywhere outside of the modal, close it
-          window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.style.display = "none";
-            }
-          }
             
-          var variants = '{{$product->variants}}';
-
-            $(document).on("click",".quantity-right-plus",function(){
-              let quantity = $('#quantity').val();
-              
-                quantity++
-                $('#quantity').val(quantity);
-              
-            });
-
-            $(document).on("click",".quantity-left-minus",function(){
-              let quantity = $('#quantity').val();
-              if(quantity<=1){
-                return;
-              }else{
-                quantity--;
-                $('#quantity').val(quantity);
-              }
-            });
-
             let selling_price,variant_id,selectedOption,mrp_price,quantity,in_stock;
 
-            $(document).on("change","#variant",function(){
-               variant_id=$(this).val();
-               selectedOption = $(this).find(":selected");
-               selling_price = selectedOption.data("selling_price");
-               mrp_price = selectedOption.data("mrp_price");
-               quantity = selectedOption.data("quantity"); 
-               in_stock = selectedOption.data("in_stock"); 
-               if(in_stock == '1'){
-                $('#product_in_stock').html("<p class='in_stock' style='color: #1eb659;'>Yes</p>");
-                $('.add_to_cart').removeClass('disabled')
-               }else{
-                $('#product_in_stock').html('<p class="not_in_stock" style="color: #f24949;">Currently Not Available</p>');
-               }
-               
-               $('#detail-mrp-price').text('$'+mrp_price);
-               $('#detail-selling-price').text('$'+selling_price);
+            $('.choose_variant').on('change', function() {
 
-               $('#variant-details').removeClass('d-none');
+                selectedOption = $(this).find(":checked");
+                selling_price = selectedOption.data("selling_price");
+                mrp_price = selectedOption.data("mrp_price");
+                in_stock = selectedOption.data("in_stock");    
+                $('#detail_mrp_price').text('₹'+mrp_price);
+                $('#detail_selling_price').text('₹'+selling_price);
+                $('#detail_in_stock').text(in_stock);
 
-            });
-
-            $("#variant").trigger("change");
+            }).trigger('change');
 
             $(document).on("click",".add_to_cart",function(){
-              const selected_product_id = this.id;
-              const selected_variant_id=$('#variant').val();
-              const selected_quantity=$('#quantity').val();
-              const selected_selling_price = selling_price;
-              const todo = 'add';
+				
+				let selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
+				var attr = $(this).attr('data-has_variant_id');
+				console.log({attr});
+				if (typeof attr !== 'undefined' && attr !== false) {
+					console.log('1')
+					selected_variant_id = false;
+					selected_product_slug = $(this).data('slug_name');
+					selected_quantity = 1;
+					selected_product_id = this.id;
+					selected_selling_price = false;
+				}
+				else{
+					console.log('2');
+					selected_variant_id = $("input:radio[name='variant']:checked").val();
+					selected_product_id = this.id;
+					selected_product_slug = $(this).data('slug_name');
+					selected_quantity=$('#detail_quantity').val();
+					selected_selling_price = selling_price;
+
+				}	
+				todo = 'add';         
               $.ajax({
                     method:'POST',
                     url:`updateCart`,
                     data:{selected_product_id,selected_variant_id,selected_quantity,todo,selected_selling_price,"_token":"{{csrf_token()}}"},
-                    encode  : true
-                }).then(response=>{
-                  
+                    encode: true
+                }).then(response=>{                
                    
-                      if(response){
-                        modal.style.display = "block";
-                        $('#cart_count').text(response);
+                      if(response && response.length == 2){
+                        console.log(response);
+						let total_price = 0;
+						const cart_data = response[1];
+						const variant_id = response[0];
 
+						for(let i in cart_data){
+							total_price += cart_data[i]['subtotal'];
+						}
+
+						const count = Object.keys(cart_data).length;
+						const data = cart_data[variant_id];
+						const img = data["image"];
+
+						$('#cart_product_count').text(`There are ${count} items in your cart`);
+						$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
+						$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
+						$('#cart_product_quantity').text(data['quantity']);
+						$('#cart_products_total_price').text('₹'+total_price);
+						$('#cart_product_name').text(data['product_name']);
+						$('#cart_product_name').href = `url('/product/${selected_product_slug}')`;
+
+						$("#modalAddToCartProduct").modal("show");
                       }else{
-                        alert('! Something went wrong, Please Try again later..');
-                      }          
+                        $("#displayErrorMessage").modal("show");
+                      }      
                     
                 }).fail(error=>{
                     console.log('error',error);

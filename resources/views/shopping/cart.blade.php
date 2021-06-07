@@ -85,155 +85,157 @@ a:not([href]):not([tabindex]):hover {
 @section('content')
 
 
-
-<div id="myModal" class="modal" style="z-index: 999;">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    
-    <div class="row">
-        <div class="col-12">
-            <div class="modal-bg addtocart">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                
-                    
-                    <div class="align-self-center text-center">
-                        <a href="#" class="">
-                            <h6 class="mb-3" style="margin-top: -5px;padding: 5px;">
-                                <i class="fa fa-check-circle mr-2"></i>
-                                <span>Item successfully removed from your Cart</span>
-                            </h6>
-                        </a>
-                        
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-  </div>
-
+<div class="tt-breadcrumb">
+	<div class="container">
+		<ul>
+			<li><a href="{{url('/')}}">Home</a></li>
+			<li>Shopping Cart</li>
+		</ul>
+	</div>
 </div>
-
-
-<div class="hero-wrap hero-bread" style="background-image: url({{url('uploads/banners/'.$header->image)}});">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">Home</a></span> <span>Cart</span></p>
-            <h1 class="mb-0 bread">My Cart</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="ftco-section ftco-cart">
+<div id="tt-pageContent">
+	<div class="container-indent">
 		<div class="container">
+			<h1 class="tt-title-subpages noborder">SHOPPING CART</h1>
 			<div class="row">
-			<div class="col-md-12 ftco-animate">
-				<div class="cart-list">
-    				<table class="table">
-					    <thead class="thead-primary">
-					      <tr class="text-center">
-					        <th>Remove</th>
-					        <th>Product Image</th>
-					        <th>Product name & Quantity</th>
-					        <th>Price</th>
-					        <th>Quantity</th>
-					        <th>Total</th>
-					      </tr>
-					    </thead>
-					    <tbody>
+				<div class="col-sm-12 col-xl-8">
+					<div class="tt-shopcart-table">
+						<table>
+							<tbody>
 
-					    	
+                @foreach($cart as $key => $c)
+                  <tr>
+                    <td>
+                      <a href="#" id="{{$key}}" class="tt-btn-close product-remove"></a>
+                    </td>
+                    <td>
+                      <div class="tt-product-img">
+                        <img src="images/loader.svg" data-src="{{asset('/uploads/products/'.$c['image'])}}" alt="">
+                      </div>
+                    </td>
+                    <td>
+                      <h2 class="tt-title">
+                        <a href="#">{{$c['product_name']}}</a>
+                      </h2>
+                      <ul class="tt-list-parameters">
+                        <li>
+                          <div class="tt-price">
+                          {{$c['variant_price']}}
+                          </div>
+                        </li>
+                        <li>
+                          <div class="detach-quantity-mobile"></div>
+                        </li>
+                        <li>
+                          <div class="tt-price subtotal total-{{$key}}">
+                          {{$c['subtotal']}}
+                          </div>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      <div class="tt-price">
+                      {{$c['variant_price']}}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="detach-quantity-desctope">
+                        <div class="tt-input-counter style-01">
+                          <span class="minus-btn" id="{{$key}}" data-type="minus"></span>
+                          <input type="text" id="quantity-{{$key}}" value="{{$c['quantity']}}" size="5">
+                          <span class="plus-btn" id="{{$key}}" data-type="plus"></span>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="tt-price subtotal total-{{$key}}">
+                      {{$c['subtotal']}}
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
 
-					    	@foreach($cart as $key=>$value)
-							      <tr class="text-center">
-							        <td class="product-remove" id="{{$key}}"><a><span class="ion-ios-close"></span></a></td>
-							        
-							        <td class="image-prod"><div class="img" style="background-image: url({{url('uploads/products/'.$value['image'])}});"></div></td>
-							        
-							        <td class="product-name">
-							        	<h3>{{$value['product_name']}}</h3>
-							        </td>
-							        
-							        <td class="price">${{$value['variant_price']}}</td>
-							        
-							        <td class="quantity">
-							        	<div class="input-group mb-3">
-							             	<span class="input-group-btn mr-2">
-							                	<button type="button" id="{{$key}}" class="quantity-left-minus btn"  data-type="minus" data-field="">
-							                   <i class="ion-ios-remove"></i>
-							                	</button>
-							            	</span>
-							             	<input type="text" id="quantity-{{$key}}" name="quantity" class="form-control input-number" value="{{$value['quantity']}}" min="1" max="100" readonly>
-							             	<span class="input-group-btn ml-2">
-							                	<button type="button" class="quantity-right-plus btn" data-type="plus" id="{{$key}}" data-field="">
-							                     <i class="ion-ios-add"></i>
-							                 	</button>
-							             	</span>
-							          	</div>
-						          </td>
-							        
-							        <td class="total-{{$key}}">${{$value['subtotal']}}</td>
-							      </tr>
-							@endforeach
-
-							@if(count($cart) < 1)
-
-							<tr>
-								<td>{{$empty}}</td>
-							</tr>
-							    
-							@endif
-					      
-					    </tbody>
-					  </table>
-				  </div>
-			</div>
-		</div>
-		<div class="row">
-
-			@if(!count($cart) < 1)
-			
-			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-				<div class="cart-total mb-3">
-					<h3>Cart Totals</h3>
-					
-					<hr>
-					<p class="d-flex total-price text-dark">
-						<span>Total</span>$
-						<span id="final_price">{{$total_price}}</span>
-					</p>
+                @if(count($cart) < 1)
+                  <tr>
+                    <td>Your Shopping Basket is empty!</td>
+                  </tr>                   
+                @endif
+							</tbody>
+						</table>
+						<div class="tt-shopcart-btn">
+							<div class="col-left">
+								<a class="btn-link" href="#"><i class="icon-e-19"></i>CONTINUE SHOPPING</a>
+							</div>
+							<div class="col-right">
+								<a class="btn-link" href="#"><i class="icon-h-02"></i>CLEAR SHOPPING CART</a>
+							</div>
+						</div>
+					</div>
 				</div>
-				<p><a href="{{url('/checkout')}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+				<div class="col-sm-12 col-xl-4">
+					<div class="tt-shopcart-wrapper">
+						<div class="tt-shopcart-box">
+							<h4 class="tt-title">
+								ESTIMATE SHIPPING AND TAX
+							</h4>
+							<p>Enter your destination to get a shipping estimate.</p>
+							<form class="form-default">
+								<div class="form-group">
+									<label for="address_country">COUNTRY <sup>*</sup></label>
+									<select id="address_country" class="form-control">
+										<option>Austria</option>
+										<option>Belgium</option>
+										<option>Cyprus</option>
+									
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="address_province">STATE/PROVINCE <sup>*</sup></label>
+									<select id="address_province" class="form-control">
+										<option>State/Province</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="address_zip">ZIP/POSTAL CODE <sup>*</sup></label>
+									<input type="text" name="name" class="form-control" id="address_zip" placeholder="Zip/Postal Code">
+								</div>
+								<a href="#" class="btn btn-border">CALCULATE SHIPPING</a>
+								<p>
+									There is one shipping rate available for Alabama, Tanzania, United Republic Of.
+								</p>
+								<ul class="tt-list-dot list-dot-large">
+									<li><a href="#">International Shipping at $20.00</a></li>
+								</ul>
+							</form>
+						</div>
+						<div class="tt-shopcart-box">
+							<h4 class="tt-title">
+								NOTE
+							</h4>
+							<p>Add special instructions for your order...</p>
+							<form class="form-default">
+								<textarea class="form-control" rows="7"></textarea>
+							</form>
+						</div>
+						<div class="tt-shopcart-box tt-boredr-large">
+							<table class="tt-shopcart-table01">
+								
+								<tfoot>
+									<tr>
+										<th>GRAND TOTAL</th>
+										<td id="final_price">{{$total_price}}</td>
+									</tr>
+								</tfoot>
+							</table>
+							<a href="{{url('/checkout')}}" class="btn btn-lg"><span class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
+						</div>
+					</div>
+				</div>
 			</div>
-
-			@endif
 		</div>
-		</div>
-	</section>
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-      <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-          <div class="col-md-6">
-          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-          	<span>Get e-mail updates about our latest shops and special offers</span>
-          </div>
-          <div class="col-md-6 d-flex align-items-center">
-            <form action="#" class="subscribe-form">
-              <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Enter email address">
-                <input type="submit" value="Subscribe" class="submit px-3">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+	</div>
+</div>
   
 
 @stop
@@ -246,27 +248,12 @@ a:not([href]):not([tabindex]):hover {
 
   let checkout_total_price = 0;
 
-	var modal = document.getElementById("myModal");
-	var span = document.getElementsByClassName("close")[0];
-    span.onclick = function() {
-	    modal.style.display = "none";
-	} 
-
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
-
-	$(document).on("click",".quantity-right-plus",function(){
+	$(document).on("click",".plus-btn",function(){
       
       const selected_variant_id = this.id;
       let quantity = $('#quantity-'+selected_variant_id).val();
-
-        quantity++;
-
-        $('#quantity-'+selected_variant_id).val(quantity);
-        const todo = 'update';
+      quantity++;
+      const todo = 'update';
 
       $.ajax({
             method:'POST',
@@ -276,8 +263,8 @@ a:not([href]):not([tabindex]):hover {
         }).then(response=>{
           
             if(response){
-	              $('.total-'+selected_variant_id).text(response[2]);
-                $('#final_price').text(response[1]);
+	              $('.total-'+selected_variant_id).text(response[1]);
+                $('#final_price').text(response[0]);
             }else{
                 alert('! Something went wrong, Please Try again later..');
             }  
@@ -288,7 +275,7 @@ a:not([href]):not([tabindex]):hover {
       
     });
 
-    $(document).on("click",".quantity-left-minus",function(){
+    $(document).on("click",".minus-btn",function(){
       const selected_variant_id = this.id;
       let quantity = $('#quantity-'+selected_variant_id).val();
 

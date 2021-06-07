@@ -94,10 +94,10 @@
                   <td>
                      <div class="form-group">
                         <select class="selectpicker form-control" id="product_type" data-id="{{$c->id}}" data-style="btn-outline-primary">
-                           <option value="Ordinary" {{$c->product_type=='ordinary'?'Selected': ''}}>Ordinary</option>
-                           <option value="New" {{$c->product_type=='new'?'Selected': ''}}>New</option>
-                           <option value="Special" {{$c->product_type=='special'?'Selected': ''}}>Special</option>
-                           <option value="Featured" {{$c->product_type=='featured'?'Selected': ''}}>Featured</option>             
+                           <option value="ordinary" {{$c->product_type=='ordinary'?'Selected': ''}}>Ordinary</option>
+                           <option value="new" {{$c->product_type=='new'?'Selected': ''}}>New</option>
+                           <option value="top" {{$c->product_type=='top'?'Selected': ''}}>Top</option>
+                           <option value="trend" {{$c->product_type=='trend'?'Selected': ''}}>Trend</option>             
                         </select>
                      </div>
                   </td>

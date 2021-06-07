@@ -41,10 +41,10 @@ class RegisterController extends Controller
     {
         $request->validate([
             'email' => 'required|unique:users',
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'city' => 'required',
-            'address1' => 'required',
+            'address' => 'required',
             'pincode' => 'required',
             'password' => 'required',
             'phone' => 'required'
@@ -55,14 +55,7 @@ class RegisterController extends Controller
             $input=$request->all();
             $input['password'] = Hash::make($request->password);
             $input['role_id'] = User::USER_ROLE_ID;
-            $input['first_name'] = $request->firstname;
-            $input['last_name'] = $request->lastname;
-            $input['area'] = $request->address1;
-            if(isset($request->address2)){
-                $input['area'] .= ". ".$request->address2;
-            }
-            $input['address'] = $input['area'].' '.$request->city.' '.$request->pincode;
-            
+                     
             User::create($input);
             
             return redirect()->route('login')
@@ -109,10 +102,10 @@ class RegisterController extends Controller
 
         $request->validate([
             'email' => 'required',
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'city' => 'required',
-            'address1' => 'required',
+            'address' => 'required',
             'pincode' => 'required',
             'password' => 'required',
             'phone' => 'required'
@@ -127,13 +120,9 @@ class RegisterController extends Controller
             $input['phone'] = $request->phone;
             $input['status'] = '1';
             $input['pincode'] = $request->pincode;
-            $input['first_name'] = $request->firstname;
-            $input['last_name'] = $request->lastname;
-            $input['area'] = $request->address1;
-            if(isset($request->address2)){
-                $input['area'] .= ". ".$request->address2;
-            }
-            $input['address'] = $input['area'].' '.$request->city.' '.$request->pincode;
+            $input['first_name'] = $request->first_name;
+            $input['last_name'] = $request->last_name;
+            $input['address'] = $request->address;
             
             User::where('id',$id)->update($input);
             
