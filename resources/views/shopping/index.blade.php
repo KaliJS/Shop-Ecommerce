@@ -75,7 +75,7 @@
 																@if($key > 5)
 																	@break
 																@endif
-																<li><a href="#" target="_blank"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/brands/'.$b->image)}}" alt=""></a></li>
+																<li><a href="{{url('/shop?brand='.$b->id)}}"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/brands/'.$b->image)}}" alt=""></a></li>
 															@endforeach
 															</ul>
 														</div>
@@ -106,12 +106,7 @@
 																			<h2 class="tt-title">{{$p->name}}</h2>
 																			<div class="tt-price">
 																				<span class="new-price">
-																					@if($p->variants->min('selling_price') == $p->variants->max('selling_price'))
-																						{{$p->variants->max('selling_price')}}
-																					@else
-																						{{$p->variants->min('selling_price')}}-{{$p->variants->max('selling_price')}}
-																					@endif
-																				
+																					{{$p->variants->min('selling_price')}}
 																				</span>
 																				
 																			</div>
@@ -214,7 +209,7 @@
 				   	@break
 				@endif
 				<div class="col-sm-6">
-					<a href="{{url('/category/'.$c->slug)}}" class="tt-promo-box tt-one-child">
+					<a href="{{url('/shop?category='.$c->id)}}" class="tt-promo-box tt-one-child">
 						<img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/categories/'.$c->image)}}" alt="">
 						<div class="tt-description">
 							<div class="tt-description-wrapper">
@@ -239,15 +234,9 @@
 			<div class="container container-fluid-lg">
 				<ul class="nav nav-tabs tt-tabs-default" role="tablist">
 				@foreach($d->subcategories as $key => $c)
-					@if ($loop->first)
-						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#tt-tab{{$d->id}}-{{$c->id}}">{{$c->name}}</a>
-						</li>
-					@else
-						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#tt-tab{{$d->id}}-{{$c->id}}">{{$c->name}}</a>
-						</li>
-					@endif
+					<li class="nav-item">
+						<a class="nav-link {{$loop->first?'active':''}}" data-toggle="tab" href="#tt-tab{{$d->id}}-{{$c->id}}">{{$c->name}}</a>
+					</li>
 				@endforeach
 				</ul>
 				@foreach($d->subcategories as $key => $c)
@@ -269,12 +258,7 @@
 											<a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
 											<a href="{{url('/product/'.$p->slug)}}">
 												@foreach(explode(',',$p->images) as $image)
-													@if ($loop->first)
-														<span class="tt-img"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-													@endif
-													@if ($loop->last)	
-														<span class="tt-img-roll-over"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-													@endif
+													<span class="{{$loop->first?'tt-img':'tt-img-roll-over'}}"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>													
 												@endforeach
 											</a>
 										</div>
@@ -293,11 +277,9 @@
 											</div>
 											<h2 class="tt-title"><a href="{{url('/product/'.$p->slug)}}">{{$p->name}}</a></h2>
 											<div class="tt-price">
-											@if($p->variants->min('selling_price') == $p->variants->max('selling_price'))
-												{{$p->variants->max('selling_price')}}
-											@else
-												{{$p->variants->min('selling_price')}}-{{$p->variants->max('selling_price')}}
-											@endif
+											
+												{{$p->variants->min('selling_price')}}
+
 											</div>
 											<div class="tt-product-inside-hover">
 												<div class="tt-row-btn">
@@ -337,12 +319,7 @@
 									<div class="tt-img">
 										<a href="{{url('/product/'.$new->slug)}}">
 											@foreach(explode(',',$new->images) as $image)
-												@if ($loop->first)
-													<span class="tt-img-default"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-												@endif
-												@if ($loop->last)	
-													<span class="tt-img-roll-over"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-												@endif
+												<span class="{{$loop->first?'tt-img-default':'tt-img-roll-over'}}"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
 											@endforeach
 										</a>
 									</div>
@@ -359,11 +336,7 @@
 										</ul>
 										<h6 class="tt-title"><a href="#">{{$new->name}}</a></h6>
 										<div class="tt-price">
-										  @if($new->variants->min('selling_price') == $new->variants->max('selling_price'))
-											{{$new->variants->max('selling_price')}}
-										  @else
-											{{$new->variants->min('selling_price')}}-{{$new->variants->max('selling_price')}}
-										  @endif
+											{{$new->variants->min('selling_price')}}
 										</div>
 									</div>
 								</div>
@@ -382,12 +355,7 @@
 									<div class="tt-img">
 										<a href="{{url('/product/'.$new->slug)}}">
 											@foreach(explode(',',$new->images) as $image)
-												@if ($loop->first)
-													<span class="tt-img-default"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-												@endif
-												@if ($loop->last)	
-													<span class="tt-img-roll-over"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-												@endif
+												<span class="{{$loop->first?'tt-img-default':'tt-img-roll-over'}}"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>									
 											@endforeach
 										</a>
 									</div>
@@ -404,11 +372,7 @@
 										</ul>
 										<h6 class="tt-title"><a href="#">{{$new->name}}</a></h6>
 										<div class="tt-price">
-										  @if($new->variants->min('selling_price') == $new->variants->max('selling_price'))
-											{{$new->variants->max('selling_price')}}
-										  @else
-											{{$new->variants->min('selling_price')}}-{{$new->variants->max('selling_price')}}
-										  @endif
+											{{$new->variants->min('selling_price')}}
 										</div>
 									</div>
 								</div>
@@ -426,12 +390,7 @@
 									<div class="tt-img">
 										<a href="{{url('/product/'.$new->slug)}}">
 											@foreach(explode(',',$new->images) as $image)
-												@if ($loop->first)
-													<span class="tt-img-default"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-												@endif
-												@if ($loop->last)	
-													<span class="tt-img-roll-over"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
-												@endif
+												<span class="{{$loop->first?'tt-img-default':'tt-img-roll-over'}}"><img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/products/'.$image)}}" alt=""></span>
 											@endforeach
 										</a>
 									</div>
@@ -448,11 +407,7 @@
 										</ul>
 										<h6 class="tt-title"><a href="#">{{$new->name}}</a></h6>
 										<div class="tt-price">
-										  @if($new->variants->min('selling_price') == $new->variants->max('selling_price'))
-											{{$new->variants->max('selling_price')}}
-										  @else
-											{{$new->variants->min('selling_price')}}-{{$new->variants->max('selling_price')}}
-										  @endif
+											{{$new->variants->min('selling_price')}}
 										</div>
 									</div>
 								</div>
@@ -472,7 +427,7 @@
 			<div class="row tt-layout-promo-box">
 				@foreach($popular_brands as $b)
 					<div class="col-6 col-md-3 col-12-575width">
-						<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
+						<a href="{{url('/shop?brand='.$b->id)}}" class="tt-promo-box tt-one-child">
 							<img src="{{asset('images/loader.svg')}}" data-src="{{asset('uploads/brands/'.$b->image)}}" alt="">
 							<div class="tt-description">
 								<div class="tt-description-wrapper">
@@ -633,6 +588,7 @@
 
 						$('#cart_product_count').text(`There are ${count} items in your cart`);
 						$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
+						$('#cart_product_image').attr("src",`{{URL::asset('/uploads/products/${img}')}}`);
 						$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
 						$('#cart_product_quantity').text(data['quantity']);
 						$('#cart_products_total_price').text('₹'+total_price);

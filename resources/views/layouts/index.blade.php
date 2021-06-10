@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="stylesheet" href="{{asset('/shopping/css/style.css')}}">
-
+  <link  href="{{asset('/shopping/css/fotorama.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('/slider/css/main.css')}}">
 
   @yield('css')
@@ -139,6 +139,10 @@
   <script src="{{asset('/shopping/js/2.2.4/jquery.min.js')}}"></script>
   <script>window.jQuery || document.write('<script src="{{asset(`/shopping/external/jquery/jquery.min.js`)}}"><\/script>')</script>
   <script defer src="{{asset('/shopping/js/bundle.js')}}"></script>
+  <script src="{{asset('/shopping/js/fotorama.js')}}"></script>
+  <script src="{{asset('/shopping/js/single-product.js')}}"></script>
+  <script src="{{asset('/shopping/js/listing.js')}}"></script>
+     
   <script>
 
     $(document).on('click','.close', function(){

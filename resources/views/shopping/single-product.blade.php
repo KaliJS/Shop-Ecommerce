@@ -11,6 +11,7 @@
 .choose_variant_content{
   margin-right: 0.5rem;
 }
+
 input[name='variant']{
   display:none;
 }
@@ -25,6 +26,16 @@ input[name='variant']:hover + label {
   background: rgba(19, 68, 241, 0.06);
   border: 2px solid #2879fe;
   color: #2879fe;
+}
+label:hover{
+	background: rgba(19, 68, 241, 0.06);
+	border: 2px solid #2879fe;
+	color: #2879fe;
+}
+label:checked {
+    background: rgba(19, 68, 241, 0.06);
+    border: 2px solid #2879fe;
+    color: #2879fe;
 }
 
 .choose_variant_content label{
@@ -55,58 +66,58 @@ input[name='variant']:hover + label {
 }
 
 #custom-product-item .slick-arrow {
-			position: absolute;
-			top: 50%;
-			z-index: 2;
-			cursor: pointer;
-			font-size: 0;
-			line-height: 0;
-			background: none;
-			border: none;
-			width: 38px;
-			height: 38px;
-			background: #f7f8fa;
-			color: #191919;
-			font-weight: 500;
-			border-radius: 50%;
-			transition: all 0.2s linear;
-			transform: translate(0%, -50%)
-		}
-		#custom-product-item{
-			opacity: 0;
-			transition: opacity 0.2s linear;
-		}
-		#custom-product-item.tt-show{
-			opacity: 1;
-		}
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+	cursor: pointer;
+	font-size: 0;
+	line-height: 0;
+	background: none;
+	border: none;
+	width: 38px;
+	height: 38px;
+	background: #f7f8fa;
+	color: #191919;
+	font-weight: 500;
+	border-radius: 50%;
+	transition: all 0.2s linear;
+	transform: translate(0%, -50%)
+}
+#custom-product-item{
+	opacity: 0;
+	transition: opacity 0.2s linear;
+}
+#custom-product-item.tt-show{
+	opacity: 1;
+}
 
-		#custom-product-item .slick-arrow:hover {
-			background: #2879fe;
-			color: #ffffff;
-		}
+#custom-product-item .slick-arrow:hover {
+	background: #2879fe;
+	color: #ffffff;
+}
 
-		#custom-product-item .slick-arrow:before {
-			font-family: "wokiee";
-			font-size: 20px;
-			line-height: 1;
-		}
-		#custom-product-item .slick-prev{
-			left: 10px;
-		}
-		#custom-product-item .slick-prev:before {
-			content: "\e90d";
-		}
-		#custom-product-item .slick-next {
-			right: 10px;
-		}
-		#custom-product-item .slick-next:before {
-			content: "\e90e";
-		}
-		#smallGallery .slick-arrow.slick-disabled,
-		#custom-product-item .slick-arrow.slick-disabled{
-			opacity: 0;
-			pointer-events: none;
-		}
+#custom-product-item .slick-arrow:before {
+	font-family: "wokiee";
+	font-size: 20px;
+	line-height: 1;
+}
+#custom-product-item .slick-prev{
+	left: 10px;
+}
+#custom-product-item .slick-prev:before {
+	content: "\e90d";
+}
+#custom-product-item .slick-next {
+	right: 10px;
+}
+#custom-product-item .slick-next:before {
+	content: "\e90e";
+}
+#smallGallery .slick-arrow.slick-disabled,
+#custom-product-item .slick-arrow.slick-disabled{
+	opacity: 0;
+	pointer-events: none;
+}
 
 </style>
 
@@ -114,8 +125,6 @@ input[name='variant']:hover + label {
 
 
 @section('content')
-
-<link  href="{{asset('/shopping/css/fotorama.css')}}" rel="stylesheet">
 
 <div class="tt-breadcrumb">
 	<div class="container">
@@ -132,9 +141,9 @@ input[name='variant']:hover + label {
 		<div class="tt-mobile-product-layout visible-xs">
 			<div class="tt-mobile-product-slider arrow-location-center" id="zoom-mobile__slider">
 
-        @foreach($img_array as $image)
-          <div><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt=""></div>
-        @endforeach
+				@foreach($img_array as $image)
+				<div><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt=""></div>
+				@endforeach
 
 			</div>
 			<div id="zoom-mobile__layout">
@@ -244,9 +253,6 @@ input[name='variant']:hover + label {
 							@endif
 							@endforeach
 						</div>
-
-
-
 
 						<div class="tt-wrapper">
 							<div class="tt-countdown_box_02">
@@ -401,16 +407,16 @@ input[name='variant']:hover + label {
 				<div class="col-2 col-md-4 col-lg-3">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
+							<a href="#" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}" data-tooltip="Quick View"></a>
 							<a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
 							<a href="{{url('/product/'.$p->slug)}}">
 
 								@foreach(explode(',',$p->images) as $image)
 								@if ($loop->first)
-									<span class="tt-img"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
+									<span class="tt-img"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
 								@endif
-								@if ($loop->last)	
-									<span class="tt-img-roll-over"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>
+								@if ($loop->last)
+									<span class="tt-img-roll-over"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>																
 								@endif
 								@endforeach
 								
@@ -424,21 +430,17 @@ input[name='variant']:hover + label {
 							</div>
 							<h2 class="tt-title"><a href="{{url('/product/'.$p->slug)}}">{{$p->name}}</a></h2>
 							<div class="tt-price">
-								@if($p->variants->min('selling_price') == $p->variants->max('selling_price'))
-								{{$p->variants->max('selling_price')}}
-								@else
-								{{$p->variants->min('selling_price')}}-{{$p->variants->max('selling_price')}}
-								@endif
+								{{$p->variants->min('selling_price')}}
 							</div>
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
 									<a href="#" id="{{$p->id}}"
 									   class="tt-btn-addtocart thumbprod-button-bg add_to_cart" 
 									   data-slug_name='{{$p->slug}}'
-									   data-has_variant_id="yes">ADD TO CART</a>
+									   data-has_variant_id="yes">ADD TO0 CART</a>
 								</div>
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
+									<a href="#" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}"></a>
 									<a href="#" class="tt-btn-wishlist"></a>
 									
 								</div>
@@ -446,7 +448,7 @@ input[name='variant']:hover + label {
 						</div>
 					</div>
 				</div>
-      @endforeach
+     		 @endforeach
 
 			</div>
 		</div>
@@ -512,21 +514,83 @@ input[name='variant']:hover + label {
 </div>
 <!-- modal (quickViewModal) -->
 
+<div class="pop_up_quick_modal"></div>
 
-  
 
 @stop
 
 
 @section('js')
-    <script src="{{asset('/shopping/js/fotorama.js')}}"></script>
-    <script src="{{asset('/shopping/js/single-product.js')}}"></script>
-        
+       
         <script type="text/javascript">
             
-            let selling_price,variant_id,selectedOption,mrp_price,quantity,in_stock;
+			var options = {
+				dots: true,
+				arrows: false,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 1,
+				adaptiveHeight: true,
+				lazyLoad: 'progressive'
+			}
 
-            $('.choose_variant').on('change', function() {
+			function ttInputCounter() {
+				$('.tt-input-counter').find('.minus-btn, .plus-btn').on('click',function(e) {
+						var $input = $(this).parent().find('input');
+						var count = parseInt($input.val(), 10) + parseInt(e.currentTarget.className === 'plus-btn' ? 1 : -1, 10);
+						$input.val(count).change();
+				});
+				$('.tt-input-counter').find("input").change(function() {
+						var _ = $(this);
+						var min = 1;
+						var val = parseInt(_.val(), 10);
+						var max = parseInt(_.attr('size'), 10);
+						val = Math.min(val, max);
+						val = Math.max(val, min);
+						_.val(val);
+				})
+				.on("keypress", function( e ) {
+						if (e.keyCode === 13) {
+								e.preventDefault();
+						}
+				});
+			};
+			
+			$(document).on("click",".quick_view_product",function(){
+
+				var product_id = $(this).data('product_id');
+
+				if(product_id){
+					$.ajax({
+					method:'POST',
+					url:`/search/getQuickView`,
+					data:{product_id,"_token":"{{csrf_token()}}"},
+					encode  : true
+					}).then(response=>{
+						if(response){
+							$('.pop_up_quick_modal').html(response);
+							setTimeout(function () {
+								$('.tt-mobile-product-slider').not('.slick-initialized').slick(options);
+							}, 500); 
+							$('#ModalquickView').modal('show');
+							// inputCounter
+							if ($('.tt-input-counter').length) {
+								ttInputCounter();
+							};
+							$('.choose_variant').trigger('change');
+							         
+						}
+					}).fail(error=>{
+						console.log('error',error);
+					});
+				}else{
+					$('#displayErrorMessage').modal('show');
+				}   
+			});
+
+            let selling_price,variant_id,selectedOption,mrp_price,quantity,in_stock;
+			
+            $(document).on('change','.choose_variant', function() {
 
                 selectedOption = $(this).find(":checked");
                 selling_price = selectedOption.data("selling_price");
@@ -536,15 +600,42 @@ input[name='variant']:hover + label {
                 $('#detail_selling_price').text('₹'+selling_price);
                 $('#detail_in_stock').text(in_stock);
 
-            }).trigger('change');
+            });
+			
+			$('.choose_variant').trigger('change');
+
+			$(document).on('change','.quick_choose_variant', function() {
+
+				selectedOption = $(this).find(":checked");
+				selling_price = selectedOption.data("selling_price");
+				mrp_price = selectedOption.data("mrp_price");
+				in_stock = selectedOption.data("in_stock");    
+				$('#quick_detail_mrp_price').text('₹'+mrp_price);
+				$('#quick_detail_selling_price').text('₹'+selling_price);
+				$('#quick_detail_in_stock').text(in_stock);
+
+			});
+			
+			$('.quick_choose_variant').trigger('change');
 
             $(document).on("click",".add_to_cart",function(){
 				
-				let selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
+				let cart_type,selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
 				var attr = $(this).attr('data-has_variant_id');
+				var quick_view = $(this).attr('data-quick_view');
 				console.log({attr});
-				if (typeof attr !== 'undefined' && attr !== false) {
+				if(typeof quick_view !== 'undefined' && quick_view !== false){
+					console.log('0');
+					cart_type = 'quick_view_cart';
+					selected_variant_id = $("input:radio[name='quick_variant']:checked").val();
+					selected_product_id = this.id;
+					selected_product_slug = $(this).data('slug_name');
+					selected_quantity=$('#quick_detail_quantity').val();
+					selected_selling_price = $('#quick_detail_selling_price').text();
+				}
+				else if (typeof attr !== 'undefined' && attr !== false) {
 					console.log('1')
+					cart_type = 'direct_cart';
 					selected_variant_id = false;
 					selected_product_slug = $(this).data('slug_name');
 					selected_quantity = 1;
@@ -553,6 +644,7 @@ input[name='variant']:hover + label {
 				}
 				else{
 					console.log('2');
+					cart_type = 'detail_cart';
 					selected_variant_id = $("input:radio[name='variant']:checked").val();
 					selected_product_id = this.id;
 					selected_product_slug = $(this).data('slug_name');
@@ -581,16 +673,21 @@ input[name='variant']:hover + label {
 						const count = Object.keys(cart_data).length;
 						const data = cart_data[variant_id];
 						const img = data["image"];
-						alert(img);
 
+						getHeaderCartList();
+
+						$('.tt-badge-cart').text(count);
 						$('#cart_product_count').text(`There are ${count} items in your cart`);
 						$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
+						$('#cart_product_image').attr("src",`{{URL::asset('/uploads/products/${img}')}}`);
 						$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
 						$('#cart_product_quantity').text(data['quantity']);
 						$('#cart_products_total_price').text('₹'+total_price);
 						$('#cart_product_name').text(data['product_name']);
 						$('#cart_product_name').href = `url('/product/${selected_product_slug}')`;
 
+						$('#ModalquickView').fadeOut('slow');
+						$('.modal-backdrop').css('display', 'none');
 						$("#modalAddToCartProduct").modal("show");
                       }else{
                         $("#displayErrorMessage").modal("show");

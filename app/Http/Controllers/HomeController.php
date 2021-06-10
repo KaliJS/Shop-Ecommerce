@@ -45,5 +45,27 @@ class HomeController extends Controller
             return Redirect::back()->with('error',$e->getMessage());
         }
     }
+
+    
+    public function getHeaderCartList()
+    {
+        try{
+            $cart = [];
+            $total_price = 0;
+            
+            if(session()->has('cart')){
+                $cart = session()->get('cart');
+            }
+            
+            foreach($cart as $key=>$value){
+                $total_price += $value['subtotal'];
+            }
+            $view = view('shopping/header_cart_list',compact('total_price','cart'));
+            return $view->render();
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+    }
     
 }

@@ -30800,3 +30800,20 @@ html:not(.mac):not(.touch-device) .tt-bg-fill {
 .old_price_value{
   text-decoration: line-through !important;
 }
+
+.empty_shopping_cart{
+  font-size: 1.3em;
+  text-align: center;
+  font-weight: bold;
+}
+.filter_page_loader{
+  margin: 0 auto;
+  display: none;
+}
+.no_filter_products{
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+
+

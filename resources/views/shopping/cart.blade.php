@@ -158,7 +158,7 @@ a:not([href]):not([tabindex]):hover {
 
                 @if(count($cart) < 1)
                   <tr>
-                    <td>Your Shopping Basket is empty!</td>
+                    <td class="empty_shopping_cart">Your Shopping Basket is empty!</td>
                   </tr>                   
                 @endif
 							</tbody>

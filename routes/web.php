@@ -62,9 +62,16 @@ Route::group(['middleware' => ['common']], function (){
     Route::resource('/wishlist', WishListController::class);
 
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/cart/getHeaderCartList', [HomeController::class, 'getHeaderCartList']);
+    Route::post('/search/getSearchData', [ShopController::class, 'getSearchData']);
+    Route::post('/search/getQuickView', [ShopController::class, 'getQuickView']);
     Route::get('/category', [ShopController::class, 'getAllCategories']);
     Route::get('/category/{data}', [ShopController::class, 'getCategoryProducts']);
     Route::get('/shop', [ShopController::class, 'index']);
+
+    Route::get('/shop/categories/{slug}', [ShopController::class, 'index']);
+
+    Route::post('/shop/filter', [ShopController::class, 'getFilterData']);
 
     Route::get('/product/{data}', [SingleProductController::class, 'getProductDetails']);
 

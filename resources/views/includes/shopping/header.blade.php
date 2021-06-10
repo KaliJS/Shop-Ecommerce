@@ -12,7 +12,7 @@
 				<ul>
 				@foreach($top_categories as $c)
 					<li>
-						<a href="{{url('/categories/'.$c->slug)}}">{{$c->name}}</a>
+						<a href="{{url('/shop/categories/'.$c->slug)}}">{{$c->name}}</a>
 						<ul>
 						@foreach($c->brands as $b)
 							<li><a href="{{url('/brands/'.$b->id)}}">{{$b->title}}</a></li>
@@ -424,7 +424,7 @@
 									<div class="container">
 										<form>
 											<div class="tt-col">
-												<input type="text" class="tt-search-input" placeholder="Search Products...">
+												<input type="text" id="search" class="tt-search-input" placeholder="Search Products...">
 												<button class="tt-btn-search" type="submit"></button>
 											</div>
 											<div class="tt-col">
@@ -434,6 +434,8 @@
 												What are you Looking for?
 											</div>
 										</form>
+										<div id="search_hint" class="text-dark pl-5 pr-5 text-left ">
+										
 									</div>
 								</div>
 							</div>
@@ -468,7 +470,7 @@
 										</svg>
 									</span>
 									<span class="tt-text">MY CART</span>
-									<span class="tt-badge-cart">{{count($cart)}}</span>
+									<span class="tt-badge-cart"></span>
 								</button>
 								<div class="tt-dropdown-menu">
 									<div class="tt-mobile-add">
@@ -476,51 +478,8 @@
 										<button class="tt-close">Close</button>
 									</div>
 									<div class="tt-dropdown-inner">
-										<div class="tt-cart-layout">
-											@if(count($cart)<=0)
-												<a href="empty-cart.html" class="tt-cart-empty">
-													<i class="icon-f-39"></i>
-													<p>No Products in the Cart</p>
-												</a>
-											@else
-												<div class="tt-cart-content">
-													<div class="tt-cart-list">
-
-													@foreach($cart as $c)
-														<div class="tt-item">
-															
-															<div class="tt-item-img">
-																<img src="images/loader-03.svg" data-src="{{asset('/uploads/products/'.$c['image'])}}" alt="">
-															</div>
-															<div class="tt-item-descriptions">
-															<h2 class="tt-title">{{$c['product_name']}}</h2>
-																
-																<div class="tt-quantity">{{$c['quantity']}} X</div> <div class="tt-price">{{$c['variant_price']}}</div>
-															</div>
-															
-															<div class="tt-item-close">
-																<a href="#" class="tt-btn-close"></a>
-															</div>
-														</div>
-													@endforeach
-														
-
-													</div>
-													<div class="tt-cart-total-row">
-														<div class="tt-cart-total-title">Subtotal:</div>
-														<div class="tt-cart-total-price">{{$total_price}}</div>
-													</div>
-													<div class="tt-cart-btn">
-														<div class="tt-item">
-															<a href="#" class="btn">Proceed To Checkout</a>
-														</div>
-														<div class="tt-item">
-															<a href="{{url('/cart')}}" class="btn-link-02 tt-hidden-mobile">View Cart</a>
-															<a href="{{url('/cart')}}" class="btn btn-border tt-hidden-desctope">View Cart</a>
-														</div>
-													</div>
-												</div>
-											@endif
+										<div class="tt-cart-layout" id="header_cart_list">
+											
 
 										</div>
 									</div>
@@ -582,7 +541,7 @@
 								<div class="container">
 									<form>
 										<div class="tt-col">
-											<input type="text" class="tt-search-input" placeholder="Search Products...">
+											<input type="text" id="search" class="tt-search-input" placeholder="Search Products...">
 											<button class="tt-btn-search" type="submit"></button>
 										</div>
 										<div class="tt-col">
@@ -591,6 +550,7 @@
 										<div class="tt-info-text">
 											What are you Looking for?
 										</div>
+										<div id="search_hint" class="text-dark pl-5 pr-5 text-left ">
 									</form>
 								</div>
 							</div>
@@ -607,3 +567,48 @@
 		</div>
 	</div>
 </header>
+
+@section('js')
+    <script type="text/javascript">
+console.log('search');
+      $('#search').keyup( function(){
+
+        var search = $('#search').val();
+        if($(this).val()){
+            $.ajax({
+          method:'POST',
+          url:`/search/getSearchData`,
+          data:{search,"_token":"{{csrf_token()}}"},
+          encode  : true
+          }).then(response=>{
+              if(response){
+                   $('#search_hint').html(response);            
+              }
+          }).fail(error=>{
+              console.log('error',error);
+          });
+        }      
+        
+      });
+
+
+	  function getHeaderCartList(){
+		  alert('dd');
+		$.ajax({
+          method:'GET',
+          url:`/cart/getHeaderCartList`
+          }).then(response=>{
+              if(response){
+                   $('#header_cart_list').html(response);            
+              }
+          }).fail(error=>{
+              console.log('error',error);
+          });
+	  }
+
+	  getHeaderCartList();
+    </script>
+
+
+    @stop
+
