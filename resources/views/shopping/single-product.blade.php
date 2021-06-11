@@ -87,7 +87,7 @@ input[name='quick_variant']:hover + .label_2 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: .5em;
 }
 
@@ -445,43 +445,48 @@ input[name='quick_variant']:hover + .label_2 {
 												BE THE FIRST TO REVIEW <span>“BLOUSE WITH SHEER &AMP; SOLID PANELS”</span>
 											</div>
                      				 	@endif
+
+
+										@if (Auth::user() != null)
 											<p>Your email address will not be published. Required fields are marked *</p>
-											<div class="tt-rating-indicator">
-												<div class="tt-title">
-													YOUR RATING *
-												</div>
-												<div class="tt-rating">
-													<div class="rate">
-														<input type="radio" id="star5" name="rate" value="5" />
-														<label for="star5" title="text">5 stars</label>
-														<input type="radio" id="star4" name="rate" value="4" />
-														<label for="star4" title="text">4 stars</label>
-														<input type="radio" id="star3" name="rate" value="3" />
-														<label for="star3" title="text">3 stars</label>
-														<input type="radio" id="star2" name="rate" value="2" />
-														<label for="star2" title="text">2 stars</label>
-														<input type="radio" id="star1" name="rate" value="1" />
-														<label for="star1" title="text">1 star</label>
+											
+											<form method="post" action="{{route('review.store')}}" class="form-default">
+												@csrf
+												<div class="tt-rating-indicator mb-2">
+													<div class="tt-title">
+														YOUR RATING *
+													</div>
+													<div class="tt-rating">
+														<div class="rate">
+															<input type="radio" id="star5" name="ratings" value="5" required />
+															<label for="star5" title="text">5 stars</label>
+															<input type="radio" id="star4" name="ratings" value="4" required />
+															<label for="star4" title="text">4 stars</label>
+															<input type="radio" id="star3" name="ratings" value="3" required />
+															<label for="star3" title="text">3 stars</label>
+															<input type="radio" id="star2" name="ratings" value="2" required />
+															<label for="star2" title="text">2 stars</label>
+															<input type="radio" id="star1" name="ratings" value="1" required />
+															<label for="star1" title="text">1 star</label>
+														</div>
 													</div>
 												</div>
-											</div>
-											<form class="form-default">
+
+												<input type="hidden" name="user_id" value="{{Auth::user() != null ? Auth::user()->id:''}}">
+												<input type="hidden" name="product_id" value="{{$product->id}}">
 												<div class="form-group">
-													<label for="inputName" class="control-label">YOUR NAME *</label>
-													<input type="email" class="form-control" id="inputName" placeholder="Enter your name">
-												</div>
-												<div class="form-group">
-													<label for="inputEmail" class="control-label">COUPONE E-MAIL *</label>
-													<input type="password" class="form-control" id="inputEmail" placeholder="Enter your e-mail">
+													<label for="inputEmail" class="control-label">HOW YOU LIKE THE PRODUCT *</label>
+													<input type="text" class="form-control" id="inputEmail" name="title" placeholder="good, bad, brilliant..." required>
 												</div>
 												<div class="form-group">
 													<label for="textarea" class="control-label">YOUR REVIEW *</label>
-													<textarea class="form-control"  id="textarea" placeholder="Enter your review" rows="8"></textarea>
+													<textarea class="form-control" name="description" id="textarea" placeholder="Enter your review" rows="8" required></textarea>
 												</div>
 												<div class="form-group">
 													<button type="submit" class="btn">SUBMIT</button>
 												</div>
 											</form>
+										@endif
 										</div>
 									</div>
 								</div>
@@ -505,7 +510,7 @@ input[name='quick_variant']:hover + .label_2 {
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
 							<a href="#" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}" data-tooltip="Quick View"></a>
-							<a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+							<a href="#" class="tt-btn-wishlist add_product_to_wishlist" id="{{$p->id}}" data-tooltip="Add to Wishlist" data-tposition="left"></a>
 							<a href="{{url('/product/'.$p->slug)}}">
 
 								@foreach(explode(',',$p->images) as $image)

@@ -133,7 +133,7 @@ class ShopController extends Controller
     public function getSearchData(Request $request)
     {
         try{            
-            $products = Product::where('name', 'like', $request->search . '%')->offset(0)->limit(8)->get();
+            $products = Product::where('name', 'like', '%' .$request->search . '%')->offset(0)->limit(8)->get();
             $view=view('shopping.fetch_search_products',compact('products'));
             return $view->render();
         }catch(\Exception $e){

@@ -48,9 +48,8 @@ class ReviewController extends Controller
     {
         
         $request->validate([
-            'title' => 'required|unique:reviews',
+            'title' => 'required',
             'description' => 'required',
-            'image' => 'required',
             'ratings' => 'required',
             'product_id' => 'required'
         ]);
@@ -70,7 +69,7 @@ class ReviewController extends Controller
             Reviews::create($input);
             
             return redirect()->back()
-                ->with('success', 'Reviews created successfully.');
+                ->with('success', 'Review Added successfully.');
 
         }catch(\Exception $e){
             DB::rollback();
