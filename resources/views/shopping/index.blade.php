@@ -553,58 +553,58 @@
         <script type="text/javascript">        
 
             
-            $(document).on("click",".add_to_cart",function(){
+            // $(document).on("click",".add_to_cart",function(){
 				
-				let selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
-				var attr = $(this).attr('data-has_variant_id');
+			// 	let selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
+			// 	var attr = $(this).attr('data-has_variant_id');
 
-					console.log('1')
-					selected_variant_id = false;
-					selected_product_slug = $(this).data('slug_name');
-					selected_quantity = 1;
-					selected_product_id = this.id;
-					selected_selling_price = false;
-					todo = 'add';         
-              $.ajax({
-                    method:'POST',
-                    url:`{{url('product/updateCart')}}`,
-                    data:{selected_product_id,selected_variant_id,selected_quantity,todo,selected_selling_price,"_token":"{{csrf_token()}}"},
-                    encode: true
-                }).then(response=>{                
+			// 		console.log('1')
+			// 		selected_variant_id = false;
+			// 		selected_product_slug = $(this).data('slug_name');
+			// 		selected_quantity = 1;
+			// 		selected_product_id = this.id;
+			// 		selected_selling_price = false;
+			// 		todo = 'add';         
+            //   $.ajax({
+            //         method:'POST',
+            //         url:`{{url('product/updateCart')}}`,
+            //         data:{selected_product_id,selected_variant_id,selected_quantity,todo,selected_selling_price,"_token":"{{csrf_token()}}"},
+            //         encode: true
+            //     }).then(response=>{                
                    
-                      if(response && response.length == 2){
-                        console.log(response);
-						let total_price = 0;
-						const cart_data = response[1];
-						const variant_id = response[0];
+            //           if(response && response.length == 2){
+            //             console.log(response);
+			// 			let total_price = 0;
+			// 			const cart_data = response[1];
+			// 			const variant_id = response[0];
 
-						for(let i in cart_data){
-							total_price += cart_data[i]['subtotal'];
-						}
+			// 			for(let i in cart_data){
+			// 				total_price += cart_data[i]['subtotal'];
+			// 			}
 
-						const count = Object.keys(cart_data).length;
-						const data = cart_data[variant_id];
-						const img = data["image"];
+			// 			const count = Object.keys(cart_data).length;
+			// 			const data = cart_data[variant_id];
+			// 			const img = data["image"];
 
-						$('#cart_product_count').text(`There are ${count} items in your cart`);
-						$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
-						$('#cart_product_image').attr("src",`{{URL::asset('/uploads/products/${img}')}}`);
-						$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
-						$('#cart_product_quantity').text(data['quantity']);
-						$('#cart_products_total_price').text('₹'+total_price);
-						$('#cart_product_name').text(data['product_name']);
-						$('#cart_product_name').href = `url('/product/${selected_product_slug}')`;
+			// 			$('#cart_product_count').text(`There are ${count} items in your cart`);
+			// 			$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
+			// 			$('#cart_product_image').attr("src",`{{URL::asset('/uploads/products/${img}')}}`);
+			// 			$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
+			// 			$('#cart_product_quantity').text(data['quantity']);
+			// 			$('#cart_products_total_price').text('₹'+total_price);
+			// 			$('#cart_product_name').text(data['product_name']);
+			// 			$('#cart_product_name').href = `url('/product/${selected_product_slug}')`;
 
-						$("#modalAddToCartProduct").modal("show");
-                      }else{
-                        $("#displayErrorMessage").modal("show");
-                      }      
+			// 			$("#modalAddToCartProduct").modal("show");
+            //           }else{
+            //             $("#displayErrorMessage").modal("show");
+            //           }      
                     
-                }).fail(error=>{
-                    console.log('error',error);
-                });
+            //     }).fail(error=>{
+            //         console.log('error',error);
+            //     });
               
-            });
+            // });
 
             
         </script>

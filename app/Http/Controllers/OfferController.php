@@ -67,15 +67,9 @@ class OfferController extends Controller
             $products=$request->products;
             $input=$request->all();
             unset($input['products']);
-
-            // $start_date = Carbon::createFromFormat('m/d/Y H:i:s', $input['start_date'].'00:00:00');
-            // $end_date = Carbon::createFromFormat('m/d/Y H:i:s', $input['end_date'].'00:00:00');
-            // if($start_date->gt($end_date)){
-            //     return redirect()->back()
-            //     ->with('error', 'start date can not be greater than end date.');
-            // }
-            if(Carbon::parse($input['end_date'])->isAfter(Carbon::parse($input['start_date'])->addHour(1))){
-                return redirect()->back()->with('error', 'start date can not be greater than end date.');
+            
+            if(Carbon::parse($input['end_date'])->diffInMinutes(Carbon::parse($input['start_date']))<=300 ){
+                return redirect()->back()->with('error', 'start date and end date must have 5hr difference');
             }
 
             if($file=$request->file('image')){

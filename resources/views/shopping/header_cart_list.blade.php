@@ -7,7 +7,7 @@
     <div class="tt-cart-content">
         <div class="tt-cart-list">
 
-        @foreach($cart as $c)
+        @foreach($cart as $key => $c)
             <div class="tt-item">
                 
                 <div class="tt-item-img">
@@ -20,7 +20,7 @@
                 </div>
                 
                 <div class="tt-item-close">
-                    <a href="#" class="tt-btn-close"></a>
+                    <a href="#" id="{{$key}}" class="tt-btn-close header-product-remove"></a>
                 </div>
             </div>
         @endforeach

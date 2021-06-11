@@ -154,6 +154,12 @@ Route::group(['middleware' => ['web','auth','role']], function (){
         /********************Offer Code Ends**********************/
 
 
+
+        /********************wishlist Code Starts********************/
+        Route::resource('/wishlist', WishListController::class);
+        /********************wishlist Code Ends**********************/
+
+
         /********************Review Code Starts********************/
         Route::resource('/review', ReviewController::class);
         /********************Review Code Ends**********************/

@@ -38,9 +38,7 @@ class HomeController extends Controller
             
             $popular_brands = Brand::where('popularity','1')->offset(0)->limit(8)->get();
 
-            $complete_data = Category::with('subcategories','subcategories.product')->get();
-
-            return view('shopping.index',compact('complete_data','popular_brands','banners','new_products','top_products','trend_products'));
+            return view('shopping.index',compact('popular_brands','banners','new_products','top_products','trend_products'));
         }catch(\Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
         }

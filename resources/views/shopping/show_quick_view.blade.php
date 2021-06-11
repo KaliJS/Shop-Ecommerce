@@ -29,6 +29,7 @@
 								</div>
 								<h2 class="tt-title">{{$product->name}}</h2>
 								<div class="tt-price">
+                                    <input type="hidden" id="quick_detail_selling_price_value">
                                     <span class="new-price new_price_value" id="quick_detail_selling_price"></span> 
               				        <span class="old-price old_price_value" id="quick_detail_mrp_price"></span>
 								</div>
@@ -55,15 +56,15 @@
 
                                     @foreach($product->variants as $v)
                                    
-                                        <div class="choose_variant_content">
-                                            <input {{$loop->first?'checked':''}}
-                                            type="radio" id="{{$v->id}}"
+                                        <div class="quick_choose_variant_content">
+                                            <input {{$loop->first?'checked="checked"':''}}
+                                            type="radio" id="quick{{$v->id}}"
                                             class="choose_variant"
                                             data-selling_price="{{$v->selling_price}}" 
                                             data-mrp_price="{{$v->mrp_price}}" 
                                             data-in_stock="{{$v->quantity}}" 
                                             name="quick_variant" value="{{$v->id}}">
-                                            <label for="{{$v->id}}">
+                                            <label class="label_2" for="quick{{$v->id}}">
                                             <span class="choose_variant_type">{{$v->variant}}</span>
                                             <span class="choose_variant_price">₹{{$v->selling_price}}</span>
                                             </label>

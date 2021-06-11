@@ -98,7 +98,7 @@ $permissions = explode(',',$permissions);
                     @if(in_array("dashboard",$permissions))
                     <li class="dropdown">
                         <a href="{{ url('/admin/dashboard') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
+                            <span class="micon dw dw-analytics-14"></span><span class="mtext">Dashboard</span>
                         </a>
 
                     </li>
@@ -107,7 +107,7 @@ $permissions = explode(',',$permissions);
                     @if(in_array("products",$permissions))
                     <li class="dropdown">
                         <a href="{{ url('/admin/products') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-house-1"></span><span class="mtext">Products</span>
+                            <span class="micon dw dw-basketball-court"></span><span class="mtext">Products</span>
                         </a>
                     </li>
                     @endif
@@ -155,7 +155,7 @@ $permissions = explode(',',$permissions);
                     @if(in_array("brands",$permissions))
                     <li class="dropdown">
                         <a href="{{ url('/admin/brand') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-image1"></span><span class="mtext">Brands</span>
+                            <span class="micon dw dw-focus"></span><span class="mtext">Brands</span>
                         </a>
                     </li>
                     @endif
@@ -163,7 +163,7 @@ $permissions = explode(',',$permissions);
                     @if(in_array("reviews",$permissions))
                     <li class="dropdown">
                         <a href="{{ url('/admin/review') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-image1"></span><span class="mtext">Products Reviews</span>
+                            <span class="micon dw dw-chat"></span><span class="mtext">Products Reviews</span>
                         </a>
                     </li>
                     @endif
@@ -171,7 +171,15 @@ $permissions = explode(',',$permissions);
                     @if(in_array("offers",$permissions))
                     <li class="dropdown">
                         <a href="{{ url('/admin/offer') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-image1"></span><span class="mtext">Offers</span>
+                            <span class="micon dw dw-gift"></span><span class="mtext">Offers</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(in_array("wishlists",$permissions))
+                    <li class="dropdown">
+                        <a href="{{ url('/admin/wishlist') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-checked"></span><span class="mtext">Wish List</span>
                         </a>
                     </li>
                     @endif
@@ -190,14 +198,7 @@ $permissions = explode(',',$permissions);
                         </a>
                     </li>
                     @endif
-                    @if(in_array("delivery-management",$permissions))
-                    <li class="dropdown">
-                        <a href="{{ url('/admin/delivery-management') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-time-management"></span><span class="mtext">Delivery Management</span>
-                        </a>
-                    </li>
-                    @endif
-
+                    
                 </ul>
             </div>
         </div>

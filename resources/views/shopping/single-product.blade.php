@@ -8,7 +8,15 @@
   display:flex;
   margin-top: 1rem;
 }
+.quick_choose_variant{
+  display:flex;
+  margin-top: 1rem;
+}
 .choose_variant_content{
+  margin-right: 0.5rem;
+}
+
+.quick_choose_variant_content{
   margin-right: 0.5rem;
 }
 
@@ -16,29 +24,74 @@ input[name='variant']{
   display:none;
 }
 
-input[name='variant']:checked + label {
+input[name='variant']:checked + .label_1 {
     background: rgba(19, 68, 241, 0.06);
     border: 2px solid #2879fe;
     color: #2879fe;
 }
 
-input[name='variant']:hover + label {
+input[name='variant']:hover + .label_1 {
   background: rgba(19, 68, 241, 0.06);
   border: 2px solid #2879fe;
   color: #2879fe;
 }
-label:hover{
-	background: rgba(19, 68, 241, 0.06);
-	border: 2px solid #2879fe;
-	color: #2879fe;
+
+input[name='quick_variant']{
+  display:none;
 }
-label:checked {
+
+input[name='quick_variant']:checked + .label_2 {
     background: rgba(19, 68, 241, 0.06);
     border: 2px solid #2879fe;
     color: #2879fe;
 }
 
-.choose_variant_content label{
+input[name='quick_variant']:hover + .label_2 {
+  background: rgba(19, 68, 241, 0.06);
+  border: 2px solid #2879fe;
+  color: #2879fe;
+}
+
+.label_1:hover{
+	background: rgba(19, 68, 241, 0.06);
+	border: 2px solid #2879fe;
+	color: #2879fe;
+}
+.label_1:checked {
+    background: rgba(19, 68, 241, 0.06);
+    border: 2px solid #2879fe;
+    color: #2879fe;
+}
+
+.label_2:hover{
+	background: rgba(19, 68, 241, 0.06);
+	border: 2px solid #2879fe;
+	color: #2879fe;
+}
+.label_2:checked {
+    background: rgba(19, 68, 241, 0.06);
+    border: 2px solid #2879fe;
+    color: #2879fe;
+}
+
+
+.choose_variant_content .label_1{
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  font-size: 14px;
+  width: fit-content;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: .5em;
+}
+
+.quick_choose_variant_content .label_2{
   cursor: pointer;
   background: #ffffff;
   border: 1px solid #c4c4c4;
@@ -117,6 +170,43 @@ label:checked {
 #custom-product-item .slick-arrow.slick-disabled{
 	opacity: 0;
 	pointer-events: none;
+}
+
+
+.rate {
+    float: left;
+    height: 26px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    visibility: hidden;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
 }
 
 </style>
@@ -226,13 +316,13 @@ label:checked {
 							@if ($loop->first)
 							<div class="choose_variant_content">
 								<input checked="checked"
-								type="radio" id="{{$v->id}}"
+								type="radio" id="single_{{$v->id}}"
 								class="choose_variant"
 								data-selling_price="{{$v->selling_price}}" 
 								data-mrp_price="{{$v->mrp_price}}" 
 								data-in_stock="{{$v->quantity}}" 
 								name="variant" value="{{$v->id}}">
-								<label for="{{$v->id}}">
+								<label class="label_1" for="single_{{$v->id}}">
 								<span class="choose_variant_type">{{$v->variant}}</span>
 								<span class="choose_variant_price">₹{{$v->selling_price}}</span>
 								</label>
@@ -245,7 +335,7 @@ label:checked {
 								data-mrp_price="{{$v->mrp_price}}" 
 								data-in_stock="{{$v->quantity}}" 
 								name="variant" value="{{$v->id}}" >
-								<label for="{{$v->id}}">
+								<label class="label_1" for="{{$v->id}}">
 								<span class="choose_variant_type">{{$v->variant}}</span>
 								<span class="choose_variant_price">₹{{$v->selling_price}}</span>
 								</label>
@@ -361,11 +451,18 @@ label:checked {
 													YOUR RATING *
 												</div>
 												<div class="tt-rating">
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star"></i>
-													<i class="icon-star-half"></i>
-													<i class="icon-star-empty"></i>
+													<div class="rate">
+														<input type="radio" id="star5" name="rate" value="5" />
+														<label for="star5" title="text">5 stars</label>
+														<input type="radio" id="star4" name="rate" value="4" />
+														<label for="star4" title="text">4 stars</label>
+														<input type="radio" id="star3" name="rate" value="3" />
+														<label for="star3" title="text">3 stars</label>
+														<input type="radio" id="star2" name="rate" value="2" />
+														<label for="star2" title="text">2 stars</label>
+														<input type="radio" id="star1" name="rate" value="1" />
+														<label for="star1" title="text">1 star</label>
+													</div>
 												</div>
 											</div>
 											<form class="form-default">
@@ -522,184 +619,10 @@ label:checked {
 
 @section('js')
        
-        <script type="text/javascript">
+    <script type="text/javascript">
             
-			var options = {
-				dots: true,
-				arrows: false,
-				infinite: true,
-				speed: 300,
-				slidesToShow: 1,
-				adaptiveHeight: true,
-				lazyLoad: 'progressive'
-			}
-
-			function ttInputCounter() {
-				$('.tt-input-counter').find('.minus-btn, .plus-btn').on('click',function(e) {
-						var $input = $(this).parent().find('input');
-						var count = parseInt($input.val(), 10) + parseInt(e.currentTarget.className === 'plus-btn' ? 1 : -1, 10);
-						$input.val(count).change();
-				});
-				$('.tt-input-counter').find("input").change(function() {
-						var _ = $(this);
-						var min = 1;
-						var val = parseInt(_.val(), 10);
-						var max = parseInt(_.attr('size'), 10);
-						val = Math.min(val, max);
-						val = Math.max(val, min);
-						_.val(val);
-				})
-				.on("keypress", function( e ) {
-						if (e.keyCode === 13) {
-								e.preventDefault();
-						}
-				});
-			};
-			
-			$(document).on("click",".quick_view_product",function(){
-
-				var product_id = $(this).data('product_id');
-
-				if(product_id){
-					$.ajax({
-					method:'POST',
-					url:`/search/getQuickView`,
-					data:{product_id,"_token":"{{csrf_token()}}"},
-					encode  : true
-					}).then(response=>{
-						if(response){
-							$('.pop_up_quick_modal').html(response);
-							setTimeout(function () {
-								$('.tt-mobile-product-slider').not('.slick-initialized').slick(options);
-							}, 500); 
-							$('#ModalquickView').modal('show');
-							// inputCounter
-							if ($('.tt-input-counter').length) {
-								ttInputCounter();
-							};
-							$('.choose_variant').trigger('change');
-							         
-						}
-					}).fail(error=>{
-						console.log('error',error);
-					});
-				}else{
-					$('#displayErrorMessage').modal('show');
-				}   
-			});
-
-            let selling_price,variant_id,selectedOption,mrp_price,quantity,in_stock;
-			
-            $(document).on('change','.choose_variant', function() {
-
-                selectedOption = $(this).find(":checked");
-                selling_price = selectedOption.data("selling_price");
-                mrp_price = selectedOption.data("mrp_price");
-                in_stock = selectedOption.data("in_stock");    
-                $('#detail_mrp_price').text('₹'+mrp_price);
-                $('#detail_selling_price').text('₹'+selling_price);
-                $('#detail_in_stock').text(in_stock);
-
-            });
-			
-			$('.choose_variant').trigger('change');
-
-			$(document).on('change','.quick_choose_variant', function() {
-
-				selectedOption = $(this).find(":checked");
-				selling_price = selectedOption.data("selling_price");
-				mrp_price = selectedOption.data("mrp_price");
-				in_stock = selectedOption.data("in_stock");    
-				$('#quick_detail_mrp_price').text('₹'+mrp_price);
-				$('#quick_detail_selling_price').text('₹'+selling_price);
-				$('#quick_detail_in_stock').text(in_stock);
-
-			});
-			
-			$('.quick_choose_variant').trigger('change');
-
-            $(document).on("click",".add_to_cart",function(){
-				
-				let cart_type,selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
-				var attr = $(this).attr('data-has_variant_id');
-				var quick_view = $(this).attr('data-quick_view');
-				console.log({attr});
-				if(typeof quick_view !== 'undefined' && quick_view !== false){
-					console.log('0');
-					cart_type = 'quick_view_cart';
-					selected_variant_id = $("input:radio[name='quick_variant']:checked").val();
-					selected_product_id = this.id;
-					selected_product_slug = $(this).data('slug_name');
-					selected_quantity=$('#quick_detail_quantity').val();
-					selected_selling_price = $('#quick_detail_selling_price').text();
-				}
-				else if (typeof attr !== 'undefined' && attr !== false) {
-					console.log('1')
-					cart_type = 'direct_cart';
-					selected_variant_id = false;
-					selected_product_slug = $(this).data('slug_name');
-					selected_quantity = 1;
-					selected_product_id = this.id;
-					selected_selling_price = false;
-				}
-				else{
-					console.log('2');
-					cart_type = 'detail_cart';
-					selected_variant_id = $("input:radio[name='variant']:checked").val();
-					selected_product_id = this.id;
-					selected_product_slug = $(this).data('slug_name');
-					selected_quantity=$('#detail_quantity').val();
-					selected_selling_price = selling_price;
-
-				}	
-				todo = 'add';         
-              $.ajax({
-                    method:'POST',
-                    url:`updateCart`,
-                    data:{selected_product_id,selected_variant_id,selected_quantity,todo,selected_selling_price,"_token":"{{csrf_token()}}"},
-                    encode: true
-                }).then(response=>{                
-                   
-                      if(response && response.length == 2){
-                        console.log(response);
-						let total_price = 0;
-						const cart_data = response[1];
-						const variant_id = response[0];
-
-						for(let i in cart_data){
-							total_price += cart_data[i]['subtotal'];
-						}
-
-						const count = Object.keys(cart_data).length;
-						const data = cart_data[variant_id];
-						const img = data["image"];
-
-						getHeaderCartList();
-
-						$('.tt-badge-cart').text(count);
-						$('#cart_product_count').text(`There are ${count} items in your cart`);
-						$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
-						$('#cart_product_image').attr("src",`{{URL::asset('/uploads/products/${img}')}}`);
-						$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
-						$('#cart_product_quantity').text(data['quantity']);
-						$('#cart_products_total_price').text('₹'+total_price);
-						$('#cart_product_name').text(data['product_name']);
-						$('#cart_product_name').href = `url('/product/${selected_product_slug}')`;
-
-						$('#ModalquickView').fadeOut('slow');
-						$('.modal-backdrop').css('display', 'none');
-						$("#modalAddToCartProduct").modal("show");
-                      }else{
-                        $("#displayErrorMessage").modal("show");
-                      }      
-                    
-                }).fail(error=>{
-                    console.log('error',error);
-                });
-              
-            });
-
+		
             
-        </script>
+    </script>
 
 @stop
