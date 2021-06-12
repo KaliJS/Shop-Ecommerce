@@ -4062,6 +4062,44 @@ jQuery(function($) {
 			if(ttBtnWishlist.length){
 				ttBtnWishlist.on('click', function(){
 						$(this).toggleClass('active');
+
+
+
+
+						var product_id = $(this).data('product_id');
+						var token = $(this).data('token');
+				
+						if(product_id){
+							$.ajax({
+							method:'POST',
+							url:`/addToWishList`,
+							data:{product_id,"_token":token},
+							encode  : true
+							}).then(response=>{
+								if(response == 'success'){
+									 
+									$('#ModalWishListView').modal('show');
+																	
+								}else if(response == 'allready_exist'){
+				
+									$('#ModalAllreadyExistView').modal('show');
+				
+								}else if(response == 'login'){
+				
+									window.location.href = `{{url('/login')}}`;
+				
+								}else{
+									$('#displayErrorMessage').modal('show')
+								}
+				
+							}).fail(error=>{
+								console.log('error',error);
+							});
+						}else{
+							$('#displayErrorMessage').modal('show');
+						}   
+
+
 						return false;
 				});
 			};

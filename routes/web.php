@@ -59,7 +59,10 @@ Route::group(['middleware' => ['common']], function (){
     
     Route::resource('/register', RegisterController::class);
 
-    Route::resource('/wishlist', WishListController::class);
+   
+    Route::post('/addToWishList', [WishListController::class,'addToWishList']);
+    Route::post('/removeWishlist', [WishListController::class,'removeWishlist']);
+    Route::get('/wishlist', [WishListController::class,'getWishListData']);
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/cart/getHeaderCartList', [HomeController::class, 'getHeaderCartList']);
@@ -163,6 +166,11 @@ Route::group(['middleware' => ['web','auth','role']], function (){
         /********************Review Code Starts********************/
         Route::resource('/review', ReviewController::class);
         /********************Review Code Ends**********************/
+
+
+        /********************Wishlist Code Starts********************/
+        Route::resource('/wishlist', WishListController::class);
+        /********************Wishlist Code Ends**********************/
 
 
         /********************Promo Code Starts********************/

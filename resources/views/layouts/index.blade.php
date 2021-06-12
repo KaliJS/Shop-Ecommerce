@@ -149,11 +149,12 @@
       $('#displayErrorMessage').fadeOut('slow');
       $('#displaySuccessMessage').fadeOut('slow');
       $('#cartRemovedSuccessMessage').fadeOut('slow');
+      $('#wishlistRemovedSuccessMessage').fadeOut('slow');
     })
 
   </script>
 
-  @yield('header_js')
+  @yield('footer_js')
   @yield('js')
   
   <a href="#" class="tt-back-to-top" id="js-back-to-top">BACK TO TOP</a>

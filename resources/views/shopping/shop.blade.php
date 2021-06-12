@@ -21,7 +21,7 @@ input:hover + label {
     color: #2879fe;
 }
 
-input:checked + label:before {
+/* input:checked + label:before {
     content: "\e9b3";
     position: absolute;
     left: -8%;
@@ -30,7 +30,7 @@ input:checked + label:before {
     line-height: 1;
     font-family: "wokiee";
     color: #191919;
-}
+} */
 
 label{
   cursor: pointer;
@@ -150,16 +150,16 @@ label{
 								<div class="col-6 col-md-4 tt-col-item">
 									<div class="tt-product thumbprod-center">
 										<div class="tt-image-box">
-											<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
-											<a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+											<a href="javascript:void(0)" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}" data-tooltip="Quick View" data-tposition="left"></a>
+											<a href="javascript:void(0)" class="tt-btn-wishlist add_product_to_wishlist" data-product_id="{{$p->id}}" data-token={{csrf_token()}} data-tooltip="Add to Wishlist" data-tposition="left"></a>
 											<a href="{{url('/product/'.$p->slug)}}">
 
 												@foreach(explode(',',$p->images) as $image)
 												@if ($loop->first)
-													<span class="tt-img"><img src="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
+													<span class="tt-img"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
 												@endif
 												@if ($loop->last)	
-													<span class="tt-img-roll-over"><img src="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>
+													<span class="tt-img-roll-over"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>
 												@endif
 												@endforeach
 												
@@ -183,8 +183,8 @@ label{
 													data-has_variant_id="yes">ADD TO CART</a>
 												</div>
 												<div class="tt-row-btn">
-													<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-													<a href="#" class="tt-btn-wishlist"></a>
+													<a href="javascript:void(0)" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}"></a>
+													<a href="javascript:void(0)" class="tt-btn-wishlist add_product_to_wishlist" data-token={{csrf_token()}} data-product_id="{{$p->id}}"></a>
 													
 												</div>
 											</div>

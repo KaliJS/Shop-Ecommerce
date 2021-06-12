@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Redirect;
+use Auth;
 use DB;
 
 class WishListController extends Controller
@@ -140,6 +141,75 @@ class WishListController extends Controller
         }catch(\Exception $e){
             DB::rollback();
             return Redirect::back()->with('error',$e->getMessage());
+        }
+    }
+
+    public function addToWishList(Request $request)
+    {
+        $user = Auth::user();
+       
+        try{
+            if($user)
+            {
+                $allready_exist = Wishlist::where('user_id',$user->id)->where('product_id',$request->product_id)->first();
+
+                if($allready_exist){
+                    return 'allready_exist';
+                }else{
+
+                    $wishlist = new wishlist;
+                    $wishlist->product_id = $request->product_id;
+                    $wishlist->user_id = $user->id;
+                    $wishlist->save();
+                    return 'success';
+
+                }
+
+            }
+            else {
+                return 'login';
+            }
+
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
+    }
+
+    public function getWishListData(Request $request)
+    {
+        $user = Auth::user();
+       
+        try{
+            if($user)
+            {
+                
+                $wishlists = Wishlist::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+                return view('shopping.wishlist',compact('wishlists'));
+            }
+            else {
+                return Redirect::back()->with('error','please login first');
+            }
+
+        }catch(\Exception $e){
+            return Redirect::back()->with('error',$e->getMessage());
+        }
+    }
+
+    public function removeWishlist(Request $request)
+    {
+        $user = Auth::user();
+       
+        try{
+            if($user){
+                Wishlist::where('user_id',Auth::user()->id)->delete();
+                return 'success';
+            }
+            else {
+                return 'failed';
+            }
+        }catch(\Exception $e){
+            
+            return $e->getMessage();
         }
     }
 }

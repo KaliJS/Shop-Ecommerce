@@ -4,211 +4,6 @@
 
 <style type="text/css">
 
-.choose_variant{
-  display:flex;
-  margin-top: 1rem;
-}
-.quick_choose_variant{
-  display:flex;
-  margin-top: 1rem;
-}
-.choose_variant_content{
-  margin-right: 0.5rem;
-}
-
-.quick_choose_variant_content{
-  margin-right: 0.5rem;
-}
-
-input[name='variant']{
-  display:none;
-}
-
-input[name='variant']:checked + .label_1 {
-    background: rgba(19, 68, 241, 0.06);
-    border: 2px solid #2879fe;
-    color: #2879fe;
-}
-
-input[name='variant']:hover + .label_1 {
-  background: rgba(19, 68, 241, 0.06);
-  border: 2px solid #2879fe;
-  color: #2879fe;
-}
-
-input[name='quick_variant']{
-  display:none;
-}
-
-input[name='quick_variant']:checked + .label_2 {
-    background: rgba(19, 68, 241, 0.06);
-    border: 2px solid #2879fe;
-    color: #2879fe;
-}
-
-input[name='quick_variant']:hover + .label_2 {
-  background: rgba(19, 68, 241, 0.06);
-  border: 2px solid #2879fe;
-  color: #2879fe;
-}
-
-.label_1:hover{
-	background: rgba(19, 68, 241, 0.06);
-	border: 2px solid #2879fe;
-	color: #2879fe;
-}
-.label_1:checked {
-    background: rgba(19, 68, 241, 0.06);
-    border: 2px solid #2879fe;
-    color: #2879fe;
-}
-
-.label_2:hover{
-	background: rgba(19, 68, 241, 0.06);
-	border: 2px solid #2879fe;
-	color: #2879fe;
-}
-.label_2:checked {
-    background: rgba(19, 68, 241, 0.06);
-    border: 2px solid #2879fe;
-    color: #2879fe;
-}
-
-
-.choose_variant_content .label_1{
-  cursor: pointer;
-  background: #ffffff;
-  border: 1px solid #c4c4c4;
-  border-radius: 10px;
-  font-size: 14px;
-  width: fit-content;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 15px;
-  margin-bottom: .5em;
-}
-
-.quick_choose_variant_content .label_2{
-  cursor: pointer;
-  background: #ffffff;
-  border: 1px solid #c4c4c4;
-  border-radius: 10px;
-  font-size: 14px;
-  width: 100px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 2em 0;
-  margin-bottom: .5em;
-}
-          
-.choose_variant_type{
-  color: #2879fe;
-  font-weight: bold;
-  font-size: 14px;
-}
-.choose_variant_price{
-  color: #191919;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-#custom-product-item .slick-arrow {
-	position: absolute;
-	top: 50%;
-	z-index: 2;
-	cursor: pointer;
-	font-size: 0;
-	line-height: 0;
-	background: none;
-	border: none;
-	width: 38px;
-	height: 38px;
-	background: #f7f8fa;
-	color: #191919;
-	font-weight: 500;
-	border-radius: 50%;
-	transition: all 0.2s linear;
-	transform: translate(0%, -50%)
-}
-#custom-product-item{
-	opacity: 0;
-	transition: opacity 0.2s linear;
-}
-#custom-product-item.tt-show{
-	opacity: 1;
-}
-
-#custom-product-item .slick-arrow:hover {
-	background: #2879fe;
-	color: #ffffff;
-}
-
-#custom-product-item .slick-arrow:before {
-	font-family: "wokiee";
-	font-size: 20px;
-	line-height: 1;
-}
-#custom-product-item .slick-prev{
-	left: 10px;
-}
-#custom-product-item .slick-prev:before {
-	content: "\e90d";
-}
-#custom-product-item .slick-next {
-	right: 10px;
-}
-#custom-product-item .slick-next:before {
-	content: "\e90e";
-}
-#smallGallery .slick-arrow.slick-disabled,
-#custom-product-item .slick-arrow.slick-disabled{
-	opacity: 0;
-	pointer-events: none;
-}
-
-
-.rate {
-    float: left;
-    height: 26px;
-    padding: 0 10px;
-}
-.rate:not(:checked) > input {
-    position:absolute;
-    visibility: hidden;
-}
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
-}
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.rate > input:checked ~ label {
-    color: #ffc700;    
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
-
 </style>
 
 @stop
@@ -509,16 +304,17 @@ input[name='quick_variant']:hover + .label_2 {
 				<div class="col-2 col-md-4 col-lg-3">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}" data-tooltip="Quick View"></a>
-							<a href="#" class="tt-btn-wishlist add_product_to_wishlist" id="{{$p->id}}" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+							<a href="javascript:void(0)" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}" data-tooltip="Quick View" data-tposition="left"></a>
+							<a href="javascript:void(0)" class="tt-btn-wishlist add_product_to_wishlist" data-product_id="{{$p->id}}" data-token={{csrf_token()}} data-tooltip="Add to Wishlist" data-tposition="left"></a>
+							
 							<a href="{{url('/product/'.$p->slug)}}">
 
 								@foreach(explode(',',$p->images) as $image)
 								@if ($loop->first)
-									<span class="tt-img"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
+									<span class="tt-img"><img src="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
 								@endif
 								@if ($loop->last)
-									<span class="tt-img-roll-over"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>																
+									<span class="tt-img-roll-over"><img src="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>																
 								@endif
 								@endforeach
 								
@@ -539,11 +335,11 @@ input[name='quick_variant']:hover + .label_2 {
 									<a href="#" id="{{$p->id}}"
 									   class="tt-btn-addtocart thumbprod-button-bg add_to_cart" 
 									   data-slug_name='{{$p->slug}}'
-									   data-has_variant_id="yes">ADD TO0 CART</a>
+									   data-has_variant_id="yes">ADD TO CART</a>
 								</div>
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
+									<a href="javascript:void(0)" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}"></a>
+									<a href="javascript:void(0)" class="tt-btn-wishlist add_product_to_wishlist" data-token={{csrf_token()}} data-product_id="{{$p->id}}"></a>
 									
 								</div>
 							</div>
@@ -558,76 +354,5 @@ input[name='quick_variant']:hover + .label_2 {
 </div>
 
 
-
-<!-- modal (AddToCartProduct) -->
-<div class="modal  fade"  id="modalAddToCartProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content ">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
-			</div>
-			<div class="modal-body">
-				<div class="tt-modal-addtocart mobile">
-					<div class="tt-modal-messages">
-						<i class="icon-f-68"></i> Added to cart successfully!
-					</div>
-					<a href="{{url('/shop')}}" class="btn-link btn-close-popup">CONTINUE SHOPPING</a>
-			        <a href="{{url('/cart')}}" class="btn-link">VIEW CART</a>
-			        <a href="{{url('/checkout')}}" class="btn-link">PROCEED TO CHECKOUT</a>
-				</div>
-				<div class="tt-modal-addtocart desctope">
-					<div class="row">
-						<div class="col-12 col-lg-6">
-							<div class="tt-modal-messages">
-								<i class="icon-f-68"></i> Added to cart successfully!
-							</div>
-							<div class="tt-modal-product">
-								<div class="tt-img">
-									<img src="{{asset('images/loader.svg')}}" id="cart_product_image" data-src="images/product/product-01.jpg" alt="">
-								</div>
-								<h2 class="tt-title"><a href="" id="cart_product_name"></a></h2>
-								<div class="tt-qty">
-									QTY: <span id="cart_product_quantity"></span>
-								</div>
-							</div>
-							<div class="tt-product-total">
-								<div class="tt-total">
-									TOTAL: <span class="tt-price" id="cart_product_price"></span>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<a href="#" class="tt-cart-total">
-								<div id="cart_product_count"></div>
-								<div class="tt-total">
-									TOTAL: <span class="tt-price" id="cart_products_total_price"></span>
-								</div>
-							</a>
-							<a href="{{url('/shop')}}" class="btn btn-border btn-close-popup">CONTINUE SHOPPING</a>
-							<a href="{{url('/cart')}}" class="btn btn-border">VIEW CART</a>
-							<a href="{{url('/checkout')}}" class="btn">PROCEED TO CHECKOUT</a>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- modal (quickViewModal) -->
-
-<div class="pop_up_quick_modal"></div>
-
-
 @stop
 
-
-@section('js')
-       
-    <script type="text/javascript">
-            
-		
-            
-    </script>
-
-@stop

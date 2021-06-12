@@ -93,7 +93,7 @@
                   </td>
                   <td>
                      <div class="form-group">
-                        <select class="selectpicker form-control" id="product_type" data-id="{{$c->id}}" data-style="btn-outline-primary">
+                        <select class="form-control product_type" data-id="{{$c->id}}" data-style="btn-outline-primary">
                            <option value="ordinary" {{$c->product_type=='ordinary'?'Selected': ''}}>Ordinary</option>
                            <option value="new" {{$c->product_type=='new'?'Selected': ''}}>New</option>
                            <option value="top" {{$c->product_type=='top'?'Selected': ''}}>Top</option>
@@ -152,7 +152,7 @@
 
         <script type="text/javascript">
 
-            $(document).on("change","#product_type",function(){
+            $(document).on("change",".product_type",function(){
                 const type=$(this).val();
                 const product_id=$(this).data('id');
                

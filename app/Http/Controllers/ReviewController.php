@@ -158,8 +158,9 @@ class ReviewController extends Controller
         
         DB::beginTransaction();
         try{
-
-            unlink(public_path().'/uploads/reviews/'.$review->image);          
+            if(file_exists(public_path().'/uploads/reviews/'.$review->image)){
+                unlink(public_path().'/uploads/reviews/'.$review->image);
+            }          
             $review->delete();
             DB::commit();
             return Redirect::back()->with('success','Reviews Deleted Successfully!');

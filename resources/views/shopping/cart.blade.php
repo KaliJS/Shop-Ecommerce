@@ -124,7 +124,15 @@ a:not([href]):not([tabindex]):hover {
                           </div>
                         </li>
                         <li>
-                          <div class="detach-quantity-mobile"></div>
+                          <div class="detach-quantity-mobile">
+                            <div class="detach-quantity-desctope">
+                              <div class="tt-input-counter style-01">
+                                <span class="minus-btn" id="{{$key}}" data-type="minus"></span>
+                                <input type="text" id="quantity-{{$key}}" value="{{$c['quantity']}}" size="5">
+                                <span class="plus-btn" id="{{$key}}" data-type="plus"></span>
+                              </div>
+                            </div>
+                          </div>
                         </li>
                         <li>
                           <div class="tt-price subtotal total-{{$key}}">
@@ -167,9 +175,11 @@ a:not([href]):not([tabindex]):hover {
 							<div class="col-left">
 								<a class="btn-link" href="#"><i class="icon-e-19"></i>CONTINUE SHOPPING</a>
 							</div>
+              @if(count($cart) > 0)
 							<div class="col-right">
 								<a class="btn-link" id="clear_shopping_cart" href="#"><i class="icon-h-02"></i>CLEAR SHOPPING CART</a>
 							</div>
+              @endif
 						</div>
 					</div>
 				</div>
@@ -368,6 +378,9 @@ a:not([href]):not([tabindex]):hover {
                 $('.shopping_basket_container').fadeOut(function(){
                     $(this).remove();
                 }); 
+
+                $('.tt-shopcart-table').html(`<tr><td class="empty_shopping_cart">Your Shopping Wishlist is empty!</td></tr>`);
+
                 // $('#cartRemovedSuccessMessage').modal('show');
                 $('#final_price').text(0);
 
