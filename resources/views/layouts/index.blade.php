@@ -132,6 +132,36 @@
     </div>
   </div>
 
+  <div class="modal  fade" id="ModalWishListView" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-s">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+        </div>
+        <div class="modal-body">
+          <div class="tt-modal-subsribe-good">
+            <i class="icon-f-68"></i> Item added to your wishlist successfully.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal  fade" id="ModalAllreadyExistView" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-s">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+        </div>
+        <div class="modal-body">
+          <div class="tt-modal-subsribe-good">
+            <i class="icon-f-67" style="color:#f44336;"></i> This product already exists in your wishlists.!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   
   <script src="{{asset('/shopping/js/2.2.4/jquery.min.js')}}"></script>
   <script>window.jQuery || document.write('<script src="{{asset(`/shopping/external/jquery/jquery.min.js`)}}"><\/script>')</script>
@@ -150,6 +180,8 @@
       $('#displaySuccessMessage').fadeOut('slow');
       $('#cartRemovedSuccessMessage').fadeOut('slow');
       $('#wishlistRemovedSuccessMessage').fadeOut('slow');
+      $('#ModalWishListView').fadeOut('slow');
+			$('#ModalAllreadyExistView').fadeOut('slow');
     })
 
   </script>

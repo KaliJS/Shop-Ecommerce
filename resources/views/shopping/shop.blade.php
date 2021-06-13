@@ -156,10 +156,10 @@ label{
 
 												@foreach(explode(',',$p->images) as $image)
 												@if ($loop->first)
-													<span class="tt-img"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
+													<span class="tt-img"><img src="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>								
 												@endif
 												@if ($loop->last)	
-													<span class="tt-img-roll-over"><img src="{{asset('images/shopping/loader.svg')}}"><img data-lazy="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>
+													<span class="tt-img-roll-over"><img src="{{asset('/uploads/products/'.$image)}}" alt="{{$image}}"></span>
 												@endif
 												@endforeach
 												
@@ -198,7 +198,7 @@ label{
 												<div class="tt-row-btn">
 													<a href="javascript:void(0)" class="tt-btn-quickview quick_view_product" data-product_id="{{$p->id}}"></a>
 													<a href="javascript:void(0)" class="tt-btn-wishlist add_product_to_wishlist" data-token={{csrf_token()}} data-product_id="{{$p->id}}"></a>
-													
+																
 												</div>
 											</div>
 										</div>

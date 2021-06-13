@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4832d63e253c86ebafc61d7f94428058",
+    "content-hash": "95e24ee0c8e36bb1bc0c0f1a993f2785",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2494,6 +2494,72 @@
                 "source": "https://github.com/WordPress/Requests/tree/v1.8.0"
             },
             "time": "2021-04-27T11:05:25+00:00"
+        },
+        {
+            "name": "seshac/laravel-shiprocket-api",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/seshac/laravel-shiprocket-api.git",
+                "reference": "f5e3fc5f26752ab01ddb250daf4c0362640168a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/seshac/laravel-shiprocket-api/zipball/f5e3fc5f26752ab01ddb250daf4c0362640168a1",
+                "reference": "f5e3fc5f26752ab01ddb250daf4c0362640168a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^7.5|^9.0",
+                "psalm/plugin-laravel": "^1.2",
+                "vimeo/psalm": "^3.11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Seshac\\Shiprocket\\ShiprocketServiceProvider"
+                    ],
+                    "aliases": {
+                        "Shiprocket": "Seshac\\Shiprocket\\Shiprocket"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seshac\\Shiprocket\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sesha",
+                    "email": "seshadriece008@gmail.com",
+                    "homepage": "https://github.com/seshac",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Shiprocket API (V1) Laravel SDK. Integration of Shiprocket API in your laravel application is easy, This package enables you to utilize most of your Shiprocket functions.",
+            "homepage": "https://github.com/seshac/laravel-shiprocket-api",
+            "keywords": [
+                "Laravel Shiprocket Wrapper",
+                "Shiprocket SDK Module",
+                "laravel Shiprcoket Api",
+                "sesha"
+            ],
+            "support": {
+                "issues": "https://github.com/seshac/laravel-shiprocket-api/issues",
+                "source": "https://github.com/seshac/laravel-shiprocket-api/tree/1.0.4"
+            },
+            "time": "2021-05-18T01:45:14+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -7517,5 +7583,8 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "7.4.3"
+    },
     "plugin-api-version": "2.0.0"
 }

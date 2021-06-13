@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Brand;
 use App\Models\User;
-use App\Models\ProductVariants;
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Seshac\Shiprocket\Shiprocket;
 use Razorpay\Api\Api;
 use Redirect;
 use Str;
@@ -17,6 +15,8 @@ class PaymentGatewayController extends Controller
 {
     public function placeOrder(Request $request)
     {
+        
+        $token =  Shiprocket::getToken();
 
         $request->validate([
             'first_name' => 'required',
