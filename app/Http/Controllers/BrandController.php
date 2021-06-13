@@ -133,8 +133,9 @@ class BrandController extends Controller
             unset($input['_wysihtml5_mode']);
 
             if($file=$request->file('image')){
-
-                unlink(public_path().'/uploads/brands/'.$brand->image);
+                if(file_exists(public_path().'/uploads/brands/'.$brand->image)){ 
+                    unlink(public_path().'/uploads/brands/'.$brand->image);
+                }
                 $file_name=time().$file->getClientOriginalName();
                 $file->move('uploads/brands',$file_name);
            
@@ -176,7 +177,9 @@ class BrandController extends Controller
         DB::beginTransaction();
         try{
 
-            unlink(public_path().'/uploads/brands/'.$brand->image);
+            if(file_exists(public_path().'/uploads/brands/'.$brand->image)){ 
+                unlink(public_path().'/uploads/brands/'.$brand->image);
+            }
             DB::table('category_brands')->where('brand_id',$brand->id)->delete();
             $brand->delete();
 

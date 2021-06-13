@@ -158,7 +158,9 @@ class OfferController extends Controller
 
             if($file=$request->file('image')){
 
-                unlink(public_path().'/uploads/offers/'.$offer->image);
+                if(file_exists(public_path().'/uploads/offers/'.$offer->image)){ 
+                    unlink(public_path().'/uploads/offers/'.$offer->image);
+                } 
                 $file_name=time().$file->getClientOriginalName();
                 $file->move('uploads/offers',$file_name);
            
@@ -196,7 +198,10 @@ class OfferController extends Controller
     {
         DB::beginTransaction();
         try{
-            unlink(public_path().'/uploads/reviews/'.$offer->image);   
+
+            if(file_exists(public_path().'/uploads/reviews/'.$offer->image)){ 
+                unlink(public_path().'/uploads/reviews/'.$offer->image);
+            }   
             DB::table('product_offers')->where('offer_id',$offer->id)->delete();
             $offer->delete();
             DB::commit();

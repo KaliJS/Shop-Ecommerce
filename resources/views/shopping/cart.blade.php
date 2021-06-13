@@ -102,7 +102,7 @@
 					</div>
 
 
-        @if (Auth::user() != null)
+        @if (Auth::user() != null && count($cart)>0)
           <div id="tt-pageContent">
             <div class="container-indent">
               <div class="container">
@@ -117,11 +117,10 @@
                       
                         <div class="form-default">
           
-                          <form id="place_order" class="billing-form" method="POST" action="{{url('/placeOrder')}}" id="contactform" novalidate="novalidate">    
+                          <form class="billing-form" method="POST" action="{{url('/placeOrder')}}" id="contactform" novalidate="novalidate">    
                             @csrf
                             <div class="row align-items-end">
-                              
-                              <input type="hidden" class="" name="amount" value={{$total_price}}>
+                            
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="firstname">First Name</label>
@@ -207,7 +206,7 @@
                                     <input type="number" value="" name="shipping_phone" class="form-control" placeholder="Phone" required>
                                   </div>
                                 </div>
-                            
+                               
                             </div>
                           </form><!-- END -->
                         </div>
@@ -246,8 +245,8 @@
 							</table>
               @if(count($cart)>0)
                 @if (Auth::user() != null)
-                  <button form="place_order" type="submit" name="payment_type" value="cash_on_delivery" class="btn btn-border mb-3">CASH ON DELIVERY</button>
-                  <button form="place_order" type="submit" name="payment_type" value="pay_now" class="btn btn-border mb-3">PAY NOW</button>
+                  <button form="contactform" type="submit" name="payment_type" value="cash_on_delivery" class="btn btn-border mb-3">CASH ON DELIVERY</button>
+                  <button form="contactform" type="submit" name="payment_type" value="pay_now" class="btn btn-border mb-3">PAY NOW</button>
                 @else
                   <a href="{{url('/checkout')}}" class="btn btn-lg"><span class="icon icon-check_circle"></span>CHECKOUT</a>
                 @endif

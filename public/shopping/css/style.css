@@ -19325,7 +19325,8 @@ html.ie .tt-btn-col-close {
         top: 0;
         left: 0;
         opacity: 0;
-        z-index: 1;
+        z-index: 0;
+        /* z-index: 1; */
         width: 100%;
         transition: opacity 0.3s ease-out; }
         .tt-product:not(.tt-view) .tt-image-box .tt-img-roll-over.disable {

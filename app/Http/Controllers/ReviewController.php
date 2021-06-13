@@ -126,7 +126,9 @@ class ReviewController extends Controller
 
             if($file=$request->file('image')){
 
-                unlink(public_path().'/uploads/reviews/'.$review->image);
+                if(file_exists(public_path().'/uploads/reviews/'.$review->image)){
+                    unlink(public_path().'/uploads/reviews/'.$review->image);
+                }
                 $file_name=time().$file->getClientOriginalName();
                 $file->move('uploads/reviews',$file_name);
            

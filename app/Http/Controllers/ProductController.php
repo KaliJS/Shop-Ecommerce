@@ -232,7 +232,9 @@ class ProductController extends Controller
         try{
 
             foreach(explode(',',$product->images) as $image){
-                unlink(public_path().'/uploads/products/'.$image);
+                if(file_exists(public_path().'/uploads/products/'.$image)){ 
+                    unlink(public_path().'/uploads/products/'.$image);
+                }
             }
 
             $product->delete();
@@ -262,8 +264,11 @@ class ProductController extends Controller
             $new_images =implode(',',$images_array);
 
             Product::where('id', $product_id)->update(array('images' => $new_images));
-            unlink(public_path().'/uploads/products/'.$image_name);
-
+            
+            if(file_exists(public_path().'/uploads/products/'.$image_name)){ 
+                unlink(public_path().'/uploads/products/'.$image_name);
+            }
+            
             return 'success';
        
         }catch(Exception $e){

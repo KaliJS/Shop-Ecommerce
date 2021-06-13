@@ -124,7 +124,9 @@ class CategoryController extends Controller
 
             if($file=$request->file('image')){
 
-                unlink(public_path().'/uploads/categories/'.$category->image);
+                if(file_exists(public_path().'/uploads/categories/'.$category->image)){ 
+                    unlink(public_path().'/uploads/categories/'.$category->image);
+                }
                 $file_name=time().$file->getClientOriginalName();
                 $file->move('uploads/categories',$file_name);
            
@@ -158,7 +160,9 @@ class CategoryController extends Controller
         DB::beginTransaction();
         try{
 
-            unlink(public_path().'/uploads/categories/'.$category->image);          
+            if(file_exists(public_path().'/uploads/categories/'.$category->image)){ 
+                unlink(public_path().'/uploads/categories/'.$category->image);
+            }         
             $category->delete();
             SubCategories::where('category_id',$category->id)->delete();
             DB::commit();

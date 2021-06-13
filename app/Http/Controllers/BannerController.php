@@ -118,7 +118,9 @@ class BannerController extends Controller
 
             if($file=$request->file('image')){
 
+              if(file_exists(public_path().'/uploads/banners/'.$banner->image)){  
                 unlink(public_path().'/uploads/banners/'.$banner->image);
+              }
                 $file_name=time().$file->getClientOriginalName();
                 $file->move('uploads/banners',$file_name);
            
@@ -150,8 +152,9 @@ class BannerController extends Controller
         DB::beginTransaction();
         try{
 
-            unlink(public_path().'/uploads/banners/'.$banner->image);
-           
+            if(file_exists(public_path().'/uploads/banners/'.$banner->image)){ 
+                unlink(public_path().'/uploads/banners/'.$banner->image);
+            }
             $banner->delete();
 
             DB::commit();

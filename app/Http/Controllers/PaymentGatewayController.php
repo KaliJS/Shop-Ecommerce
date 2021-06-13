@@ -30,13 +30,23 @@ class PaymentGatewayController extends Controller
         ]);
 
         try{
+            $amount = 0;
+            if(session()->has('cart')){
+                $cart = $request->session()->get('cart');
+                foreach($cart as $key=>$value){
+                    $amount += $value['subtotal'];
+                }
+            }else{
+                return Redirect::back()->with('error','!something went wrong please try again later...');
+            }
+            
 
             $user = User::where('email',$request->email)->first();
             if(!$user){
                 return Redirect::back()->with('error','Unauthorized Access');                   
             }
 
-            if($request->has('shipping_check') && $request->get('shipping_check') == 'on'){
+            if(!$request->has('shipping_check')){
 
                 if(is_null($request->shipping_user_name) || is_null($request->shipping_address) || is_null($request->shipping_pincode) || is_null($request->shipping_phone)){
                     return Redirect::back()->with('error','Please fill shipping details');
@@ -50,8 +60,8 @@ class PaymentGatewayController extends Controller
                 $input = [];
 
                 $input['user_id'] = $user->id;
-                $input['actual_price'] = $request->amount; 
-                $input['final_price'] = $request->amount; 
+                $input['actual_price'] = $amount; 
+                $input['final_price'] = $amount; 
                 $input['delivery_charge'] = '0'; 
                 $input['payment_method'] = 'cash on delivery'; 
                 $input['name'] = $user->first_name.' '.$user->last_name; 
@@ -64,7 +74,7 @@ class PaymentGatewayController extends Controller
                 $input['order_status'] = 'booked'; 
                 $input['payment_status'] = 'cash on delivery'; 
 
-                if($request->has('shipping_check') && $request->get('shipping_check') == 'on'){
+                if(!$request->has('shipping_check')){
                                 
                     $input['name'] = $request->shipping_user_name; 
                     $input['phone'] = $request->shipping_phone; 
@@ -93,8 +103,7 @@ class PaymentGatewayController extends Controller
                 }
 
                 session()->forget('cart');
-                return Redirect::back()->with('success','your Order is placed successfully. go to your account to track orders...');
-
+                return redirect('order-list')->with('success', 'Order Placed Successfully.');
             }
             elseif($request->payment_type == 'pay_now'){
 
@@ -109,14 +118,14 @@ class PaymentGatewayController extends Controller
 
                 $order = $api->order->create(array(
                     'receipt' => $receiptId,
-                    'amount' => $request->amount * 100,
+                    'amount' => $amount * 100,
                     'currency' => 'INR'
                 ));
 
                 $response = [
                     'orderId' => $order['id'],
                     'razorpayId' => $razorpayId,
-                    'amount' => $request->amount * 100,
+                    'amount' => $amount * 100,
                     'name' => $request->first_name.' '.$request->last_name,
                     'currency' => 'INR',
                     'email' => $request->email,
@@ -129,8 +138,8 @@ class PaymentGatewayController extends Controller
                 $input = [];
 
                 $input['user_id'] = $user->id;
-                $input['actual_price'] = $request->amount; 
-                $input['final_price'] = $request->amount; 
+                $input['actual_price'] = $amount; 
+                $input['final_price'] = $amount; 
                 $input['delivery_charge'] = '0'; 
                 $input['payment_method'] = 'razorpay'; 
                 $input['name'] = $user->first_name.' '.$user->last_name; 
@@ -143,7 +152,7 @@ class PaymentGatewayController extends Controller
                 $input['order_status'] = 'booked'; 
                 $input['payment_status'] = 'initiate'; 
 
-                if($request->has('shipping_check') && $request->get('shipping_check') == 'on'){
+                if(!$request->has('shipping_check')){
                                 
                     $input['name'] = $request->shipping_user_name; 
                     $input['phone'] = $request->shipping_phone; 
@@ -172,6 +181,9 @@ class PaymentGatewayController extends Controller
                 }
 
                 session()->put('order_id',$created_order->id);
+                session()->put('payer_id',$user->id);
+                session()->put('payer_email',$user->email);
+                session()->put('amount',$amount);
 
                 return view('shopping/payment-page',compact('response'));
 
@@ -183,12 +195,6 @@ class PaymentGatewayController extends Controller
             return Redirect::back()->with('error',$e->getMessage());
         }
     }
-
-    // public function initializePayment($data)
-    // {
-
-        
-    // }
 
 
     public function Complete(Request $request)
@@ -206,6 +212,9 @@ class PaymentGatewayController extends Controller
         if($signatureStatus == true)
         {
 
+            $transaction[]=array('order_id'=>$order->id,'amount'=>session()->get('amount'),'rzp_orderid'=>$request->all()['rzp_orderid'],'payer_email'=>session()->get('payer_email'),'rzp_paymentid'=>$request->all()['rzp_paymentid'],'payment_status'=>'success','created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s"),'payer_id'=>session()->get('payer_id'));
+            $inserted_transaction=DB::table('transactions')->insert($transaction);
+
             $order->payment_status = 'success';
             $order->save();
 
@@ -216,6 +225,10 @@ class PaymentGatewayController extends Controller
         }
         else{
             // payment failed page
+
+            $transaction[]=array('order_id'=>$order->id,'amount'=>session()->get('amount'),'rzp_orderid'=>$request->all()['rzp_orderid'],'payer_email'=>session()->get('payer_email'),'rzp_paymentid'=>$request->all()['rzp_paymentid'],'payment_status'=>'failed','created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s"),'payer_id'=>session()->get('payer_id'));
+            $inserted_transaction=DB::table('transactions')->insert($transaction);
+
             $order->payment_status = 'failed';
             $order->save();
 
