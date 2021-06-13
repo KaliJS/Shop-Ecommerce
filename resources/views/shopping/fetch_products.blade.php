@@ -22,6 +22,19 @@
                     <ul class="tt-add-info">
                         <li><a href="{{url('/subcategory'.$p->subcategory->slug)}}">{{$p->subcategory->name}}</a></li>
                     </ul>
+                    <div class="tt-rating">
+                        @if($p->reviews->count()>0)
+                            @for ($i = 0; $i < 5; $i++)
+                                @if (floor($p->reviews->avg('ratings')) - $i >= 1)
+                                    <i class="icon-star"></i>
+                                @elseif ($p->reviews->avg('ratings') - $i > 0)
+                                    <i class="icon-star-half"></i>
+                                @else
+                                    <i class="icon-star-empty"></i>
+                                @endif
+                            @endfor
+                        @endif
+                    </div>
                 </div>
                 <h2 class="tt-title"><a href="{{url('/product/'.$p->slug)}}">{{$p->name}}</a></h2>
                 <div class="tt-price">

@@ -33,7 +33,7 @@
         </div>
         <div class="tt-cart-btn">
             <div class="tt-item">
-                <a href="#" class="btn">Proceed To Checkout</a>
+                <a href="{{url('/cart')}}" class="btn">Proceed To Checkout</a>
             </div>
             <div class="tt-item">
                 <a href="{{url('/cart')}}" class="btn-link-02 tt-hidden-mobile">View Cart</a>

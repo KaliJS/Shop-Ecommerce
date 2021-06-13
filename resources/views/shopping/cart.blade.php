@@ -1,86 +1,4 @@
 @extends('layouts.index')
-@section('css')
-<style type="text/css">
-
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  margin: auto;
-}
-.modal-content {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 40% !important;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem;
-    outline: 0;
-    }
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    padding: 10px;
-    border: 1px solid #888;
-    width: 80%;
-    margin-right: 16px;
-    margin-left: auto;
-    margin-top: -80px !important;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  margin-left: 95%;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-a:not([href]):not([tabindex]) {
-    color: white;
-    text-decoration: none;
-}
-a:not([href]):not([tabindex]):hover {
-    color: #82ae46;
-    text-decoration: none;
-}
-
-
-@media(max-width: 400px){
-	.modal-content{
-		width: 90% !important;
-		margin: auto;
-	}
-}
-
-</style>
-
-@stop
-
 
 @section('content')
 
@@ -173,7 +91,7 @@ a:not([href]):not([tabindex]):hover {
 						</table>
 						<div class="tt-shopcart-btn">
 							<div class="col-left">
-								<a class="btn-link" href="#"><i class="icon-e-19"></i>CONTINUE SHOPPING</a>
+								<a class="btn-link" href="{{url('shop/')}}"><i class="icon-e-19"></i>CONTINUE SHOPPING</a>
 							</div>
               @if(count($cart) > 0)
 							<div class="col-right">
@@ -182,52 +100,140 @@ a:not([href]):not([tabindex]):hover {
               @endif
 						</div>
 					</div>
+
+
+        @if (Auth::user() != null)
+          <div id="tt-pageContent">
+            <div class="container-indent">
+              <div class="container">
+                <h3 class="tt-title-subpages noborder">SHIPPING DETAILS</h3>
+                <div class="tt-login-form">
+                  <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-12">
+                      <div class="tt-item">
+                        <h2 class="tt-title">PERSONAL INFORMATION</h2>
+                        
+                        <div class="tt-required">* Required Fields</div>
+                      
+                        <div class="form-default">
+          
+                          <form id="place_order" class="billing-form" method="POST" action="{{url('/placeOrder')}}" id="contactform" novalidate="novalidate">    
+                            @csrf
+                            <div class="row align-items-end">
+                              
+                              <input type="hidden" class="" name="amount" value={{$total_price}}>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="firstname">First Name</label>
+                                  <input type="text" value="{{Auth::user()->first_name}}" name="first_name" class="form-control" readonly placeholder="First Name" required>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="lastname">Last Name</label>
+                                  <input type="text" value="{{Auth::user()->last_name}}" name="last_name" class="form-control" readonly placeholder="Last Name" required>
+                                </div>
+                              </div>
+          
+                              <div class="w-100"></div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="firstname">Email Address</label>
+                                  <input type="email" value="{{Auth::user()->email}}" name="email" class="form-control" placeholder="Email" required>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="phone">Phone</label>
+                                  <input type="number" value="{{Auth::user()->phone}}" name="phone" class="form-control" placeholder="Phone" required>
+                                </div>
+                              </div>                             
+                              <div class="w-100"></div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="streetaddress">Street Address</label>
+                                  <input type="text" value="{{Auth::user()->address}}" class="form-control" name="address" placeholder="Address" required>
+                                </div>
+                              </div>
+                              <div class="w-100"></div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="towncity">Town / City</label>
+                                  <input type="text" value="{{Auth::user()->city}}" name="city" class="form-control" placeholder="Town / City" required>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="postcodezip">Postcode / ZIP *</label>
+                                  <input type="number" value="{{Auth::user()->pincode}}" name="pincode" class="form-control" placeholder="Postcode" required>
+                                </div>
+                              </div>
+                              
+                              <hr class="w-100 m-2"/>
+                              <div class="w-100"></div>
+                              <div class="shipping-checkbox">
+                                <h2 class="tt-title mt-2">SHIPPING ADDRESS</h2>
+                                <label class="shipping-label" for="chkPassport">
+                                  <input type="checkbox" name="shipping_check" value="0" id="shippingCheck" onclick="ShowHideDiv(this)" />
+                                  Is same as above address?
+                                </label>
+                              </div>
+                              
+
+                                <div class="col-md-12 diffShipping">
+                                  <div class="form-group">
+                                    <label for="streetaddress">Name</label>
+                                    <input type="text" value="" class="form-control" name="shipping_user_name" placeholder="Name" required>
+                                  </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col-md-12 diffShipping">
+                                  <div class="form-group">
+                                    <label for="streetaddress">Address</label>
+                                    <input type="text" value="" class="form-control" name="shipping_address" placeholder="Address" required>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="form-group diffShipping">
+                                    <label for="postcodezip">Postcode / ZIP *</label>
+                                    <input type="number" value="" name="shipping_pincode" class="form-control" placeholder="Postcode" required>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="form-group diffShipping">
+                                    <label for="phone">Phone</label>
+                                    <input type="number" value="" name="shipping_phone" class="form-control" placeholder="Phone" required>
+                                  </div>
+                                </div>
+                            
+                            </div>
+                          </form><!-- END -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endif
+
+
+
+
 				</div>
 				<div class="col-sm-12 col-xl-4">
 					<div class="tt-shopcart-wrapper">
 						<div class="tt-shopcart-box">
 							<h4 class="tt-title">
-								ESTIMATE SHIPPING AND TAX
+                PLACE YOU ORDER
 							</h4>
 							<p>Enter your destination to get a shipping estimate.</p>
-							<form class="form-default">
-								<div class="form-group">
-									<label for="address_country">COUNTRY <sup>*</sup></label>
-									<select id="address_country" class="form-control">
-										<option>Austria</option>
-										<option>Belgium</option>
-										<option>Cyprus</option>
-									
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="address_province">STATE/PROVINCE <sup>*</sup></label>
-									<select id="address_province" class="form-control">
-										<option>State/Province</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label for="address_zip">ZIP/POSTAL CODE <sup>*</sup></label>
-									<input type="text" name="name" class="form-control" id="address_zip" placeholder="Zip/Postal Code">
-								</div>
-								<a href="#" class="btn btn-border">CALCULATE SHIPPING</a>
-								<p>
-									There is one shipping rate available for Alabama, Tanzania, United Republic Of.
-								</p>
-								<ul class="tt-list-dot list-dot-large">
-									<li><a href="#">International Shipping at $20.00</a></li>
-								</ul>
-							</form>
+							
 						</div>
-						<div class="tt-shopcart-box">
-							<h4 class="tt-title">
-								NOTE
-							</h4>
-							<p>Add special instructions for your order...</p>
-							<form class="form-default">
-								<textarea class="form-control" rows="7"></textarea>
-							</form>
-						</div>
+						
 						<div class="tt-shopcart-box tt-boredr-large">
 							<table class="tt-shopcart-table01">
 								
@@ -238,8 +244,15 @@ a:not([href]):not([tabindex]):hover {
 									</tr>
 								</tfoot>
 							</table>
-							<a href="{{url('/checkout')}}" class="btn btn-lg"><span class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
-						</div>
+              @if(count($cart)>0)
+                @if (Auth::user() != null)
+                  <button form="place_order" type="submit" name="payment_type" value="cash_on_delivery" class="btn btn-border mb-3">CASH ON DELIVERY</button>
+                  <button form="place_order" type="submit" name="payment_type" value="pay_now" class="btn btn-border mb-3">PAY NOW</button>
+                @else
+                  <a href="{{url('/checkout')}}" class="btn btn-lg"><span class="icon icon-check_circle"></span>CHECKOUT</a>
+                @endif
+              @endif
+            </div>
 					</div>
 				</div>
 			</div>
@@ -271,13 +284,23 @@ a:not([href]):not([tabindex]):hover {
 <script type="text/javascript">
 
 
+    function ShowHideDiv(shippingCheck) {
+
+        var diffShipping = $(".diffShipping");
+
+        for (i = 0; i < diffShipping.length; i++) {
+            diffShipping[i].classList.toggle('d-none');
+        }
+
+    }
+
   let checkout_total_price = 0;
 
 	$(document).on("click",".plus-btn",function(){
       
       const selected_variant_id = this.id;
-      let quantity = $('#quantity-'+selected_variant_id).val();
-
+      let quantity = $(this).parent().find('#quantity-'+selected_variant_id).val();
+          
       const todo = 'update';
 
       $.ajax({
@@ -302,7 +325,7 @@ a:not([href]):not([tabindex]):hover {
 
     $(document).on("click",".minus-btn",function(){
       const selected_variant_id = this.id;
-      let quantity = $('#quantity-'+selected_variant_id).val();
+      let quantity = $(this).parent().find('#quantity-'+selected_variant_id).val();
 
       if(quantity<1){
         return;
@@ -342,13 +365,15 @@ a:not([href]):not([tabindex]):hover {
             encode  : true
         }).then(response=>{
           
-            if(response){
+            if(response.length>0){
               
 	             $(el).parent().parent().fadeOut(function(){
 	                $(this).remove();
 	             }); 
+               getHeaderCartList();
               // $('#cartRemovedSuccessMessage').modal('show');
-	             $('#final_price').text(response);
+	             $('#final_price').text(response[0]);
+	             $('.tt-badge-cart').text(response[1]);
 
               }else{
                 alert('! Something went wrong, Please Try again later..');
@@ -378,11 +403,12 @@ a:not([href]):not([tabindex]):hover {
                 $('.shopping_basket_container').fadeOut(function(){
                     $(this).remove();
                 }); 
-
+                getHeaderCartList();
                 $('.tt-shopcart-table').html(`<tr><td class="empty_shopping_cart">Your Shopping Wishlist is empty!</td></tr>`);
 
                 // $('#cartRemovedSuccessMessage').modal('show');
                 $('#final_price').text(0);
+                $('.tt-badge-cart').text(0);
 
                 }else{
                   alert('! Something went wrong, Please Try again later..');

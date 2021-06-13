@@ -22,28 +22,10 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        try{
-            if(Auth::user()){
+        try{  
 
+            return redirect('/login'); 
               
-                $cart = []; 
-                if(session()->has('cart')){
-                    $cart = session()->get('cart');
-                }
-                //session()->forget('cart');
-                $total_price = 0;
-                foreach($cart as $key=>$value){
-                    $total_price += $value['subtotal'];
-                }
-
-                return view('shopping.checkout',compact('cart','total_price'));
-
-                
-                
-            }else{
-                return redirect('/login');
-            }
-            
         }catch(\Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
         }

@@ -150,7 +150,11 @@ class CartController extends Controller
                 foreach($cart as $key=>$value){
                     $total_price += $value['subtotal'];
                 }
-                return $total_price;
+                $new_cart = array();
+                array_push( $new_cart, $total_price );
+                array_push( $new_cart, count($cart) );
+
+                return $new_cart;
                 
             }
             

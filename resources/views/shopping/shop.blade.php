@@ -170,6 +170,19 @@ label{
 												<ul class="tt-add-info">
 													<li><a href="{{url('/subcategory'.$p->subcategory->slug)}}">{{$p->subcategory->name}}</a></li>
 												</ul>
+												<div class="tt-rating">
+													@if($p->reviews->count()>0)
+														@for ($i = 0; $i < 5; $i++)
+															@if (floor($p->reviews->avg('ratings')) - $i >= 1)
+																<i class="icon-star"></i>
+															@elseif ($p->reviews->avg('ratings') - $i > 0)
+																<i class="icon-star-half"></i>
+															@else
+																<i class="icon-star-empty"></i>
+															@endif
+														@endfor
+													@endif
+												</div>
 											</div>
 											<h2 class="tt-title"><a href="{{url('/product/'.$p->slug)}}">{{$p->name}}</a></h2>
 											<div class="tt-price">
@@ -212,69 +225,7 @@ label{
 		</div>
 	</div>
 </div>	
-
-
-
- 
-<!-- modal (AddToCartProduct) -->
-<div class="modal  fade"  id="modalAddToCartProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content ">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
-			</div>
-			<div class="modal-body">
-				<div class="tt-modal-addtocart mobile">
-					<div class="tt-modal-messages">
-						<i class="icon-f-68"></i> Added to cart successfully!
-					</div>
-					<a href="{{url('/shop')}}" class="btn-link btn-close-popup">CONTINUE SHOPPING</a>
-			        <a href="{{url('/cart')}}" class="btn-link">VIEW CART</a>
-			        <a href="{{url('/checkout')}}" class="btn-link">PROCEED TO CHECKOUT</a>
-				</div>
-				<div class="tt-modal-addtocart desctope">
-					<div class="row">
-						<div class="col-12 col-lg-6">
-							<div class="tt-modal-messages">
-								<i class="icon-f-68"></i> Added to cart successfully!
-							</div>
-							<div class="tt-modal-product">
-								<div class="tt-img">
-									<img src="{{asset('images/loader.svg')}}" id="cart_product_image" data-src="images/product/product-01.jpg" alt="">
-								</div>
-								<h2 class="tt-title"><a href="" id="cart_product_name"></a></h2>
-								<div class="tt-qty">
-									QTY: <span id="cart_product_quantity"></span>
-								</div>
-							</div>
-							<div class="tt-product-total">
-								<div class="tt-total">
-									TOTAL: <span class="tt-price" id="cart_product_price"></span>
-								</div>
-							</div>
-						</div>
-						<div class="col-12 col-lg-6">
-							<a href="#" class="tt-cart-total">
-								<div id="cart_product_count"></div>
-								<div class="tt-total">
-									TOTAL: <span class="tt-price" id="cart_products_total_price"></span>
-								</div>
-							</a>
-							<a href="{{url('/shop')}}" class="btn btn-border btn-close-popup">CONTINUE SHOPPING</a>
-							<a href="{{url('/cart')}}" class="btn btn-border">VIEW CART</a>
-							<a href="{{url('/checkout')}}" class="btn">PROCEED TO CHECKOUT</a>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- modal (quickViewModal) -->
-
-
-   
+  
 
 @stop
 
@@ -306,18 +257,6 @@ if(category){
   let max_price = ''; 
   let brand_id = '';
   let filter = 'filter';
-
-//   $('.filter_product').on('click', function() {
-// 	if ($(this).prop("checked")) {
-// 		console.log('yes');
-// 		$(this).prop("checked", false);
-// 	}
-
-// 	else if ($(this).is(":checked")) {
-// 		$(this).prop("checked", true);
-// 		console.log('no');
-// 	}
-//   });
 
 	$(document).on('change','.filter_product',function() {
 	
@@ -356,60 +295,6 @@ if(category){
 
   }).filter(':checked').trigger('change');
 
-
-    //   $(document).on("click",".add_to_cart",function(){
-				
-	// 	let selected_variant_id,selected_product_id,selected_selling_price,selected_product_slug,selected_quantity,todo;
-	// 	var attr = $(this).attr('data-has_variant_id');
-
-	// 		selected_variant_id = false;
-	// 		selected_product_slug = $(this).data('slug_name');
-	// 		selected_quantity = 1;
-	// 		selected_product_id = this.id;
-	// 		selected_selling_price = false;
-	// 		todo = 'add';         
-	// 	$.ajax({
-	// 		method:'POST',
-	// 		url:`{{url('product/updateCart')}}`,
-	// 		data:{selected_product_id,selected_variant_id,selected_quantity,todo,selected_selling_price,"_token":"{{csrf_token()}}"},
-	// 		encode: true
-	// 	}).then(response=>{                
-			
-	// 			if(response && response.length == 2){
-	// 			console.log(response);
-	// 			let total_price = 0;
-	// 			const cart_data = response[1];
-	// 			const variant_id = response[0];
-
-	// 			for(let i in cart_data){
-	// 				total_price += cart_data[i]['subtotal'];
-	// 			}
-
-	// 			const count = Object.keys(cart_data).length;
-	// 			const data = cart_data[variant_id];
-	// 			const img = data["image"];
-
-	// 			getHeaderCartList();
-
-	// 			$('#cart_product_count').text(`There are ${count} items in your cart`);
-	// 			$('#cart_product_image').attr("data-src",`{{URL::asset('/uploads/products/${img}')}}`);
-	// 			$('#cart_product_image').attr("src",`{{URL::asset('/uploads/products/${img}')}}`);
-	// 			$('#cart_product_price').text('₹'+data['variant_price']*data['quantity']);
-	// 			$('#cart_product_quantity').text(data['quantity']);
-	// 			$('#cart_products_total_price').text('₹'+total_price);
-	// 			$('#cart_product_name').text(data['product_name']);
-	// 			$('#cart_product_name').href = `url('/product/${selected_product_slug}')`;
-
-	// 			$("#modalAddToCartProduct").modal("show");
-	// 			}else{
-	// 			$("#displayErrorMessage").modal("show");
-	// 			}      
-			
-	// 	}).fail(error=>{
-	// 		console.log('error',error);
-	// 	});
-		
-	//   });
 
 	//to uncheck radio buttons
 

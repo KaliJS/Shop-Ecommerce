@@ -22,6 +22,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\WishListController;
+use App\Http\Controllers\PaymentGatewayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,11 @@ Route::group(['middleware' => ['common']], function (){
     Route::resource('/register', RegisterController::class);
 
    
+    Route::post('/placeOrder', [PaymentGatewayController::class,'placeOrder']);
+
+    //for payment complete
+    Route::post('/payment-complete', [PaymentGatewayController::class,'Complete']);
+
     Route::post('/addToWishList', [WishListController::class,'addToWishList']);
     Route::post('/removeWishlist', [WishListController::class,'removeWishlist']);
     Route::get('/wishlist', [WishListController::class,'getWishListData']);

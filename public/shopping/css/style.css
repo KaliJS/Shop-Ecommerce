@@ -21875,7 +21875,9 @@ table + *[class^="btn"] {
   border: 1px solid #e9e7e7; }
   @media (min-width: 576px) {
     .tt-shopcart-wrapper {
-      padding: 32px 39px 35px; } }
+      padding: 32px 39px 35px;
+      position: sticky;
+      top: 10%; } }
   @media (max-width: 575px) {
     .tt-shopcart-wrapper {
       padding: 25px 24px 23px; } }
@@ -31047,6 +31049,17 @@ input[name='quick_variant']:hover + .label_2 {
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
+}
+
+.shipping-checkbox{
+  display: flex !important;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.shipping-label{
+  color: #2879fe;
+  font-size: 1.2em;
 }
 
 
