@@ -56,6 +56,7 @@ class ProductController extends Controller
             'brand_id' => 'required',
             'quantity' => 'required',
             'variant' => 'required',
+            'sku' => 'required',
             'max_delivery_days' => 'required'
         ]);
         DB::beginTransaction();
@@ -65,15 +66,14 @@ class ProductController extends Controller
             $mrp_price = $request->mrp_price;
             $selling_price = $request->selling_price;
             $variant = $request->variant;
+            $sku = $request->sku;
             $max_delivery_days = $request->max_delivery_days;
             $input['name'] = $request->name;
             $input['description'] = $request->description;
             $input['additional_info'] = $request->additional_info;
-            $input['sku'] = $request->sku;
             $input['images'] = $request->images;
             $input['sub_category_id'] = $request->sub_category_id;
             $input['brand_id'] = $request->brand_id;
-            $input['sku'] = $request->sku;
             $input['slug'] = Str::slug($input['name']);
             
             
@@ -94,7 +94,7 @@ class ProductController extends Controller
             for ($i = 0; $i < $rows; $i++) {
                 $data[]=array('product_id'=>$product->id
                         ,'quantity'=>$quantity[$i],'variant'=>$variant[$i],'max_delivery_days'=>$max_delivery_days[$i]
-                        ,'mrp_price'=>$mrp_price[$i],'selling_price'=>$selling_price[$i]
+                        ,'mrp_price'=>$mrp_price[$i],'sku'=>$sku[$i],'selling_price'=>$selling_price[$i]
                     );
             }
 
@@ -155,7 +155,8 @@ class ProductController extends Controller
             'quantity' => 'required',
             'variant' => 'required',
             'max_delivery_days' => 'required',
-            'in_stock' => 'required'
+            'in_stock' => 'required',
+            'sku' => 'required'
         ]);
         DB::beginTransaction();
         try{
@@ -164,12 +165,12 @@ class ProductController extends Controller
             $mrp_price = $request->mrp_price;
             $selling_price = $request->selling_price;
             $variant = $request->variant;
+            $sku = $request->sku;
             $max_delivery_days = $request->max_delivery_days;
             $in_stock=$request->in_stock;
             $input['name']=$request->name;
             $input['description']=$request->description;
             $input['additional_info'] = $request->additional_info;
-            $input['sku'] = $request->sku;
             $input['images'] = $request->images;
             $input['sub_category_id'] = $request->sub_category_id;
             $input['brand_id'] = $request->brand_id;
@@ -205,7 +206,7 @@ class ProductController extends Controller
             for ($i = 0; $i < $rows; $i++) {
                 $data[]=array('product_id'=>$product->id
                         ,'quantity'=>$quantity[$i],'variant'=>$variant[$i],'max_delivery_days'=>$max_delivery_days[$i]
-                        ,'mrp_price'=>$mrp_price[$i],'selling_price'=>$selling_price[$i],'in_stock'=>$in_stock[$i]
+                        ,'mrp_price'=>$mrp_price[$i],'selling_price'=>$selling_price[$i],'sku'=>$sku[$i],'in_stock'=>$in_stock[$i]
                     );
             }
             $insert_product_variant=DB::table('product_variants')->insert($data);

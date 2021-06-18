@@ -5364,7 +5364,7 @@ jQuery(function($) {
 							$ttMobileParentMulti.append($ttMultiObj.detach());
 							$ttMobileParentAccount.append($ttAccountObj.detach());
 						};
-						$ttMobileParentSearch.append($ttSearchObj.detach());
+						//$ttMobileParentSearch.append($ttSearchObj.detach());
 						return false;
 					}
 					$ttDesctopParentMenu.append($ttDesctopMenu.detach());

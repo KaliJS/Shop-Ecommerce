@@ -95,7 +95,9 @@ Route::group(['middleware' => ['common']], function (){
 
 
     Route::get('/order/getDeliveryBoy/{id}',[OrdersController::class,'getDeliveryBoy']);
+    Route::get('/order/getOrderItems/{id}',[OrdersController::class,'getOrderItems']);
     Route::get('/order/getAllOrderItems/{id}',[OrdersController::class,'getAllOrderItems']);
+    Route::get('/order/trackOrderStatus/{id}',[OrdersController::class,'trackOrderStatus']);
             
     Route::get('/order-list', [OrdersController::class, 'getAllOrders']);
 

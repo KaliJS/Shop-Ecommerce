@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrderItems;
 use App\Models\Orders;
 use App\Models\Transaction;
+use Seshac\Shiprocket\Shiprocket;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -100,16 +101,29 @@ class OrdersController extends Controller
         try{
             $orderItems = OrderItems::where('order_id',$id)->get();
             $result = "";
+        
             foreach($orderItems as $item){
                 $result .= <<<DELIMETER
                 <tr>
-                    <td>{$item->product_variant->product->name} ({$item->product_variant->quantity} {$item->product_variant->unit->name})</td>
-                    <td>{$item->quantity}</td>
+                    <td>{$item->product_variant->product->name} ({$item->product_variant->quantity})</td>
                     <td>{$item->price}</td>
+                    <td>{$item->quantity}</td> 
+                    <td>{$item->subtotal}</td>
                 </tr>
 DELIMETER;
             }
             return $result;
+        }catch(Exception $e){
+            return Redirect::back()->with('error',$e->getMessage());
+        }
+    }
+
+    public function trackOrderStatus($id){
+        try{
+            $token =  Shiprocket::getToken();
+            $shipmentId = $id;
+            $response =  Shiprocket::track($token)->throwShipmentId($shipmentId);
+            return $response;
         }catch(Exception $e){
             return Redirect::back()->with('error',$e->getMessage());
         }
@@ -242,8 +256,8 @@ DELIMETER;
     public function getAllOrders(){
         try{
 
-            $orders = Orders::where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->get();
-    
+           $orders = Orders::with('items','items.product_variant.product')->where('user_id',Auth::user()->id)->orderBy('created_at','DESC')->get();
+
                 return view('shopping.track-order',compact('orders'));
         }catch(Exception $e){
             return Redirect::back()->with('error',$e->getMessage());

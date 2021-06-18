@@ -86,20 +86,77 @@ class PaymentGatewayController extends Controller
                 $created_order = Orders::create($input);
 
                 $products = session()->get('cart');
+                $variant_id = array_keys($products);
+                $variants = DB::table('product_variants')->whereIn('id', $variant_id)->pluck('sku','id');
+            //    return $variants;
                 if($created_order){
                     foreach($products as $key=>$order){
+                        
                         $order_items[]=array('order_id'=>$created_order->id,'product_variant_id'=>$key,'quantity'=>$order['quantity'],'price'=>$order['variant_price'],'subtotal'=>($order['quantity']*$order['variant_price']),'status'=>'booked','created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s"));
+                        $shiprocket_orders[]=array('name'=>$order['product_name'],'sku'=>$variants[$key],'units'=>$order['quantity'],'selling_price'=>$order['variant_price'],'discount'=>0,'tax'=>0,'hsn'=> '');                   
+
                     }
                     $inserted_items=DB::table('order_items')->insert($order_items);
+                //return $shiprocket_orders;
+                }
 
-                    $track_order = [
-                        'order_id' => $created_order->id,
-                        'status' => $created_order->order_status,
-                        'created_at' => date("Y-m-d H:i:s"),
-                        'updated_at' => date("Y-m-d H:i:s"),
-                    ];
-                    DB::table('track_orders')->insert($track_order);
+                $track_order = [
+                    'order_id' => $created_order->id,
+                    'status' => $created_order->order_status,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s"),
+                ];
+                DB::table('track_orders')->insert($track_order);
 
+                $orderDetails = [
+                    "order_id"=> $created_order->id,
+                    "order_date"=> date("Y-m-d H:i:s"),
+                    "pickup_location"=> "Areca",
+                    "channel_id"=> "",
+                    "comment"=> "test",
+                    "billing_customer_name"=> $user->first_name,
+                    "billing_last_name"=> $user->last_name,
+                    "billing_address"=> $user->address,
+                    "billing_address_2"=> "",
+                    "billing_city"=> $user->city,
+                    "billing_pincode"=> $user->pincode,
+                    "billing_state"=> $user->city,
+                    "billing_country"=> "India",
+                    "billing_email"=> $user->email,
+                    "billing_phone"=> $user->phone,
+                    "shipping_is_billing"=> true,
+                    "shipping_customer_name"=> $input['name'],
+                    "shipping_last_name"=> "",
+                    "shipping_address"=> $input['address'],
+                    "shipping_address_2"=> "",
+                    "shipping_city"=> "",
+                    "shipping_pincode"=> $input['pincode'],
+                    "shipping_country"=> "India",
+                    "shipping_state"=> "",
+                    "shipping_email"=> "",
+                    "shipping_phone"=> $input['phone'],
+                    "order_items"=> $shiprocket_orders,
+                    "payment_method"=> "COD", //Prepaid or COD(cash on delivery)
+                    "shipping_charges"=> 0,
+                    "giftwrap_charges"=> 0,
+                    "transaction_charges"=> 0,
+                    "total_discount"=> 0,
+                    "sub_total"=> $amount,
+                    "length"=> 10,
+                    "breadth"=> 15,
+                    "height"=> 20,
+                    "weight"=> 2.5
+                ];
+
+                $response =  Shiprocket::order($token)->create($orderDetails);
+
+                if($response['status_code'] == 1){
+                    $order = Orders::find($created_order->id);
+                    $order->shiprocket_order_id = $response['order_id'];
+                    $order->shiprocket_shipment_id = $response['shipment_id'];
+                    $order->save();
+                }else{
+                    return redirect('/cart')->with('errors',$response->message);
                 }
 
                 session()->forget('cart');
@@ -164,30 +221,42 @@ class PaymentGatewayController extends Controller
                 $created_order = Orders::create($input);
 
                 $products = session()->get('cart');
+                $variant_id = array_keys($products);
+                $variants = DB::table('product_variants')->whereIn('id', $variant_id)->pluck('sku','id');
+            //    return $variants;
                 if($created_order){
                     foreach($products as $key=>$order){
+                        
                         $order_items[]=array('order_id'=>$created_order->id,'product_variant_id'=>$key,'quantity'=>$order['quantity'],'price'=>$order['variant_price'],'subtotal'=>($order['quantity']*$order['variant_price']),'status'=>'booked','created_at'=>date("Y-m-d H:i:s"),'updated_at'=>date("Y-m-d H:i:s"));
+                        $shiprocket_orders[]=array('name'=>$order['product_name'],'sku'=>$variants[$key],'units'=>$order['quantity'],'selling_price'=>$order['variant_price'],'discount'=>0,'tax'=>0,'hsn'=> '');                   
+
                     }
                     $inserted_items=DB::table('order_items')->insert($order_items);
-
-                    $track_order = [
-                        'order_id' => $created_order->id,
-                        'status' => $created_order->order_status,
-                        'created_at' => date("Y-m-d H:i:s"),
-                        'updated_at' => date("Y-m-d H:i:s"),
-                    ];
-                    DB::table('track_orders')->insert($track_order);
-
+                //return $shiprocket_orders;
                 }
+
+                $track_order = [
+                    'order_id' => $created_order->id,
+                    'status' => $created_order->order_status,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s"),
+                ];
+                DB::table('track_orders')->insert($track_order);
 
                 session()->put('order_id',$created_order->id);
                 session()->put('payer_id',$user->id);
                 session()->put('payer_email',$user->email);
+                session()->put('shipping_name',$input['name']);
+                session()->put('shipping_address',$input['address']);
+                session()->put('shipping_pincode',$input['pincode']);
+                session()->put('shipping_phone',$input['phone']);
                 session()->put('amount',$amount);
+                session()->put('shiprocket_orders',$shiprocket_orders);
 
                 return view('shopping/payment-page',compact('response'));
 
             }else{
+                
                 return Redirect::back()->with('error','Something bad happened, please try again later');
             }
 
@@ -199,7 +268,8 @@ class PaymentGatewayController extends Controller
 
     public function Complete(Request $request)
     {
-        
+        $token =  Shiprocket::getToken();
+
         $signatureStatus = $this->SignatureVerify(
             $request->all()['rzp_signature'],
             $request->all()['rzp_paymentid'],
@@ -207,6 +277,7 @@ class PaymentGatewayController extends Controller
         );
 
         $order = Orders::find(session()->get('order_id'));
+        $user = User::where('email',session()->get('payer_email'))->first();
         
         // If Signature status is true We will save the payment response in our database
         if($signatureStatus == true)
@@ -217,6 +288,57 @@ class PaymentGatewayController extends Controller
 
             $order->payment_status = 'success';
             $order->save();
+
+            $orderDetails = [
+                "order_id"=> session()->get('order_id'),
+                "order_date"=> date("Y-m-d H:i:s"),
+                "pickup_location"=> "Areca",
+                "channel_id"=> "",
+                "comment"=> "test",
+                "billing_customer_name"=> $user->first_name,
+                "billing_last_name"=> $user->last_name,
+                "billing_address"=> $user->address,
+                "billing_address_2"=> "",
+                "billing_city"=> $user->city,
+                "billing_pincode"=> $user->pincode,
+                "billing_state"=> $user->city,
+                "billing_country"=> "India",
+                "billing_email"=> $user->email,
+                "billing_phone"=> $user->phone,
+                "shipping_is_billing"=> true,
+                "shipping_customer_name"=> session()->get('shipping_name'),
+                "shipping_last_name"=> "",
+                "shipping_address"=> session()->get('shipping_address'),
+                "shipping_address_2"=> "",
+                "shipping_city"=> "",
+                "shipping_pincode"=> session()->get('shipping_pincode'),
+                "shipping_country"=> "India",
+                "shipping_state"=> "",
+                "shipping_email"=> "",
+                "shipping_phone"=> session()->get('shipping_phone'),
+                "order_items"=> session()->get('shiprocket_orders'),
+                "payment_method"=> "Prepaid", //Prepaid or COD(cash on delivery)
+                "shipping_charges"=> 0,
+                "giftwrap_charges"=> 0,
+                "transaction_charges"=> 0,
+                "total_discount"=> 0,
+                "sub_total"=> session()->get('amount'),
+                "length"=> 10,
+                "breadth"=> 15,
+                "height"=> 20,
+                "weight"=> 2.5
+            ];
+            session()->get('shiprocket_orders');
+            $response =  Shiprocket::order($token)->create($orderDetails);
+            session()->get('shiprocket_orders');
+            if($response['status_code'] == 1){
+                $order = Orders::find(session()->get('order_id'));
+                $order->shiprocket_order_id = $response['order_id'];
+                $order->shiprocket_shipment_id = $response['shipment_id'];
+                $order->save();
+            }else{
+                return redirect('/cart')->with('error',$response['message']);
+            }
 
             session()->forget('cart');
 

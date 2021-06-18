@@ -21,7 +21,6 @@
                   <th>Brand</th>
                   <th>Variants</th>
                   <th>Type</th>
-                  <th>SKU</th>
                   <th>Status</th>            
                   <th>Category</th>
                   <th>Images</th>
@@ -65,6 +64,7 @@
                                                 <th scope="col">MRP Price</th>
                                                 <th scope="col">Selling Price</th>
                                                 <th scope="col">In Stock</th>
+                                                <th scope="col">sku</th>
                                                 </tr>
                                              </thead>
                                              <tbody>
@@ -76,7 +76,8 @@
                                                 <th>${{$v->mrp_price}}</th>
                                                 <th>${{$v->selling_price}}</th>
                                                 <th class="badge {{$v->in_stock=='1'? 'badge-success':'badge-danger'}}">{{$v->in_stock=='1'?'Yes':'No'}}</th>
-                                                </tr>
+                                                <th>${{$v->sku}}</th>
+                                             </tr>
                                                 @endforeach
                                              </tbody>
                                           </table>
@@ -101,7 +102,6 @@
                         </select>
                      </div>
                   </td>
-                  <td>{{$c->sku}}</td>
                   <td>{{$c->status=='1'?'Active':'Not Active'}}</td>
                   
                   <td>{{$c->subcategory->category->name}} | {{$c->subcategory->name}}</td>

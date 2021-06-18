@@ -7,11 +7,58 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/src/plugins/datatables/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/src/plugins/datatables/css/responsive.bootstrap4.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('/vendors/styles/style.css')}}">
+<style>
+  .tt-shopcart-table table td:nth-child(n+4) {
+    display: table-cell;
+  }
+
+  .tt-shopcart-table table td:nth-child(1){
+    padding-left: 20px;
+  }
+  table.dataTable.nowrap th, table.dataTable.nowrap td{
+    text-align: center;
+  }
+
+  @media (max-width: 800px){
+    #orderItemsModal .modal-dialog{
+      width: 80%;
+    } 
+    #orderItemsModal .modal-header {
+      padding: 10px 10px 0px 10px;
+      justify-content: center;
+    } 
+    #orderItemsModal h6{
+      font-size: 13px;
+      padding-bottom: 6px;
+      margin: 11px 0 0 0;
+    } 
+    #orderItemsModal .modal-body {
+    padding: 8px;
+    } 
+    #orderItemsModal thead th {
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 0;
+    padding-left: 0rem;
+    padding: 0.35em;
+    } 
+    #orderItemsModal td {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0.5rem;
+    } 
+    .dtr-details{
+      widows: 100%;
+    }
+  }
+</style>
+
 @section('css')
 <style>
   body{
     background-color: white !important;
   }
+
 </style>
 @stop
 <div class="tt-breadcrumb">
@@ -34,8 +81,7 @@
                 <tr>
                    <th class="table-plus datatable-nosort">S.No.</th>
                    <th>Order Id</th>
-                   <th>Product Image</th>
-                   <th>Name</th>
+                   <th>items</th>
                    <th>Amount</th>
                    <th>Order Status</th>
                    <th>Payment Status</th>            
@@ -51,20 +97,14 @@
                       <td><a href="#" class="">{{$order->id}}</a></td>
                       
                       <td>
-                        <div class="tt-product-img">
-                          {{-- @foreach(explode(',',$order->items->product_variant->product->images) as $image)
-                            @if ($loop->first)
-                              <img src="images/loader.svg" data-src="{{asset('/uploads/products/'.$image)}}" alt="">
-                            @endif
-                          @endforeach --}}
-                        </div>
+                        <a class="btn-block orderItemsButton" data-order_id="{{$order->id}}" type="button">
+                            <i class="dw dw-eye"></i> View
+                         </a>
                       </td>
-
-                      <td>{{--<a href="{{url('/product/'.$order->items->product_variant->product->slug)}}" class="tt-price">{{$order->items->product_variant->product->name}}</a> --}}</td>
                       
                       <td><div class="tt-price">{{$order->final_price}}</div></td>
 
-                      <td><div class="tt-price">{{$order->order_status}}</div></td>
+                      <td><div class="tt-price track_shiprocket_order" id="{{$order->shiprocket_shipment_id}}">{{$order->order_status}}</div></td>
                       <td><div class="tt-price">{{$order->payment_status}}</div></td>
                       <td><div class="tt-price">{{date("j F Y g:i A",strtotime($order->created_at))}}</div></td>
 
@@ -94,6 +134,35 @@
 </div>
 
 
+<!-- modal (show items info) -->
+<div class="modal fade" id="orderItemsModal" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content ">
+			<div class="modal-header">
+        <h6 class="modal-title" id="myLargeModalLabel">Order Items</h6>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="icon icon-clear"></span></button>
+			</div>
+			<div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Payable Price</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>
+
 @stop
 
 
@@ -122,17 +191,29 @@
   //       }).fail(err=>console.log('error',err));
   //   });
 
-  // $(document).on("click",".items_model",function(){
-  //       const order_id = $(this).data('order_id');
-  //       $.ajax({
-  //           url:"{{url('order/getAllOrderItems')}}"+`/${order_id}`
-  //       })
-  //       .then(response=>{
+  https://apiv2.shiprocket.in/v1/external/courier/track/shipment/16104408' \
 
-  //           $("#items_modal tbody").html(response);
-  //           $("#items_modal").modal("show");
-  //       }).fail(err=>console.log('error',err));
-  //   });
+  $(document).on("click",".orderItemsButton",function(){
+        const order_id = $(this).data('order_id');
+        $.ajax({
+            url:"{{url('order/getOrderItems')}}"+`/${order_id}`
+        })
+        .then(response=>{
+            $("#orderItemsModal tbody").html(response);
+            $("#orderItemsModal").modal("show");
+        }).fail(err=>console.log('error',err));
+    });
+
+    $(document).on("click",".track_shiprocket_order",function(){
+        const shipment_id = this.id
+        $.ajax({
+            url:"{{url('order/trackOrderStatus')}}"+`/${shipment_id}`
+        })
+        .then(response=>{
+            $("#orderItemsModal tbody").html(response);
+            $("#orderItemsModal").modal("show");
+        }).fail(err=>console.log('error',err));
+    });
     
 </script>
 

@@ -70,13 +70,6 @@
             </div>
         </div>
 
-         <div class="form-group row">
-               <label class="col-sm-12 col-md-2 col-form-label">SKU</label>
-               <div class="col-sm-12 col-md-10">
-                  <input class="form-control" value="{{$product->sku}}" type="text" name="sku" required>
-               </div>
-         </div>
-
          <div class="add_varient">
 
             @foreach($product->variants as $v)
@@ -95,6 +88,9 @@
                </div>
                <div class='col-md-2 col-sm-6'>
                   <div class='form-group'><label>Selling Price</label><input type='number' name='selling_price[]' class='form-control' value="{{$v->selling_price}}" required></div>
+               </div>
+               <div class='col-md-2 col-sm-6'>
+                  <div class='form-group'><label>sku</label><input type='number' name='sku[]' class='form-control' value="{{$v->sku}}" required></div>
                </div>
                
                <div class='col-md-2 col-sm-6'>
@@ -193,6 +189,9 @@
                   </div>
                   <div class='col-md-2 col-sm-6'>
                      <div class='form-group'><label>Selling Price</label><input type='number' name='selling_price[]' class='form-control' required></div>
+                  </div> 
+                  <div class='col-md-2 col-sm-6'>
+                     <div class='form-group'><label>sku</label><input type='number' name='sku[]' class='form-control' required></div>
                   </div>            
                   <div class='col-md-2 col-sm-12'>
                      <button class="btn btn-danger variant_remove mx-auto" type="button"><i class="icon-copy dw dw-trash"></i></button>

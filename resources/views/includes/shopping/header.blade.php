@@ -142,7 +142,33 @@
 					</button>
 				</div>
 				<!-- search -->
-				<div class="tt-mobile-parent-search tt-parent-box"></div>
+				<div class="tt-mobile-parent-search tt-parent-box">
+					
+						<div class="tt-search tt-dropdown-obj">
+							<button class="tt-dropdown-toggle" data-tooltip="Search" data-tposition="bottom">
+								<i class="icon-f-85"></i>
+							</button>
+							<div class="tt-dropdown-menu">
+								<div class="container">
+									<form>
+										<div class="tt-col">
+											<input type="text" id="search_1" class="tt-search-input" placeholder="Search Products..." autofocus>
+											<button class="tt-btn-search" type="submit"></button>
+										</div>
+										<div class="tt-col">
+											<button class="tt-btn-close icon-g-80"></button>
+										</div>
+										<div class="tt-info-text">
+											What are you Looking for?
+										</div>
+										<div id="search_hint_1" class="text-dark pl-5 pr-5 text-left "></div>
+									</form>
+									
+								</div>
+							</div>
+						</div>
+					
+				</div>
 				<!-- /search -->
 				<!-- cart -->
 				<div class="tt-mobile-parent-cart tt-parent-box"></div>
@@ -285,7 +311,7 @@
 									<div class="container">
 										<form>
 											<div class="tt-col">
-												<input type="text" id="search_1" class="tt-search-input" placeholder="Search Products...">
+												<input type="text" id="search_1" class="tt-search-input" placeholder="Search Products..." autofocus>
 												<button class="tt-btn-search" type="submit"></button>
 											</div>
 											<div class="tt-col">
@@ -406,7 +432,7 @@
 								<div class="container">
 									<form>
 										<div class="tt-col">
-											<input type="text" id="search_2" class="tt-search-input" placeholder="Search Products...">
+											<input type="text" id="search_2" class="tt-search-input" placeholder="Search Products..." autofocus>
 											<button class="tt-btn-search" type="submit"></button>
 										</div>
 										<div class="tt-col">

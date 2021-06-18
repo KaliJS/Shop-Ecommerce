@@ -67,14 +67,6 @@
             </div>
         </div>
 
-        <div class="form-group row">
-            <label class="col-sm-12 col-md-2 col-form-label">SKU</label>
-            <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" name="sku" required>
-            </div>
-        </div>
-
-
         <div class="add_varient">
         
         </div>
@@ -121,6 +113,9 @@
                         </div>
                         <div class='col-md-2 col-sm-6'>
                            <div class='form-group'><label>Selling Price</label><input type='number' name='selling_price[]' class='form-control' required></div>
+                        </div>
+                        <div class='col-md-2 col-sm-6'>
+                           <div class='form-group'><label>sku</label><input type='text' name='sku[]' class='form-control' required></div>
                         </div>
                         
                         <div class='col-md-2 col-sm-12'>

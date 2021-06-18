@@ -225,8 +225,8 @@
 		</div>
 	</div>
 
-	@foreach($complete_data as $d)
-	
+	@foreach($complete_data as $i => $d)
+
 		<div class="container-indent">
 			<div class="tt-block-title">
 				<h1 class="tt-title">{{$d->name}}</h1>
@@ -236,17 +236,18 @@
 				<ul class="nav nav-tabs tt-tabs-default" role="tablist">
 				@foreach($d->subcategories as $key => $c)
 					<li class="nav-item">
-						<a class="nav-link {{$loop->first?'active':''}}" data-toggle="tab" href="#tt-tab{{$d->id}}-{{$c->id}}">{{$c->name}}</a>
+						<a class="nav-link {{$loop->first?'active':''}}" data-toggle="tab" href="#tt-tab{{$i}}{{$i+1}}-{{$i}}{{$key+1}}">{{$c->name}}</a>
 					</li>
 				@endforeach
 				</ul>
+				<div class="tab-content">
 				@foreach($d->subcategories as $key => $c)
-					<div class="tab-content">
-					@if ($loop->first)
-						<div class="tab-pane active" id="tt-tab{{$d->id}}-{{$c->id}}">
-					@else
-						<div class="tab-pane" id="tt-tab{{$d->id}}-{{$c->id}}">	
-					@endif
+					
+							@if ($loop->first)
+								<div class="tab-pane active" id="tt-tab{{$i}}{{$i+1}}-{{$i}}{{$key+1}}">
+							@else
+								<div class="tab-pane" id="tt-tab{{$i}}{{$i+1}}-{{$i}}{{$key+1}}">	
+							@endif
 							<div class="row tt-layout-product-item">
 							@foreach($c->product as $key => $p)
 								@if ($key == 4)
@@ -306,8 +307,9 @@
 							@endforeach
 							</div>
 						</div>
-					</div>
+					
 				@endforeach	
+			</div>
 			</div>
 			
 		</div>
@@ -504,6 +506,48 @@
 					</a>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-indent">
+	<div class="container container-fluid-lg">
+		<ul class="nav nav-tabs tt-tabs-default" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" data-toggle="tab" href="#tt-tab01-01">WOMEN</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#tt-tab01-02">MENS</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#tt-tab01-03">SHOES</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#tt-tab01-04">ACCESSORIES</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="tt-tab01-01">
+				1
+			</div>
+			<div class="tab-pane" id="tt-tab01-02">2</div>
+			<div class="tab-pane" id="tt-tab01-03">3</div>
+			<div class="tab-pane" id="tt-tab01-04">4</div>
 		</div>
 	</div>
 </div>

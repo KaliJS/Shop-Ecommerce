@@ -16,10 +16,6 @@ class OrderItems extends Model
 
     protected $guarded = ['id'];
 
-    public function items(){
-    	return $this->hasMany(OrderItems::class,'order_id','id');
-    }
-
     public function product_variant(){
         return $this->hasOne(ProductVariants::class,'id','product_variant_id');
     }

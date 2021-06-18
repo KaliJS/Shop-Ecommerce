@@ -14,7 +14,7 @@
         @foreach($products as $p)
 
             <tr>
-                <td><a href="{{url('/product/'.$p->slug)}}" class='carsearch'>{{$p->name}}</a></td>
+                <td><a href="{{url('/product/'.$p->slug)}}" class='search_product_item'>{{$p->name}}</a></td>
             </tr>
                 
         @endforeach
